@@ -3,88 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Design</title>
-
+    <title>City Design - Introduction</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f6f6f6;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             padding: 40px;
             text-align: center;
         }
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        h2, h3 {
-            margin: 6px 0;
+        .header .course-info {
+            font-size: 1.2em;
+            margin: 10px 0;
+            opacity: 0.95;
         }
 
-        table {
+        .content {
+            padding: 50px;
+        }
+
+        .intro-section {
+            margin-bottom: 40px;
+        }
+
+        .intro-section h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .intro-section p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .team-section {
+            margin-top: 50px;
+        }
+
+        .team-section h2 {
+            color: #764ba2;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .team-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 30px;
-            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        table, th, td {
-            border: 2px solid #000;
+        .team-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
 
-        th {
-            background-color: #e7e7e7;
-            padding: 12px;
+        .team-table th {
+            padding: 20px;
+            font-size: 1.3em;
+            text-align: left;
+        }
+
+        .team-table td {
+            padding: 18px 20px;
+            font-size: 1.1em;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .team-table tbody tr {
+            transition: background-color 0.3s;
+        }
+
+        .team-table tbody tr:hover {
+            background-color: #f5f5ff;
+        }
+
+        .team-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight {
+            color: #667eea;
             font-weight: bold;
         }
 
-        td {
-            padding: 12px;
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .intro-section h2 {
+                font-size: 1.8em;
+            }
+
+            .team-table th,
+            .team-table td {
+                padding: 12px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>🏙️ City Design</h1>
+            <div class="course-info"><strong>Course:</strong> DAA</div>
+            <div class="course-info"><strong>Course Code:</strong> 24ECSC205</div>
+            <div class="course-info"><strong>Instructor:</strong> Prof. Prakash Hegade</div>
+            <div class="course-info"><strong>University:</strong> KLE Technological University</div>
+        </div>
 
-<div class="container">
-    <h2>Course: DAA</h2>
-    <h3>Course Code: 24ECSC205</h3>
-    <h3>Course Instructor: Prof. Prakash Hegade</h3>
-    <h3>University: KLE Technological University</h3>
-    <h3>Topic: City Design</h3>
+        <div class="content">
+            <div class="intro-section">
+                <h2>📋 Introduction</h2>
+                <p>
+                    City design is a complex and multifaceted challenge that requires careful planning and optimization. 
+                    The <span class="highlight">City Design Project</span> aims to explore various algorithmic approaches to 
+                    solve urban planning problems such as optimal road network design, facility placement, traffic flow 
+                    optimization, and resource allocation.
+                </p>
+                <p>
+                    In this project, we will utilize <span class="highlight">Design and Analysis of Algorithms (DAA)</span> 
+                    techniques to address real-world city planning scenarios. Our approach will involve implementing graph 
+                    algorithms, dynamic programming solutions, greedy algorithms, and optimization techniques to create 
+                    efficient and sustainable city layouts.
+                </p>
+                <p>
+                    The project focuses on practical applications such as minimizing travel distances, optimizing public 
+                    transportation routes, ensuring efficient emergency response systems, and planning green spaces. 
+                    Through computational analysis and algorithmic thinking, we aim to demonstrate how computer science 
+                    can contribute to better urban environments.
+                </p>
+            </div>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>USN</th>
-        </tr>
-
-        <tr>
-            <td>Kushvendra Singh</td>
-            <td>01fe24bcs134</td>
-        </tr>
-
-        <tr>
-            <td>Manthan Rayakar</td>
-            <td>01fe24bcs196</td>
-        </tr>
-
-        <tr>
-            <td>Pranav Chougule</td>
-            <td>01fe24bcs203</td>
-        </tr>
-
-        <tr>
-            <td>Ayush Kumar Ojha</td>
-            <td>01fe24bcs211</td>
-        </tr>
-    </table>
-</div>
-
+            <div class="team-section">
+                <h2>👥 Team Members</h2>
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>USN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kushvendra Singh</td>
+                            <td>01fe24bcs134</td>
+                        </tr>
+                        <tr>
+                            <td>Manthan Rayakar</td>
+                            <td>01fe24bcs196</td>
+                        </tr>
+                        <tr>
+                            <td>Pranav Chougule</td>
+                            <td>01fe24bcs203</td>
+                        </tr>
+                        <tr>
+                            <td>Ayush Kumar Ojha</td>
+                            <td>01fe24bcs211</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
