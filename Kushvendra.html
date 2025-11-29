@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Infrastructure & SDG 11 Contributions</title>
+    <style>
+        /* --- Global Styles --- */
+        :root {
+            --primary-color: #005eb8; /* Professional Blue */
+            --secondary-color: #fba919; /* SDG 11 Orange/Yellow Accent */
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --text-light: #666;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Header & Intro Section --- */
+        header {
+            background: #fff;
+            padding: 40px 20px;
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 40px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .intro-greeting {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .intro-subtext {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .portfolio-info-box {
+            background-color: #f9f9f9;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .portfolio-info-box h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item strong {
+            display: block;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* --- Main Project Content Styles --- */
+        .project-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .project-title h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+        }
+        
+        .project-title p {
+             color: var(--text-light);
+             max-width: 700px;
+             margin: 0 auto;
+        }
+
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- The Structure Card Design --- */
+        .structure-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .structure-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 20px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .structure-name {
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* --- SDG Badge Design --- */
+        .sdg-badge {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 2px solid var(--secondary-color);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .sdg-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 4px;
+            /* Use object-fit to ensure real icons look good */
+            object-fit: contain; 
+            background: #fba919; /* Fallback color for SDG 11 */
+        }
+
+        .sdg-text {
+            flex: 1;
+        }
+
+        .sdg-target-num {
+            display: block;
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .sdg-target-desc {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        /* --- Card Body & Contributions List --- */
+        .card-body {
+            padding: 25px;
+        }
+
+        .contribution-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contribution-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        /* Custom bullet points */
+        .contribution-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            .intro-greeting { font-size: 2rem; }
+            .city-grid { grid-template-columns: 1fr; }
+            .portfolio-info-box { border-left: none; border-top: 5px solid var(--secondary-color); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="intro-greeting">Hello, I am Kushvendra Singh Rathore 👋</div>
+            <p class="intro-subtext">This page is presented as part of our college project on Development of a City.</p>
+
+            <div class="portfolio-info-box">
+                <h2>Portfolio Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Name:</strong> Kushvendra Singh Rathore
+                    </div>
+                    <div class="info-item">
+                        <strong>Course:</strong> DAA
+                    </div>
+                    <div class="info-item">
+                        <strong>Project Topic:</strong> Building a Sustainable City
+                    </div>
+                    <div class="info-item">
+                         <strong>University:</strong> KLE Technological University
+                    </div>
+                </div>
+                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                    <strong>My Contribution:</strong>
+                    <p style="margin-top: 5px;">I defined the core urban structures, researched their specific contributions to city functionality, and mapped them to relevant SDG 11 targets to ensure sustainable alignment.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container">
+        <div class="project-title">
+            <h1>Building a Sustainable City</h1>
+            <p>Analyzing how key urban structures contribute to city life and align with the targets of Sustainable Development Goal 11: Sustainable Cities and Communities.</p>
+        </div>
+
+        <section class="city-grid">
+
+            <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🏭 Factories</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.4" alt="SDG 11.4 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.4</span>
+                            <span class="sdg-target-desc">Strengthening urban economic productivity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Produce commercial goods that bring financial revenue to the city and expand economic output.</li>
+                        <li>Generate large-scale employment opportunities, supporting local livelihoods and strengthening the labor economy.</li>
+                        <li>Promote skill development and industrial innovation, building a technologically capable workforce.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🏢 Warehouses</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.6" alt="SDG 11.6 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.6</span>
+                            <span class="sdg-target-desc">Efficient resource and logistics management</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Enable reliable storage and distribution of industrial goods, maintaining stable supply chains.</li>
+                        <li>Reduce product delivery delays, supporting retail, manufacturing, and export operations.</li>
+                        <li>Encourage transport and logistics investments, boosting commercial infrastructure.</li>
+                    </ul>
+                </div>
+            </article>
+
+             <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">⚡ Power / Electricity Station</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.2" alt="SDG 11.2 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.2</span>
+                            <span class="sdg-target-desc">Sustainable access to essential utilities</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Ensures uninterrupted power supply to industries, homes, transportation, and services.</li>
+                        <li>Enables all commercial and industrial operations, preventing economic slowdowns.</li>
+                        <li>Supports development of smart-energy solutions and efficient power management.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🚇 Metro Station & Public Transport</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.2" alt="SDG 11.2 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.2</span>
+                            <span class="sdg-target-desc">Inclusive and affordable transit systems</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Connects workers to industrial and commercial areas, improving employment accessibility.</li>
+                        <li>Reduces traffic congestion and lowers emissions through mass transportation.</li>
+                        <li>Enhances mobility efficiency, increasing both productivity and urban connectivity.</li>
+                    </ul>
+                </div>
+            </article>
+
+             <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🏡 Residential Housing</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.1" alt="SDG 11.1 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.1</span>
+                            <span class="sdg-target-desc">Access to adequate housing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Provides living spaces for the workforce, stabilizing population distribution.</li>
+                        <li>Stimulates real estate growth and local business consumption.</li>
+                        <li>Encourages long-term settlement, social development, and community building.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🅿️ Parking Facilities</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.2" alt="SDG 11.2 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.2</span>
+                            <span class="sdg-target-desc">Smarter urban transportation design</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Enables organized vehicle usage and reduces road congestion.</li>
+                        <li>Supports commercial access by providing convenient parking for customers and employees.</li>
+                        <li>Helps regulate city traffic flow and prevents transport bottlenecks.</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🛒 Retail & Supermarkets</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.8" alt="SDG 11.8 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.8</span>
+                            <span class="sdg-target-desc">Strengthening local economic chains</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Drive everyday economic circulation by serving as commercial spending hubs.</li>
+                        <li>Create jobs in sales, supply, logistics, and store management.</li>
+                        <li>Support small-scale vendors and local producers through consumer traffic.</li>
+                    </ul>
+                </div>
+            </article>
+
+             <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">📮 Post Office & Delivery Services</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100
+                         /fba919/ffffff?text=SDG+11.3" alt="SDG 11.3 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.3</span>
+                            <span class="sdg-target-desc">Strengthening institutional communication systems</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Maintains business communication and delivery networks for official and commercial documents.</li>
+                        <li>Supports e-commerce and parcel logistics, an essential part of modern urban economy.</li>
+                        <li>Enables efficient administrative correspondence and citizen services.</li>
+                    </ul>
+                </div>
+            </article>
+
+             <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🛣️ Industrial Roads & Transport Routes</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.5" alt="SDG 11.5 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.5</span>
+                            <span class="sdg-target-desc">Resilient and efficient infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Allow smooth movement of goods, reducing shipping delays and costs.</li>
+                        <li>Improve city-wide accessibility between industrial and residential sectors.</li>
+                        <li>Support large-scale freight operations, boosting commercial reliability.</li>
+                    </ul>
+                </div>
+            </article>
+
+             <article class="structure-card">
+                <div class="card-header">
+                    <h3 class="structure-name">🏞️ Water Body / Lake</h3>
+                    <div class="sdg-badge">
+                         <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.7" alt="SDG 11.7 Icon" class="sdg-icon">
+                        <div class="sdg-text">
+                            <span class="sdg-target-num">SDG Target 11.7</span>
+                            <span class="sdg-target-desc">Sustainable natural and recreational spaces</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="contribution-list">
+                        <li>Enhances environmental health, improving air quality and micro-climate.</li>
+                        <li>Raises nearby property values and provides potential tourism or leisure benefits.</li>
+                        <li>Contributes to ecological balance, supporting long-term urban sustainability.</li>
+                    </ul>
+                </div>
+            </article>
+
+        </section>
+    </main>
+    
+    <footer style="text-align: center; padding: 40px; color: var(--text-light); font-size: 0.9rem;">
+        <p>College Project Portfolio | SDG 11: Sustainable Cities and Communities</p>
+    </footer>
+
+</body>
+</html>
