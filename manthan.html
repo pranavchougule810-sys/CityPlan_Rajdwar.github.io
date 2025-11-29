@@ -2,126 +2,489 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manthan Raykar</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manthan Raykar | City Infrastructure & SDGs</title>
+
+    <style>
+        :root {
+            --primary-color: #005eb8;     /* Blue */
+            --secondary-color: #fba919;   /* SDG 11 Orange */
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --text-light: #666;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            background: #fff;
+            padding: 40px 20px;
+            border-bottom: 3px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .intro-greeting {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .intro-subtext {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .portfolio-info-box {
+            background: #f9f9f9;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .portfolio-info-box h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* --- Project Title --- */
+        .project-title {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        .project-title h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .project-title p {
+            max-width: 750px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+
+        /* --- Card Grid --- */
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .structure-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .structure-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 20px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .structure-name {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        .sdg-tags {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .sdg-tag {
+            display: inline-block;
+            background: #fff;
+            border: 1px solid var(--secondary-color);
+            border-radius: 999px;
+            padding: 3px 10px;
+            margin-right: 5px;
+            margin-top: 5px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .card-body {
+            padding: 20px 22px 24px;
+        }
+
+        .contribution-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contribution-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .contribution-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px 40px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .intro-greeting { font-size: 2rem; }
+            .project-title h1 { font-size: 1.8rem; }
+            .city-grid { grid-template-columns: 1fr; }
+            .portfolio-info-box { border-left: none; border-top: 5px solid var(--secondary-color); }
+        }
+    </style>
 </head>
+
 <body>
 
 <header>
-    <h1>Hello, I'm Manthan Raykar 👋</h1>
-    <p>This page is part of our DAA learning portfolio.</p>
+    <div class="container">
+        <div class="intro-greeting">Hello, I am Manthan Raykar 👋</div>
+        <p class="intro-subtext">
+            This page is part of our Design and Analysis of Algorithms learning portfolio,
+            focusing on how different city structures contribute to sustainable urban development.
+        </p>
+
+        <div class="portfolio-info-box">
+            <h2>Portfolio Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Name</strong>
+                    Manthan Raykar
+                </div>
+                <div class="info-item">
+                    <strong>Course</strong>
+                    Design and Analysis of Algorithms (DAA)
+                </div>
+                <div class="info-item">
+                    <strong>Course Code</strong>
+                    24ECSC205
+                </div>
+                <div class="info-item">
+                    <strong>University</strong>
+                    KLE Technological University
+                </div>
+            </div>
+
+            <div style="margin-top: 18px; padding-top: 12px; border-top: 1px solid #e0e0e0;">
+                <strong>My Contribution:</strong>
+                <p style="margin-top: 6px;">
+                    I documented key urban infrastructure elements in our city design, analyzed their impact on
+                    people and the environment, and mapped them to relevant Sustainable Development Goals (SDGs).
+                </p>
+            </div>
+        </div>
+    </div>
 </header>
 
-<section>
-    <h2>Portfolio Information</h2>
+<main class="container">
+    <div class="project-title">
+        <h1>City Infrastructure Components & Their Impact</h1>
+        <p>
+            Each card below represents a critical urban component and explains how it contributes
+            to city life, sustainability, and the UN Sustainable Development Goals.
+        </p>
+    </div>
 
-    <p><strong>Name:</strong> Manthan Raykar</p>
-    <p><strong>Course:</strong> Design and Analysis of Algorithms</p>
-    <p><strong>Course Code:</strong> 24ECSC205</p>
-    <p><strong>University:</strong> KLE Technological University</p>
+    <section class="city-grid">
 
-    <h2>My Contribution</h2>
-    <p>
-        I contributed to organizing the portfolio structure,
-        understanding city design concepts, and supporting
-        documentation for the group project.
-    </p>
-</section>
-    <h2>City Infrastructure Components & Their Impact</h2>
+        <!-- 1. Mall -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🏬 Mall</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 11</span>
+                    <span class="sdg-tag">SDG 8</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Supports planned urban development by consolidating commerce, services, and public spaces into a single organized hub, reducing urban sprawl.</li>
+                    <li>Strengthens the local economy by generating formal employment and integrating MSMEs and informal businesses into a regulated ecosystem.</li>
+                    <li>Enhances quality of urban life through safe, accessible spaces for shopping, social interaction, and recreation.</li>
+                    <li>Reduces environmental load via efficient land use, controlled traffic movement, and centralized waste and resource management.</li>
+                    <li>Promotes safety, resilience, and inclusivity through professional governance, emergency systems, and barrier-free access.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>1. Mall</h3>
-<ul>
-    <li>Supports planned urban development by consolidating commerce, services, and public spaces into a single organized hub, reducing urban sprawl.</li>
-    <li>Strengthens the local economy by generating formal employment and integrating MSMEs and informal businesses into a regulated ecosystem.</li>
-    <li>Enhances quality of urban life through safe, accessible spaces for shopping, social interaction, and recreation.</li>
-    <li>Reduces environmental load via efficient land use, controlled traffic movement, and centralized waste and resource management.</li>
-    <li>Promotes safety, resilience, and inclusivity through professional governance, emergency systems, and barrier-free access.</li>
-</ul>
+        <!-- 2. Movie Theatre -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🎬 Movie Theatre</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 11</span>
+                    <span class="sdg-tag">SDG 8</span>
+                    <span class="sdg-tag">SDG 4</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Supports planned urban development by centralizing entertainment in a regulated and organized environment.</li>
+                    <li>Generates formal employment in operations, security, food services, and technical roles, supporting inclusive economic growth.</li>
+                    <li>Enhances cultural and educational access through films, documentaries, community screenings, and regional cinema.</li>
+                    <li>Improves urban quality of life by offering safe, affordable, and accessible entertainment for all age groups.</li>
+                    <li>Promotes social inclusion through barrier-free access, discounted shows, and community-based cultural events.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>2. Movie Theatre</h3>
-<ul>
-    <li>Supports planned urban development by centralizing entertainment in a regulated and organized environment.</li>
-    <li>Generates formal employment in operations, security, food services, and technical roles, supporting inclusive economic growth (SDG 8).</li>
-    <li>Enhances cultural and educational access through films, documentaries, community screenings, and regional cinema (SDG 11.7, SDG 4.7).</li>
-    <li>Improves urban quality of life by offering safe, affordable, and accessible entertainment for all age groups.</li>
-    <li>Promotes social inclusion through barrier-free access, discounted shows, and community-based cultural events.</li>
-</ul>
+        <!-- 3. Hotels -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🏨 Hotels</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 11</span>
+                    <span class="sdg-tag">SDG 8</span>
+                    <span class="sdg-tag">SDG 4</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Supports planned urban development by providing organized accommodation infrastructure within commercial and mixed-use zones.</li>
+                    <li>Generates formal employment in hospitality, housekeeping, food services, maintenance, and administration.</li>
+                    <li>Strengthens tourism, business travel, and conference ecosystems within the city.</li>
+                    <li>Enhances urban liveability by offering safe, regulated, and accessible lodging facilities.</li>
+                    <li>Promotes skill development and learning through hospitality training, internships, and service-sector education.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>3. Hotels</h3>
-<ul>
-    <li>Supports planned urban development by providing organized accommodation infrastructure within commercial and mixed-use zones.</li>
-    <li>Generates formal employment in hospitality, housekeeping, food services, maintenance, and administration (SDG 8).</li>
-    <li>Strengthens tourism, business travel, and conference ecosystems within the city (SDG 11).</li>
-    <li>Enhances urban liveability by offering safe, regulated, and accessible lodging facilities.</li>
-    <li>Promotes skill development and learning through hospitality training, internships, and service-sector education (SDG 4).</li>
-</ul>
+        <!-- 4. Hospital -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🏥 Hospital</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 11</span>
+                    <span class="sdg-tag">SDG 8</span>
+                    <span class="sdg-tag">SDG 3</span>
+                    <span class="sdg-tag">SDG 4</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Strengthens urban healthcare infrastructure by providing organized and accessible medical services.</li>
+                    <li>Improves public health outcomes through diagnosis, treatment, emergency care, and preventive services.</li>
+                    <li>Generates large-scale formal employment for healthcare professionals and support staff.</li>
+                    <li>Enhances health education through medical training, internships, and awareness programs.</li>
+                    <li>Promotes social inclusion by offering affordable and emergency healthcare services.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>4. Hospital</h3>
-<ul>
-    <li>Strengthens urban healthcare infrastructure by providing organized and accessible medical services (SDG 11).</li>
-    <li>Improves public health outcomes through diagnosis, treatment, emergency care, and preventive services (SDG 3).</li>
-    <li>Generates large-scale formal employment for healthcare professionals and support staff (SDG 8).</li>
-    <li>Enhances health education through medical training, internships, and awareness programs (SDG 4).</li>
-    <li>Promotes social inclusion by offering affordable and emergency healthcare services.</li>
-</ul>
-    <h3>5. Spa</h3>
-<ul>
-    <li>Promotes physical and mental well-being through stress relief, therapy, and wellness services (SDG 3).</li>
-    <li>Generates formal employment in wellness, therapy, and hospitality sectors (SDG 8).</li>
-    <li>Enhances urban quality of life by integrating preventive health and relaxation facilities within city spaces (SDG 11).</li>
-</ul>
+        <!-- 5. Spa -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">💆 Spa</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 3</span>
+                    <span class="sdg-tag">SDG 8</span>
+                    <span class="sdg-tag">SDG 11</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Promotes physical and mental well-being through stress relief, therapy, and wellness services.</li>
+                    <li>Generates formal employment in wellness, therapy, and hospitality sectors.</li>
+                    <li>Enhances urban quality of life by integrating preventive health and relaxation facilities within city spaces.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>6. ATM Facilities (Including Additional Locations)</h3>
-<ul>
-    <li>Improves access to essential financial services such as cash withdrawal and basic banking (SDG 9).</li>
-    <li>Reduces travel time and congestion by decentralizing banking infrastructure within neighborhoods (SDG 11).</li>
-    <li>Enhances redundancy and convenience by placing ATMs in high-footfall zones such as malls, transit hubs, and residential clusters.</li>
-    <li>Supports daily economic activities for residents, workers, and local businesses.</li>
-</ul>
+        <!-- 6. ATM Facilities -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🏧 ATM Facilities</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 9</span>
+                    <span class="sdg-tag">SDG 11</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Improves access to essential financial services such as cash withdrawal and basic banking.</li>
+                    <li>Reduces travel time and congestion by decentralizing banking infrastructure within neighborhoods.</li>
+                    <li>Enhances redundancy and convenience by placing ATMs in high-footfall zones such as malls, transit hubs, and residential clusters.</li>
+                    <li>Supports daily economic activities for residents, workers, and local businesses.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>7. Parking Facilities</h3>
-<ul>
-    <li>Reduces roadside congestion by providing organized and designated vehicle storage (SDG 11).</li>
-    <li>Improves traffic flow, pedestrian safety, and emergency vehicle access.</li>
-    <li>Supports last-mile connectivity in dense urban areas (SDG 9).</li>
-</ul>
+        <!-- 7. Parking Facilities -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🅿️ Parking Facilities</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 11</span>
+                    <span class="sdg-tag">SDG 9</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Reduces roadside congestion by providing organized and designated vehicle storage.</li>
+                    <li>Improves traffic flow, pedestrian safety, and emergency vehicle access.</li>
+                    <li>Supports last-mile connectivity in dense urban areas.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>8. Pharmacy</h3>
-<ul>
-    <li>Ensures timely access to medicines, medical supplies, and basic healthcare needs (SDG 3).</li>
-    <li>Supports public health resilience during emergencies and routine medical requirements.</li>
-    <li>Enhances healthcare accessibility within residential and mixed-use urban zones (SDG 11).</li>
-</ul>
+        <!-- 8. Pharmacy -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">💊 Pharmacy</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 3</span>
+                    <span class="sdg-tag">SDG 11</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Ensures timely access to medicines, medical supplies, and basic healthcare needs.</li>
+                    <li>Supports public health resilience during emergencies and routine medical requirements.</li>
+                    <li>Enhances healthcare accessibility within residential and mixed-use urban zones.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>9. Food and Pharma Delivery Services</h3>
-<ul>
-    <li>Improves last-mile access to food and medicines for residents, elderly individuals, and patients.</li>
-    <li>Generates gig-based and formal employment in logistics and delivery services (SDG 8).</li>
-    <li>Reduces crowding in public spaces by enabling efficient doorstep delivery solutions (SDG 11).</li>
-</ul>
+        <!-- 9. Food & Pharma Delivery -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🚚 Food & Pharma Delivery Services</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 8</span>
+                    <span class="sdg-tag">SDG 9</span>
+                    <span class="sdg-tag">SDG 11</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Improves last-mile access to food and medicines for residents, elderly individuals, and patients.</li>
+                    <li>Generates gig-based and formal employment in logistics and delivery services.</li>
+                    <li>Reduces crowding in public spaces by enabling efficient doorstep delivery solutions.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>10. Grocery Store</h3>
-<ul>
-    <li>Ensures daily food security and access to essential household supplies (SDG 2).</li>
-    <li>Reduces dependency on long-distance travel for basic daily needs.</li>
-    <li>Supports neighborhood-level economic activity and local employment (SDG 11).</li>
-</ul>
+        <!-- 10. Grocery Store -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🛒 Grocery Store</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 2</span>
+                    <span class="sdg-tag">SDG 11</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Ensures daily food security and access to essential household supplies.</li>
+                    <li>Reduces dependency on long-distance travel for basic daily needs.</li>
+                    <li>Supports neighborhood-level economic activity and local employment.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>11. Delivery Centre</h3>
-<ul>
-    <li>Strengthens urban logistics and supply-chain efficiency (SDG 9).</li>
-    <li>Generates employment in warehousing, sorting, and transportation sectors (SDG 8).</li>
-    <li>Supports the growth of e-commerce and doorstep service delivery in cities (SDG 11).</li>
-</ul>
+        <!-- 11. Delivery Centre -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">📦 Delivery Centre</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 8</span>
+                    <span class="sdg-tag">SDG 9</span>
+                    <span class="sdg-tag">SDG 11</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Strengthens urban logistics and supply-chain efficiency.</li>
+                    <li>Generates employment in warehousing, sorting, and transportation sectors.</li>
+                    <li>Supports the growth of e-commerce and doorstep service delivery in cities.</li>
+                </ul>
+            </div>
+        </article>
 
-<h3>12. Parks and Open Spaces</h3>
-<ul>
-    <li>Provides accessible public open spaces for recreation, relaxation, and social interaction (SDG 11.7).</li>
-    <li>Improves physical and mental health through green environments and active lifestyles (SDG 3).</li>
-    <li>Enhances urban livability, environmental balance, and climate resilience.</li>
-</ul>
+        <!-- 12. Parks & Open Spaces -->
+        <article class="structure-card">
+            <div class="card-header">
+                <h3 class="structure-name">🌳 Parks & Open Spaces</h3>
+                <div class="sdg-tags">
+                    SDGs:
+                    <span class="sdg-tag">SDG 11</span>
+                    <span class="sdg-tag">SDG 3</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="contribution-list">
+                    <li>Provides accessible public open spaces for recreation, relaxation, and social interaction.</li>
+                    <li>Improves physical and mental health through green environments and active lifestyles.</li>
+                    <li>Enhances urban livability, environmental balance, and climate resilience.</li>
+                </ul>
+            </div>
+        </article>
 
+    </section>
+</main>
 
+<footer>
+    DAA Course Project • City Design & SDG Mapping • Manthan Raykar
+</footer>
 
 </body>
 </html>
