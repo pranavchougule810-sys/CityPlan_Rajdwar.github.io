@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Design - Introduction</title>
+    <title>City Design - Rajdwar</title>
     <style>
         * {
             margin: 0;
@@ -15,107 +15,143 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 20px;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Section Cards */
+        .section-card {
             background: white;
             border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header .course-info {
-            font-size: 1.2em;
-            margin: 10px 0;
-            opacity: 0.95;
-        }
-
-        .content {
             padding: 50px;
-        }
-
-        .intro-section {
             margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s;
         }
 
-        .intro-section h2 {
+        .section-card h2 {
             color: #667eea;
-            font-size: 2.2em;
-            margin-bottom: 20px;
+            font-size: 2.5em;
+            margin-bottom: 25px;
             border-bottom: 3px solid #667eea;
             padding-bottom: 10px;
         }
 
-        .intro-section p {
-            font-size: 1.1em;
+        .section-card h3 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin: 30px 0 15px 0;
+        }
+
+        .section-card p {
+            font-size: 1.15em;
             line-height: 1.8;
-            color: #333;
-            margin-bottom: 15px;
+            color: #444;
+            margin-bottom: 20px;
             text-align: justify;
         }
 
-        .team-section {
-            margin-top: 50px;
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        .team-section h2 {
-            color: #764ba2;
-            font-size: 2.2em;
-            margin-bottom: 30px;
+        .team-member {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-member h3 {
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
             text-align: center;
         }
 
-        .team-table {
-            width: 100%;
-            border-collapse: collapse;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        /* Project Section */
+        .project-intro {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 30px;
             border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .team-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .team-table th {
-            padding: 20px;
-            font-size: 1.3em;
-            text-align: left;
-        }
-
-        .team-table td {
-            padding: 18px 20px;
-            font-size: 1.1em;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .team-table tbody tr {
-            transition: background-color 0.3s;
-        }
-
-        .team-table tbody tr:hover {
-            background-color: #f5f5ff;
-        }
-
-        .team-table tbody tr:last-child td {
-            border-bottom: none;
+            margin: 20px 0;
         }
 
         .highlight {
@@ -123,88 +159,178 @@
             font-weight: bold;
         }
 
+        /* Course Info Box */
+        .course-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .course-info p {
+            font-size: 1.2em;
+            margin: 8px 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
+            .hero h1 {
+                font-size: 2.5em;
             }
 
-            .content {
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .section-card {
                 padding: 30px 20px;
             }
 
-            .intro-section h2 {
-                font-size: 1.8em;
+            .section-card h2 {
+                font-size: 2em;
             }
 
-            .team-table th,
-            .team-table td {
-                padding: 12px;
-                font-size: 1em;
+            nav ul {
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🏙️ City Design</h1>
-            <div class="course-info"><strong>Course:</strong> DAA</div>
-            <div class="course-info"><strong>Course Code:</strong> 24ECSC205</div>
-            <div class="course-info"><strong>Instructor:</strong> Prof. Prakash Hegade</div>
-            <div class="course-info"><strong>University:</strong> KLE Technological University</div>
-        </div>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+    </nav>
 
-        <div class="content">
-            <div class="intro-section">
-                <h2>📋 Introduction</h2>
-                <p>
-                    City design is a complex and multifaceted challenge that requires careful planning and optimization. 
-                    The <span class="highlight">City Design Project</span> aims to explore various algorithmic approaches to 
-                    solve urban planning problems such as optimal road network design, facility placement, traffic flow 
-                    optimization, and resource allocation.
-                </p>
-                <p>
-                    In this project, we will utilize <span class="highlight">Design and Analysis of Algorithms (DAA)</span> 
-                    techniques to address real-world city planning scenarios. Our approach will involve implementing graph 
-                    algorithms, dynamic programming solutions, greedy algorithms, and optimization techniques to create 
-                    efficient and sustainable city layouts.
-                </p>
-                <p>
-                    The project focuses on practical applications such as minimizing travel distances, optimizing public 
-                    transportation routes, ensuring efficient emergency response systems, and planning green spaces. 
-                    Through computational analysis and algorithmic thinking, we aim to demonstrate how computer science 
-                    can contribute to better urban environments.
-                </p>
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <h1>🏙️ City Design - Rajdwar</h1>
+        <p>Exploring Algorithmic Approaches to Urban Planning</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Course Information -->
+        <div class="section-card">
+            <div class="course-info">
+                <p><strong>Course:</strong> Design and Analysis of Algorithms (DAA)</p>
+                <p><strong>Course Code:</strong> 24ECSC205</p>
+                <p><strong>Instructor:</strong> Prof. Prakash Hegade</p>
+                <p><strong>University:</strong> KLE Technological University</p>
             </div>
 
-            <div class="team-section">
-                <h2>👥 Team Members</h2>
-                <table class="team-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>USN</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Kushvendra Singh</td>
-                            <td>01fe24bcs134</td>
-                        </tr>
-                        <tr>
-                            <td>Manthan Rayakar</td>
-                            <td>01fe24bcs196</td>
-                        </tr>
-                        <tr>
-                            <td>Pranav Chougule</td>
-                            <td>01fe24bcs203</td>
-                        </tr>
-                        <tr>
-                            <td>Ayush Kumar Ojha</td>
-                            <td>01fe24bcs211</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2>📖 What is the Course About?</h2>
+            <p>
+                Design and analysis of algorithms is more than a branch of computer science. It is the core of
+                computer science, and, in all fairness, can be said to be relevant to most of science, business, 
+                and technology. The course is about understanding the interesting patterns existing in nature as 
+                many natural processes can inspire computational algorithms and vice versa. It helps in development 
+                of analytical thinking which can help in various problem solving strategies.
+            </p>
+
+            <h3>💡 Data Structures and Algorithms</h3>
+            <p>
+                Exploring data structures feels like a journey through a fascinating family. From the continuity 
+                of memory blocks in arrays and strings to the interlinked nature of web pages seen in linked lists, 
+                each structure tells a story. Stacks and queues evoke everyday images of biscuit piles and waiting 
+                lines, while trees and tries expand our understanding into hierarchies and efficient searches. Skip 
+                lists, inspired by coin tosses, add an element of randomness with precision.
+            </p>
+
+            <h3>🌐 Real-Time Applications</h3>
+            <p>
+                We are both aware and oblivious to the algorithms that permeate our lives, much like the omnipresent 
+                air we breathe. Dijkstra's Algorithm guides us home through GPS, ensuring the quickest route, while 
+                sorting algorithms manage massive datasets in e-commerce platforms. These algorithms take complex 
+                challenges and carve them into elegant solutions, quietly enhancing our daily technological 
+                interactions and making our digital experiences smoother and more intuitive. They are the invisible 
+                hands that optimize, protect, and personalize the technology we rely on every day.
+            </p>
+        </div>
+
+        <!-- Project Section -->
+        <div class="section-card" id="project">
+            <h2>🏗️ City Design Project</h2>
+            <div class="project-intro">
+                <p>
+                    City design is a complex and multifaceted challenge that requires careful planning and optimization. 
+                    The <span class="highlight">City Design Project - Rajdwar</span> aims to explore various algorithmic 
+                    approaches to solve urban planning problems such as optimal road network design, facility placement, 
+                    traffic flow optimization, and resource allocation.
+                </p>
+            </div>
+            
+            <p>
+                In this project, we utilize <span class="highlight">Design and Analysis of Algorithms (DAA)</span> 
+                techniques to address real-world city planning scenarios. Our approach involves implementing graph 
+                algorithms, dynamic programming solutions, greedy algorithms, and optimization techniques to create 
+                efficient and sustainable city layouts.
+            </p>
+            
+            <p>
+                The project focuses on practical applications such as minimizing travel distances, optimizing public 
+                transportation routes, ensuring efficient emergency response systems, and planning green spaces. 
+                Through computational analysis and algorithmic thinking, we aim to demonstrate how computer science 
+                can contribute to better urban environments and smarter cities for the future.
+            </p>
+        </div>
+
+        <!-- Team Section -->
+        <div class="section-card" id="team">
+            <h2>👥 Team Members</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Kushvendra Singh</h3>
+                    <p>01fe24bcs134</p>
+                </div>
+                <div class="team-member">
+                    <h3>Manthan Rayakar</h3>
+                    <p>01fe24bcs196</p>
+                </div>
+                <div class="team-member">
+                    <h3>Pranav Chougule</h3>
+                    <p>01fe24bcs203</p>
+                </div>
+                <div class="team-member">
+                    <h3>Ayush Kumar Ojha</h3>
+                    <p>01fe24bcs211</p>
+                </div>
             </div>
         </div>
     </div>
