@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Design - Rajdwar</title>
+    <title>City Design - Rajdwar | Home</title>
     <style>
         * {
             margin: 0;
@@ -45,7 +45,7 @@
             transition: all 0.3s;
         }
 
-        nav a:hover {
+        nav a:hover, nav a.active {
             background: #667eea;
             color: white;
         }
@@ -126,7 +126,8 @@
             border-radius: 12px;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
+            text-decoration: none;
+            display: block;
         }
 
         .team-member:hover {
@@ -232,14 +233,17 @@
     <!-- Navigation -->
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#project">Project</a></li>
-            <li><a href="#team">Team</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="project.html">Project</a></li>
+            <li><a href="kushvendra.html">Kushvendra</a></li>
+            <li><a href="manthan.html">Manthan</a></li>
+            <li><a href="pranav.html">Pranav</a></li>
+            <li><a href="ayush.html">Ayush</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero" id="home">
+    <div class="hero">
         <h1>🏙️ City Design - Rajdwar</h1>
         <p>Exploring Algorithmic Approaches to Urban Planning</p>
     </div>
@@ -284,8 +288,8 @@
             </p>
         </div>
 
-        <!-- Project Section -->
-        <div class="section-card" id="project">
+        <!-- Project Overview -->
+        <div class="section-card">
             <h2>🏗️ City Design Project</h2>
             <div class="project-intro">
                 <p>
@@ -312,25 +316,25 @@
         </div>
 
         <!-- Team Section -->
-        <div class="section-card" id="team">
-            <h2>👥 Team Members</h2>
+        <div class="section-card">
+            <h2>👥 Our Team</h2>
             <div class="team-grid">
-                <div class="team-member">
+                <a href="kushvendra.html" class="team-member">
                     <h3>Kushvendra Singh</h3>
                     <p>01fe24bcs134</p>
-                </div>
-                <div class="team-member">
+                </a>
+                <a href="manthan.html" class="team-member">
                     <h3>Manthan Rayakar</h3>
                     <p>01fe24bcs196</p>
-                </div>
-                <div class="team-member">
+                </a>
+                <a href="pranav.html" class="team-member">
                     <h3>Pranav Chougule</h3>
                     <p>01fe24bcs203</p>
-                </div>
-                <div class="team-member">
+                </a>
+                <a href="ayush.html" class="team-member">
                     <h3>Ayush Kumar Ojha</h3>
                     <p>01fe24bcs211</p>
-                </div>
+                </a>
             </div>
         </div>
     </div>
