@@ -3,278 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Design - Introduction</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px 0;
-        }
-
-        /* ---------- NAVBAR ---------- */
-        .navbar {
-            background: #00e5ff;
-            padding: 12px 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .navbar .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #111;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 40px;
-            font-weight: 600;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #111;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: #333;
-            transform: translateY(-1px);
-        }
-
-        /* ---------- MAIN CONTAINER ---------- */
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header .course-info {
-            font-size: 1.2em;
-            margin: 10px 0;
-            opacity: 0.95;
-        }
-
-        .content {
-            padding: 50px;
-        }
-
-        .intro-section {
-            margin-bottom: 40px;
-        }
-
-        .intro-section h2 {
-            color: #667eea;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        .intro-section p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .team-section {
-            margin-top: 50px;
-        }
-
-        .team-section h2 {
-            color: #764ba2;
-            font-size: 2.2em;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .team-table {
-            width: 100%;
-            border-collapse: collapse;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .team-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .team-table th {
-            padding: 20px;
-            font-size: 1.3em;
-            text-align: left;
-        }
-
-        .team-table td {
-            padding: 18px 20px;
-            font-size: 1.1em;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .team-table tbody tr {
-            transition: background-color 0.3s;
-        }
-
-        .team-table tbody tr:hover {
-            background-color: #f5f5ff;
-        }
-
-        .team-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .highlight {
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 10px 20px;
-            }
-
-            .nav-links {
-                gap: 15px;
-                font-size: 0.9rem;
-            }
-
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .intro-section h2 {
-                font-size: 1.8em;
-            }
-
-            .team-table th,
-            .team-table td {
-                padding: 12px;
-                font-size: 1em;
-            }
-        }
-    </style>
+    <title>City Design - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo">CITY DESIGN</div>
+        <div class="logo">City Design</div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#intro">About</a></li>
-            <li><a href="#project">Project</a></li>
-            <li><a href="Kushvendra.html" target="_blank">Kushvendra</a></li>
-            <li><a href="manthan.html" target="_blank">Manthan</a></li>
-            <li><a href="pranav.html" target="_blank">Pranav</a></li>
-            <li><a href="Ayush.html" target="_blank">Ayush</a></li>
+            <li><a href="project.html">Project</a></li>
+            <li><a href="Kushvendra.html">Kushvendra</a></li>
+            <li><a href="manthan.html">Manthan</a></li>
+            <li><a href="pranav.html">Pranav</a></li>
+            <li><a href="Ayush.html">Ayush</a></li>
+            <li><a href="Colab.html">Collabz</a></li>
         </ul>
     </nav>
 
-    <div class="container" id="project">
-        <div class="header">
-            <h1>🏙️ City Design</h1>
-            <div class="course-info"><strong>Course:</strong> DAA</div>
-            <div class="course-info"><strong>Course Code:</strong> 24ECSC205</div>
-            <div class="course-info"><strong>Instructor:</strong> Prof. Prakash Hegade</div>
-            <div class="course-info"><strong>University:</strong> KLE Technological University</div>
-        </div>
+    <!-- Header Section -->
+    <header class="hero-section">
+        <h1 class="hero-title">🏙️ City Design Project</h1>
+        <p class="hero-subtitle">A DAA-based approach to Sustainable Urban Planning</p>
 
-        <div class="content">
-            <div class="intro-section" id="intro">
-                <h2>📋 Introduction</h2>
-                <p>
-                    City design is a complex and multifaceted challenge that requires careful planning and optimization. 
-                    The <span class="highlight">City Design Project</span> aims to explore various algorithmic approaches to 
-                    solve urban planning problems such as optimal road network design, facility placement, traffic flow 
-                    optimization, and resource allocation.
-                </p>
-                <p>
-                    In this project, we will utilize <span class="highlight">Design and Analysis of Algorithms (DAA)</span> 
-                    techniques to address real-world city planning scenarios. Our approach will involve implementing graph 
-                    algorithms, dynamic programming solutions, greedy algorithms, and optimization techniques to create 
-                    efficient and sustainable city layouts.
-                </p>
-                <p>
-                    The project focuses on practical applications such as minimizing travel distances, optimizing public 
-                    transportation routes, ensuring efficient emergency response systems, and planning green spaces. 
-                    Through computational analysis and algorithmic thinking, we aim to demonstrate how computer science 
-                    can contribute to better urban environments.
-                </p>
-            </div>
-
-            <div class="team-section">
-                <h2>👥 Team Members</h2>
-                <table class="team-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>USN</th>
-                            <th>Profile</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Kushvendra Singh Rathore</td>
-                            <td>01fe24bcs104</td>
-                            <td><a href="Kushvendra.html" target="_blank">View Page</a></td>
-                        </tr>
-                        <tr>
-                            <td>Manthan Raykar</td>
-                            <td>01fe24bcs196</td>
-                            <td><a href="manthan.html" target="_blank">View Page</a></td>
-                        </tr>
-                        <tr>
-                            <td>Pranav Chougule</td>
-                            <td>01fe24bcs203</td>
-                            <td><a href="pranav.html" target="_blank">View Page</a></td>
-                        </tr>
-                        <tr>
-                            <td>Ayush Kumar Ojha</td>
-                            <td>01fe24bcs211</td>
-                            <td><a href="Ayush.html" target="_blank">View Page</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="hero-details">
+            <p><strong>Course:</strong> Design and Analysis of Algorithms</p>
+            <p><strong>Course Code:</strong> 24ECSC205</p>
+            <p><strong>Instructor:</strong> Prof. Prakash Hegade</p>
+            <p><strong>University:</strong> KLE Technological University</p>
         </div>
-    </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+        <h2 class="section-title">📘 Introduction</h2>
+        <p class="section-intro">
+            Our City Design project focuses on optimizing multiple aspects of urban development using algorithmic 
+            strategies. We aim to use graph algorithms, greedy approaches, dynamic programming, shortest path 
+            algorithms, and optimization techniques to design an efficient, well-connected city layout.
+        </p>
+        <p class="section-intro">
+            This project applies key DAA concepts to real-world challenges such as traffic routing, facility 
+            placement, resource management, and sustainability planning. Our goal is to demonstrate how computational 
+            thinking enhances smart city development.
+        </p>
+    </section>
+
+    <!-- Team Table Section -->
+    <section class="team-section">
+        <h2 class="section-title">👥 Our Team</h2>
+
+        <div class="table-container">
+            <table class="team-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>USN</th>
+                        <th>Profile</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Kushvendra Singh Rathore</td>
+                        <td>01fe24bcs104</td>
+                        <td><a href="Kushvendra.html" class="view-link" target="_blank">View Page</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>Manthan Raykar</td>
+                        <td>01fe24bcs196</td>
+                        <td><a href="manthan.html" class="view-link" target="_blank">View Page</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>Pranav Chougule</td>
+                        <td>01fe24bcs203</td>
+                        <td><a href="pranav.html" class="view-link" target="_blank">View Page</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>Ayush Kumar Ojha</td>
+                        <td>01fe24bcs211</td>
+                        <td><a href="Ayush.html" class="view-link" target="_blank">View Page</a></td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </section>
+
 </body>
 </html>
