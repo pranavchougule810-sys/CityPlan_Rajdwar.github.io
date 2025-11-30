@@ -15,12 +15,51 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 20px 0;
         }
+
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            background: #00e5ff;
+            padding: 12px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #111;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #111;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #333;
+            transform: translateY(-1px);
+        }
+
+        /* ---------- MAIN CONTAINER ---------- */
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 20px auto;
             background: white;
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -124,6 +163,15 @@
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
             .header h1 {
                 font-size: 2em;
             }
@@ -145,7 +193,22 @@
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">CITY DESIGN</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#intro">About</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="Kushvendra.html" target="_blank">Kushvendra</a></li>
+            <li><a href="manthan.html" target="_blank">Manthan</a></li>
+            <li><a href="pranav.html" target="_blank">Pranav</a></li>
+            <li><a href="Ayush.html" target="_blank">Ayush</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="project">
         <div class="header">
             <h1>🏙️ City Design</h1>
             <div class="course-info"><strong>Course:</strong> DAA</div>
@@ -155,7 +218,7 @@
         </div>
 
         <div class="content">
-            <div class="intro-section">
+            <div class="intro-section" id="intro">
                 <h2>📋 Introduction</h2>
                 <p>
                     City design is a complex and multifaceted challenge that requires careful planning and optimization. 
