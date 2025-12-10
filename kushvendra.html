@@ -4,260 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kushvendra Singh | City Design Team</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #667eea;
-            font-size: 1.1em;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            background: #667eea;
-            color: white;
-        }
-
-        /* Rest of the styles from Kushvendra's original design */
-        :root {
-            --primary-color: #005eb8;
-            --secondary-color: #fba919;
-            --bg-light: #f4f7f6;
-            --text-dark: #333;
-            --text-light: #666;
-            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background: #fff;
-            padding: 40px 20px;
-            border-bottom: 3px solid var(--primary-color);
-            margin-bottom: 40px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-radius: 15px;
-        }
-
-        .intro-greeting {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .intro-subtext {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 30px;
-        }
-
-        .portfolio-info-box {
-            background-color: #f9f9f9;
-            border-left: 5px solid var(--secondary-color);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .portfolio-info-box h2 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .info-item strong {
-            display: block;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .project-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .project-title h1 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-        }
-        
-        .project-title p {
-             color: var(--text-light);
-             max-width: 700px;
-             margin: 0 auto;
-        }
-
-        .city-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .structure-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .structure-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-header {
-            padding: 20px;
-            background: #fafafa;
-            border-bottom: 1px solid #eee;
-        }
-
-        .structure-name {
-            margin: 0 0 15px 0;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .sdg-badge {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            border: 2px solid var(--secondary-color);
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .sdg-icon {
-            width: 60px;
-            height: 60px;
-            margin-right: 15px;
-            border-radius: 4px;
-            object-fit: contain; 
-            background: #fba919;
-        }
-
-        .sdg-text {
-            flex: 1;
-        }
-
-        .sdg-target-num {
-            display: block;
-            font-weight: 700;
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-        }
-
-        .sdg-target-desc {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            line-height: 1.3;
-        }
-
-        .card-body {
-            padding: 25px;
-        }
-
-        .contribution-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .contribution-list li {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .contribution-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .intro-greeting { font-size: 2rem; }
-            .city-grid { grid-template-columns: 1fr; }
-            .portfolio-info-box { border-left: none; border-top: 5px solid var(--secondary-color); }
-            nav ul {
-                gap: 15px;
-            }
-            nav a {
-                font-size: 0.95em;
-                padding: 6px 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="project.html">Project</a></li>
-            <li><a href="kushvendra.html" class="active">Kushvendra</a></li>
-            <li><a href="manthan.html">Manthan</a></li>
-            <li><a href="pranav.html">Pranav</a></li>
-            <li><a href="ayush.html">Ayush</a></li>
-        </ul>
+        <div class="nav-inner">
+            <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="project.html">Project</a></li>
+                <li><a href="kushvendra.html" class="active">Kushvendra</a></li>
+                <li><a href="manthan.html">Manthan</a></li>
+                <li><a href="pranav.html">Pranav</a></li>
+                <li><a href="ayush.html">Ayush</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <div class="container">
-        <header>
-            <div class="intro-greeting">Hello, I am Kushvendra Singh Rathore</div>
-            <p class="intro-subtext">This page is presented as part of our college project on Development of a City.</p>
+    <main class="container">
+        <header class="page-header">
+            <h1>Hello, I am Kushvendra Singh Rathore</h1>
+            <p>This page is presented as part of our college project on development of a sustainable city.</p>
 
             <div class="portfolio-info-box">
                 <h2>Portfolio Information</h2>
@@ -272,28 +40,33 @@
                         <strong>Project Topic:</strong> Building a Sustainable City
                     </div>
                     <div class="info-item">
-                         <strong>University:</strong> KLE Technological University
+                        <strong>University:</strong> KLE Technological University
                     </div>
                 </div>
-                 <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                <div style="margin-top: 16px; padding-top: 10px; border-top: 1px solid rgba(148,163,184,0.6); font-size: 0.9rem;">
                     <strong>My Contribution:</strong>
-                    <p style="margin-top: 5px;">I defined the core urban structures, researched their specific contributions to city functionality, and mapped them to relevant SDG 11 targets to ensure sustainable alignment.</p>
+                    <p style="margin-top: 4px;">
+                        I defined the core urban structures, researched their specific contributions to city functionality,
+                        and mapped them to relevant SDG 11 targets to ensure sustainable alignment.
+                    </p>
                 </div>
             </div>
         </header>
 
-        <main>
+        <section>
             <div class="project-title">
                 <h1>Building a Sustainable City</h1>
-                <p>Analyzing how key urban structures contribute to city life and align with the targets of Sustainable Development Goal 11: Sustainable Cities and Communities.</p>
+                <p>How key urban structures support city life and align with SDG 11: Sustainable Cities and Communities.</p>
             </div>
 
             <section class="city-grid">
+                <!-- Your original structure cards kept as-is, just using theme styles -->
+                <!-- Factories -->
                 <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🏭 Factories</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.4" alt="SDG 11.4 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.4</span>
                                 <span class="sdg-target-desc">Strengthening urban economic productivity</span>
@@ -303,17 +76,18 @@
                     <div class="card-body">
                         <ul class="contribution-list">
                             <li>Produce commercial goods that bring financial revenue to the city and expand economic output.</li>
-                            <li>Generate large-scale employment opportunities, supporting local livelihoods and strengthening the labor economy.</li>
+                            <li>Generate large-scale employment opportunities, supporting local livelihoods and the labor economy.</li>
                             <li>Promote skill development and industrial innovation, building a technologically capable workforce.</li>
                         </ul>
                     </div>
                 </article>
 
+                <!-- Warehouses -->
                 <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🏢 Warehouses</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.6" alt="SDG 11.6 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.6</span>
                                 <span class="sdg-target-desc">Efficient resource and logistics management</span>
@@ -329,11 +103,12 @@
                     </div>
                 </article>
 
-                 <article class="structure-card">
+                <!-- Power Station -->
+                <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">⚡ Power / Electricity Station</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.2" alt="SDG 11.2 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.2</span>
                                 <span class="sdg-target-desc">Sustainable access to essential utilities</span>
@@ -349,11 +124,12 @@
                     </div>
                 </article>
 
+                <!-- Metro & Public Transport -->
                 <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🚇 Metro Station & Public Transport</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.2" alt="SDG 11.2 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.2</span>
                                 <span class="sdg-target-desc">Inclusive and affordable transit systems</span>
@@ -369,11 +145,12 @@
                     </div>
                 </article>
 
-                 <article class="structure-card">
+                <!-- Housing -->
+                <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🏡 Residential Housing</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.1" alt="SDG 11.1 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.1</span>
                                 <span class="sdg-target-desc">Access to adequate housing</span>
@@ -389,11 +166,12 @@
                     </div>
                 </article>
 
+                <!-- Parking -->
                 <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🅿️ Parking Facilities</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.2" alt="SDG 11.2 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.2</span>
                                 <span class="sdg-target-desc">Smarter urban transportation design</span>
@@ -409,11 +187,12 @@
                     </div>
                 </article>
 
+                <!-- Retail & Supermarkets -->
                 <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🛒 Retail & Supermarkets</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.8" alt="SDG 11.8 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.8</span>
                                 <span class="sdg-target-desc">Strengthening local economic chains</span>
@@ -429,11 +208,12 @@
                     </div>
                 </article>
 
-                 <article class="structure-card">
+                <!-- Post Office -->
+                <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">📮 Post Office & Delivery Services</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.3" alt="SDG 11.3 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.3</span>
                                 <span class="sdg-target-desc">Strengthening institutional communication systems</span>
@@ -449,11 +229,12 @@
                     </div>
                 </article>
 
-                 <article class="structure-card">
+                <!-- Roads -->
+                <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🛣️ Industrial Roads & Transport Routes</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.5" alt="SDG 11.5 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.5</span>
                                 <span class="sdg-target-desc">Resilient and efficient infrastructure</span>
@@ -469,11 +250,12 @@
                     </div>
                 </article>
 
-                 <article class="structure-card">
+                <!-- Water Body -->
+                <article class="structure-card">
                     <div class="card-header">
                         <h3 class="structure-name">🏞️ Water Body / Lake</h3>
                         <div class="sdg-badge">
-                             <img src="https://placehold.co/100x100/fba919/ffffff?text=SDG+11.7" alt="SDG 11.7 Icon" class="sdg-icon">
+                            <div class="sdg-icon"></div>
                             <div class="sdg-text">
                                 <span class="sdg-target-num">SDG Target 11.7</span>
                                 <span class="sdg-target-desc">Sustainable natural and recreational spaces</span>
@@ -489,11 +271,11 @@
                     </div>
                 </article>
             </section>
-        </main>
-        
+        </section>
+
         <footer>
-            <p>College Project Portfolio | SDG 11: Sustainable Cities and Communities</p>
+            College Project Portfolio • SDG-11: Sustainable Cities & Communities • Kushvendra Singh Rathore
         </footer>
-    </div>
+    </main>
 </body>
 </html>
