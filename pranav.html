@@ -4,199 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranav Chougule | City Design Team</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #667eea;
-            font-size: 1.1em;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            background: #667eea;
-            color: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 40px 30px;
-        }
-
-        .business-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-            border-left: 5px solid #667eea;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .business-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .business-card h2 {
-            color: #667eea;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .business-number {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        .business-card p {
-            color: #555;
-            margin-bottom: 12px;
-            text-align: justify;
-        }
-
-        .sdg-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .sdg-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-
-        footer {
-            background: #2d3748;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-            }
-
-            .content {
-                padding: 20px 15px;
-            }
-
-            .business-card {
-                padding: 20px;
-            }
-
-            nav ul {
-                gap: 15px;
-            }
-
-            nav a {
-                font-size: 0.95em;
-                padding: 6px 12px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="project.html">Project</a></li>
-            <li><a href="kushvendra.html">Kushvendra</a></li>
-            <li><a href="manthan.html">Manthan</a></li>
-            <li><a href="pranav.html" class="active">Pranav</a></li>
-            <li><a href="ayush.html">Ayush</a></li>
-        </ul>
+        <div class="nav-inner">
+            <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="project.html">Project</a></li>
+                <li><a href="kushvendra.html">Kushvendra</a></li>
+                <li><a href="manthan.html">Manthan</a></li>
+                <li><a href="pranav.html" class="active">Pranav</a></li>
+                <li><a href="ayush.html">Ayush</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <div class="container">
-        <header>
-            <h1>💡 Business Ideas</h1>
-            <p>Sustainable & Innovative Business Opportunities for East Sector Development</p>
+    <main class="container">
+        <header class="page-header">
+            <h1>💡 Business Ideas for East Sector</h1>
+            <p>Sustainable & innovative business opportunities that support Rajdwar’s east-side development.</p>
         </header>
 
-        <div class="content">
+        <section class="content">
+            <!-- Each of your original business cards, now using theme styles -->
             <div class="business-card">
                 <h2><span class="business-number">1</span>Co-Working & Innovation Hub</h2>
                 <p>A co-working and innovation hub in the East Sector can support students, freelancers, and early-stage startups by giving them affordable workspaces. It will encourage creativity, entrepreneurship, and digital learning in your city.</p>
@@ -299,11 +132,11 @@
                     <span class="sdg-tag">SDG 11: Sustainable Communities</span>
                 </div>
             </div>
-        </div>
+        </section>
 
         <footer>
-            <p>Sustainable Development Goals (SDG) Aligned Business Ideas for East Sector</p>
+            Sustainable Development Goals (SDG) – Aligned Business Ideas for East Sector • Pranav Chougule
         </footer>
-    </div>
+    </main>
 </body>
 </html>
