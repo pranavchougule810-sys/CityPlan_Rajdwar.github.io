@@ -3,220 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Design - Rajdwar | Project</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #667eea;
-            font-size: 1.1em;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        nav a:hover, nav a.active {
-            background: #667eea;
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 40px 20px;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-            animation: fadeInDown 1s;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        /* Project Card */
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            padding: 50px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            animation: fadeIn 1s;
-        }
-
-        .project-card h2 {
-            color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 15px;
-        }
-
-        /* Image Display */
-        .image-container {
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .image-caption {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #666;
-            font-style: italic;
-        }
-
-        /* Project Description */
-        .project-description {
-            margin-top: 40px;
-        }
-
-        .project-description h3 {
-            color: #764ba2;
-            font-size: 2em;
-            margin: 30px 0 15px 0;
-        }
-
-        .project-description p {
-            font-size: 1.15em;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .highlight {
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-
-            .project-card {
-                padding: 30px 20px;
-            }
-
-            .project-card h2 {
-                font-size: 2em;
-            }
-
-            nav ul {
-                gap: 20px;
-            }
-        }
-    </style>
+    <title>City Design – Rajdwar | Project</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="project.html" class="active">Project</a></li>
-            <li><a href="kushvendra.html">Kushvendra</a></li>
-            <li><a href="manthan.html">Manthan</a></li>
-            <li><a href="pranav.html">Pranav</a></li>
-            <li><a href="ayush.html">Ayush</a></li>
-        </ul>
+        <div class="nav-inner">
+            <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="project.html" class="active">Project</a></li>
+                <li><a href="kushvendra.html">Kushvendra</a></li>
+                <li><a href="manthan.html">Manthan</a></li>
+                <li><a href="pranav.html">Pranav</a></li>
+                <li><a href="ayush.html">Ayush</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
     <div class="hero">
-        <h1>🎨 Our City Design</h1>
+        <h1>📊 Project – City Design Rajdwar</h1>
+        <p>Connecting graph theory, greedy strategies, and optimization to real-world city planning.</p>
     </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        <div class="project-card">
-            <h2>Hand-Drawn City Plan - Rajdwar</h2>
-            
-            <!-- Image Container -->
-            <div class="image-container">
-                <!-- Replace 'your-image-filename.jpg' with your actual image filename -->
-                <img src="20251126_140257.jpg" alt="Hand-drawn City Design - Rajdwar">
-                <p class="image-caption">Our team's hand-drawn city design concept</p>
-            </div>
-
-            <!-- Project Description -->
-            <div class="project-description">
-                <h3>🏗️ About Our Design</h3>
+    <main class="container">
+        <section class="section-card two-col">
+            <div>
+                <h2>🌍 Problem Context</h2>
                 <p>
-                    This hand-drawn city design represents our vision for <span class="highlight">Rajdwar</span> - 
-                    a smart, sustainable, and algorithmically optimized urban space. Our design incorporates principles 
-                    from graph theory, optimization algorithms, and urban planning best practices.
+                    Rajdwar represents a growing urban region that must balance economic development, liveability,
+                    sustainability, and accessibility. Every design decision — where to place hospitals, markets,
+                    industries, roads, and transport hubs — affects travel time, pollution, safety, and quality of life.
+                </p>
+                <p>
+                    Rather than treating this as just “drawing a map”, we treat it as a <strong>computational problem</strong>.
+                    Nodes, edges, weights, constraints, and objectives together define an algorithmic view of the city.
                 </p>
 
-                <h3>🌱 Sustainability Focus</h3>
-                <p>
-                    The city design prioritizes green spaces, efficient public transportation, and renewable energy 
-                    integration. Through algorithmic optimization, we've minimized travel distances, reduced carbon 
-                    footprint, and maximized accessibility to essential services for all residents.
-                </p>
+                <h3>🎯 Design Goals</h3>
+                <ul class="contribution-list">
+                    <li>Minimize average travel time between key locations.</li>
+                    <li>Ensure every residential cluster has access to health, education, and markets within a bounded radius.</li>
+                    <li>Optimize placement of high-impact structures like factories, hospitals, IT parks, and public transport.</li>
+                    <li>Align the design with SDG-11 and related SDGs for sustainable, inclusive urban development.</li>
+                </ul>
             </div>
-        </div>
-    </div>
+
+            <div>
+                <h2>🧠 DAA Concepts</h2>
+                <p>
+                    Our city layout uses several core ideas from design and analysis of algorithms:
+                </p>
+                <ul class="contribution-list">
+                    <li><strong>Graphs:</strong> Intersections, zones, and key structures are nodes; roads and paths are edges.</li>
+                    <li><strong>Dijkstra’s Algorithm:</strong> Used conceptually for shortest-path travel between important locations.</li>
+                    <li><strong>Greedy Choices:</strong> Selecting locations for critical services (like hospitals) to cover maximum population first.</li>
+                    <li><strong>Clustering / Partitioning:</strong> Dividing the city into sectors (east, west, industrial, commercial, etc.) assigned to each team member.</li>
+                    <li><strong>Complexity Thinking:</strong> Understanding trade-offs between rich connectivity (more edges) and cost / congestion.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🧩 Team-wise Responsibilities</h2>
+            <p>Each team member focused on a different perspective of Rajdwar:</p>
+
+            <ul class="contribution-list">
+                <li>
+                    <strong>Kushvendra Singh</strong> – Modelled factories, warehouses, power stations, metro/public transport,
+                    housing, parking, retail, logistics, and water bodies, and mapped them to relevant SDG 11 targets.
+                </li>
+                <li>
+                    <strong>Manthan Rayakar</strong> – Analysed commercial, health, recreational, and community infrastructure
+                    such as malls, theatres, hotels, hospitals, community centres, ATMs, pharmacies, and grocery stores.
+                </li>
+                <li>
+                    <strong>Pranav Chougule</strong> – Proposed sustainable business ideas around the east sector, including
+                    co-working hubs, wellness centres, EV charging, repair ecosystems, and education-focused ventures.
+                </li>
+                <li>
+                    <strong>Ayush Kumar Ojha</strong> – Focused on business structures such as IT sector, hotel/bar/post office
+                    management, petrol pumps, markets, schools, and hospitals, and analysed their SDG 11 impact.
+                </li>
+            </ul>
+
+            <p>
+                These perspectives together make Rajdwar not just a diagram, but a structured, SDG-aligned, algorithmically
+                reasoned <strong>city model</strong>.
+            </p>
+        </section>
+
+        <footer>
+            City Design – Rajdwar • DAA Portfolio • Project View
+        </footer>
+    </main>
 </body>
 </html>
