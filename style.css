@@ -1,186 +1,260 @@
+/* ===== Global Reset ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ===== Page Background & Typography ===== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, #4f46e5 0, transparent 55%),
+        radial-gradient(circle at bottom right, #a855f7 0, transparent 55%),
+        #020617;
+    color: #e5e7eb;
 }
 
-/* Navigation */
+/* Center content and give breathing room */
+.container {
+    max-width: 1100px;
+    margin: 40px auto 60px;
+    padding: 0 16px;
+}
+
+/* ===== Glassmorphism Card Base ===== */
+.section-card {
+    background: rgba(15, 23, 42, 0.85);
+    border-radius: 18px;
+    padding: 32px 26px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.8),
+        0 0 0 1px rgba(15, 23, 42, 0.6) inset;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ===== Navigation (Sticky Glass Navbar) ===== */
 nav {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: linear-gradient(
+        120deg,
+        rgba(15, 23, 42, 0.95),
+        rgba(30, 64, 175, 0.9)
+    );
+    border-bottom: 1px solid rgba(148, 163, 184, 0.35);
 }
 
 nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 26px;
+    padding: 14px 18px;
     flex-wrap: wrap;
 }
 
 nav a {
+    position: relative;
     text-decoration: none;
-    color: #667eea;
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: all 0.3s;
+    font-size: 0.98rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #e5e7eb;
+    padding: 6px 14px;
+    border-radius: 999px;
+    transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
 }
 
-nav a:hover,
+nav a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: linear-gradient(90deg, #4f46e5, #a855f7) border-box;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: -1;
+}
+
+nav a:hover {
+    transform: translateY(-1px);
+    background: rgba(15, 23, 42, 0.9);
+}
+
 nav a.active {
-    background: #667eea;
-    color: white;
+    color: #f97316;
+    background: rgba(15, 23, 42, 0.95);
 }
 
-/* Hero Section */
+nav a.active::after {
+    opacity: 1;
+}
+
+/* ===== Hero Section ===== */
 .hero {
     text-align: center;
-    padding: 80px 20px;
-    color: white;
+    padding: 70px 20px 10px;
 }
 
 .hero h1 {
-    font-size: 4em;
-    margin-bottom: 20px;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-    animation: fadeInDown 1s;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    background: linear-gradient(120deg, #f97316, #facc15, #22c55e);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+    animation: fadeInDown 0.7s ease-out;
 }
 
 .hero p {
-    font-size: 1.5em;
-    opacity: 0.95;
-    max-width: 800px;
+    font-size: 1.1rem;
+    max-width: 700px;
     margin: 0 auto;
-    animation: fadeInUp 1s;
+    color: #e5e7eb;
+    opacity: 0.9;
+    animation: fadeInUp 0.7s ease-out;
 }
 
-/* Main Container */
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-/* Section Cards */
-.section-card {
-    background: white;
-    border-radius: 15px;
-    padding: 50px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s;
-}
-
+/* ===== Headings & Text ===== */
 .section-card h2 {
-    color: #667eea;
-    font-size: 2.5em;
-    margin-bottom: 25px;
-    border-bottom: 3px solid #667eea;
-    padding-bottom: 10px;
+    font-size: 1.7rem;
+    margin-bottom: 18px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(120deg, #60a5fa, #a855f7);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .section-card h3 {
-    color: #764ba2;
-    font-size: 1.8em;
-    margin: 30px 0 15px 0;
+    font-size: 1.25rem;
+    margin: 22px 0 10px;
+    color: #e5e7eb;
 }
 
 .section-card p {
-    font-size: 1.15em;
+    font-size: 0.98rem;
     line-height: 1.8;
-    color: #444;
-    margin-bottom: 20px;
+    color: #cbd5f5;
+    margin-bottom: 14px;
     text-align: justify;
 }
 
-/* Team Grid */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.team-member {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-decoration: none;
-    display: block;
-}
-
-.team-member:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
-
-.team-member h3 {
-    color: white;
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.team-member p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1em;
-    text-align: center;
-}
-
-/* Project Section */
-.project-intro {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    padding: 30px;
-    border-radius: 10px;
-    margin: 20px 0;
-}
-
-.highlight {
-    color: #667eea;
-    font-weight: bold;
-}
-
-/* Course Info Box */
+/* ===== Course Info Box ===== */
 .course-info {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 30px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    text-align: center;
+    background: radial-gradient(circle at top left, #4f46e5, #0f172a);
+    border-radius: 16px;
+    padding: 22px 18px;
+    margin-bottom: 26px;
+    border: 1px solid rgba(129, 140, 248, 0.4);
+    display: grid;
+    gap: 6px;
 }
 
 .course-info p {
-    font-size: 1.2em;
-    margin: 8px 0;
-    color: white;
-    text-align: center;
+    margin: 0;
+    font-size: 0.98rem;
+    color: #e5e7eb;
 }
 
-/* Animations */
+/* ===== Project Intro Highlight Box ===== */
+.project-intro {
+    background: linear-gradient(
+        120deg,
+        rgba(56, 189, 248, 0.08),
+        rgba(147, 51, 234, 0.12)
+    );
+    border-radius: 14px;
+    padding: 18px 16px;
+    border: 1px dashed rgba(129, 140, 248, 0.6);
+    margin: 10px 0 18px;
+}
+
+.highlight {
+    color: #facc15;
+    font-weight: 600;
+}
+
+/* ===== Team Grid ===== */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+    margin-top: 16px;
+}
+
+.team-member {
+    background: radial-gradient(circle at top left, #312e81, #111827);
+    border-radius: 16px;
+    padding: 22px 18px;
+    text-align: left;
+    text-decoration: none;
+    border: 1px solid rgba(129, 140, 248, 0.55);
+    color: #e5e7eb;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+}
+
+.team-member::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle at top, rgba(251, 191, 36, 0.25), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.9);
+    border-color: #facc15;
+    background: radial-gradient(circle at top left, #1d4ed8, #020617);
+}
+
+.team-member:hover::before {
+    opacity: 1;
+}
+
+.team-member h3 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.team-member p {
+    font-size: 0.9rem;
+    color: #cbd5f5;
+}
+
+/* ===== Animations ===== */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-30px);
+        transform: translateY(-18px);
     }
     to {
         opacity: 1;
@@ -191,7 +265,7 @@ nav a.active {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(18px);
     }
     to {
         opacity: 1;
@@ -199,26 +273,31 @@ nav a.active {
     }
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
+    .hero {
+        padding: 52px 16px 6px;
+    }
+
     .hero h1 {
-        font-size: 2.5em;
+        font-size: 2.1rem;
     }
 
     .hero p {
-        font-size: 1.2em;
+        font-size: 0.98rem;
     }
 
     .section-card {
-        padding: 30px 20px;
+        padding: 22px 18px;
+        margin-bottom: 20px;
     }
 
     .section-card h2 {
-        font-size: 2em;
+        font-size: 1.4rem;
     }
 
     nav ul {
-        gap: 20px;
+        gap: 14px;
+        padding-inline: 10px;
     }
 }
-
