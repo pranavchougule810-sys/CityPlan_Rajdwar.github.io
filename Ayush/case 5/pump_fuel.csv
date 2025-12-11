@@ -1,0 +1,21 @@
+id,name,price,stock,octane,notes
+F01,Petrol,106,8000,91,Regular
+F02,Diesel,94,9000,0,Diesel
+F03,Power Petrol,118,5000,97,High octane
+F04,Extra Mile,120,4500,98,Premium
+F05,AutoGas,55,6000,0,CNG
+F06,XP95,115,4800,95,Premium fuel
+F07,XP100,135,3200,100,High performance
+F08,BioDiesel,88,7000,0,Eco fuel
+F09,RaceFuel,150,2500,110,Sports
+F10,Aviation Fuel,170,1000,115,Jet grade
+F11,Petrol,106,2000,91,Backup Tank
+F12,Diesel,94,3000,0,Reserve
+F13,CNG,60,7000,0,Gas stock
+F14,Petrol,110,4000,93,Seasonal
+F15,Diesel,99,3500,0,High efficiency
+F16,Petrol,108,2500,92,Premium 92
+F17,Power Petrol,119,2800,98,SuperClean
+F18,CNG,58,6500,0,Type2
+F19,RaceFuel,155,1600,112,Track
+F20,XP95,116,3400,95,Blend B

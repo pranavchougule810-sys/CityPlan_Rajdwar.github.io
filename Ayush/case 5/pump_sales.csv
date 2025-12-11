@@ -1,0 +1,11 @@
+sale_id,fuel_id,qty,amount,date,time,status
+S01,F01,5,530,2025-01-01,09:05,completed
+S02,F02,10,940,2025-01-01,10:15,completed
+S03,F03,4,472,2025-01-02,11:20,completed
+S04,F08,7,616,2025-01-02,12:10,completed
+S05,F06,6,690,2025-01-03,13:00,completed
+S06,F01,8,848,2025-01-03,13:45,completed
+S07,F07,3,405,2025-01-04,14:30,completed
+S08,F02,12,1128,2025-01-04,15:20,completed
+S09,F01,9,954,2025-01-05,16:00,completed
+S10,F05,15,825,2025-01-05,17:10,completed

@@ -1,0 +1,6 @@
+id,fuel_id,capacity,level,notes
+T01,F01,10000,8000,Main Petrol
+T02,F02,12000,9000,Main Diesel
+T03,F06,6000,4800,Premium Tank
+T04,F13,8000,6500,CNG Storage
+T05,F03,5000,4200,Power Petrol

@@ -1,0 +1,6 @@
+id,type,amount,date,notes
+E01,Electricity,4500,2025-01-01,Monthly bill
+E02,Maintenance,2500,2025-01-02,Pump repair
+E03,Cleaning,800,2025-01-03,Daily cleaning
+E04,Security,1200,2025-01-03,Guard salary
+E05,Water,600,2025-01-04,Utility payment
