@@ -1,0 +1,5 @@
+office_id,name,location,capacity
+PO001,Central Post,Downtown,1000
+PO002,North Branch,Uptown,600
+PO003,East Branch,Midtown,800
+PO004,West Branch,Suburb,500

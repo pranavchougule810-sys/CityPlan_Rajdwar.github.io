@@ -1,0 +1,5 @@
+date,time,parcel_id,office_id,action
+2025-12-10,09:00,PCL001,PO001,Received
+2025-12-10,11:00,PCL002,PO003,Dispatched
+2025-12-10,12:30,PCL004,PO004,Received
+2025-12-10,14:00,PCL001,PO002,Dispatched
