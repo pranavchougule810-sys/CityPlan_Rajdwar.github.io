@@ -1,0 +1,5 @@
+id,name,location,capacity,load,status
+S001,North Station,Zone A,200,150,active
+S002,East Plant,Zone B,300,20,underutilized
+S003,West Plant,Zone C,250,260,overloaded
+S004,Central Grid,Zone D,500,400,active
