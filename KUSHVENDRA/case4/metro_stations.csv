@@ -1,0 +1,11 @@
+id,name,location,capacity,daily_ridership,status
+M01,Central,Delhi,50000,40000,active
+M02,North,Delhi,30000,25000,active
+M03,South,Mumbai,45000,46000,active
+M04,East,Chennai,20000,5000,active
+M05,West,Kolkata,35000,34000,active
+M06,Lake,Bengaluru,15000,12000,active
+M07,Park,Hyderabad,25000,27000,active
+M08,Riverside,Pune,18000,15000,active
+M09,Airport,Ahmedabad,40000,38000,active
+M10,Hill,Jaipur,22000,20000,active

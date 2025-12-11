@@ -1,0 +1,11 @@
+vehicle_id,type,driver_name,capacity
+V01,Bus,John,50
+V02,Bus,Mary,45
+V03,Van,Ali,15
+V04,Bus,Steve,55
+V05,Bus,Anna,60
+V06,Van,Ravi,18
+V07,Bus,Peter,52
+V08,Bus,Lucy,48
+V09,Van,Tom,20
+V10,Bus,Linda,50
