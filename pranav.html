@@ -6,14 +6,17 @@
   <title>Pranav Chougule | City Design Team</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Small button styles (will inherit from your style.css but safe to include) */
     .btn-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
     .btn { display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600; border:1px solid rgba(255,255,255,0.08); background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); color:inherit; }
-    .btn.code{ border-color: rgba(79,70,229,0.9); background: linear-gradient(90deg, rgba(79,70,229,0.15), rgba(168,85,247,0.06)); }
+    .btn.code{ border-color: rgba(79,70,229,0.9); background: linear-gradient(90deg, rgba(79,70,229,0.12), rgba(168,85,247,0.04)); }
     .btn.data{ border-color: rgba(249,115,22,0.9); background: linear-gradient(90deg, rgba(249,115,22,0.12), rgba(250,204,21,0.04)); }
-    .case-card{ margin-bottom:18px; }
+    .case-card{ margin-bottom:18px; padding:18px; border-radius:12px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
     .case-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
     .small-meta{ font-size:0.92rem; opacity:0.85; }
+    .algo-section { margin-top:12px; background: rgba(0,0,0,0.04); padding:12px; border-radius:8px; }
+    .algo-title { font-weight:700; color: #f97316; }
+    ol.algo { margin-left:18px; }
+    .ds { font-weight:700; color:#60a5fa; }
   </style>
 </head>
 <body>
@@ -39,126 +42,263 @@
 
     <section class="content">
 
-      <!-- Case template: copy/paste for each case -->
-
-      <article class="business-card case-card" id="case1">
+      <!-- CASE 1 -->
+      <article class="case-card" id="case1">
         <div class="case-title">
-          <h2><span class="business-number">1</span> Co-Working & Innovation Hub</h2>
+          <h2>1 — Co-Working & Innovation Hub</h2>
           <div class="small-meta">Files: <code>Pranav/case1/case1.cpp</code> • <code>Pranav/case1/case1.csv</code></div>
         </div>
-        <p>A co-working and innovation hub in the East Sector can support students, freelancers, and early-stage startups by giving them affordable workspaces. It will encourage creativity, entrepreneurship, and digital learning in your city.</p>
+        <p>Co-working hub to host students, freelancers and startups.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Interval list (vector) + sort</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Interval Scheduling (Max non-overlapping bookings)</div>
+          <ol class="algo">
+            <li>Read all booking intervals from CSV into a vector.</li>
+            <li>Convert start+duration to numeric interval [start,end).</li>
+            <li>Sort intervals by end time ascending.</li>
+            <li>Iterate sorted list; if interval.start ≥ last_selected_end → select it and update last_selected_end.</li>
+            <li>Output chosen bookings and per-room utilization stats.</li>
+          </ol>
+        </div>
 
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case1/case1.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case1/case1.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case1/case1.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case1/case1.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case2">
+      <!-- CASE 2 -->
+      <article class="case-card" id="case2">
         <div class="case-title">
-          <h2><span class="business-number">2</span> Health & Wellness Center</h2>
+          <h2>2 — Health & Wellness Center</h2>
           <div class="small-meta">Files: <code>Pranav/case2/case2.cpp</code> • <code>Pranav/case2/case2.csv</code></div>
         </div>
-        <p>A wellness center combining a gym, yoga studio, and physiotherapy clinic can improve the physical and mental well-being of residents and hostel students. It promotes a healthier lifestyle and reduces stress levels in the community.</p>
+        <p>Appointment prioritization and multi-server scheduling.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Min-heap (priority_queue)</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Priority scheduling simulation</div>
+          <ol class="algo">
+            <li>Load appointments with arrival time, priority and service time.</li>
+            <li>Sort by arrival time; push arrivals into min-heap keyed by priority (then arrival).</li>
+            <li>Simulate multiple servers: pick top-priority patient when server free, schedule, update server availability.</li>
+            <li>Compute avg wait and throughput.</li>
+            <li>Report top-wait patients and server utilization.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case2/case2.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case2/case2.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case2/case2.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case2/case2.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case3">
+      <!-- CASE 3 -->
+      <article class="case-card" id="case3">
         <div class="case-title">
-          <h2><span class="business-number">3</span> Eco-Friendly Food Court / Healthy Café</h2>
+          <h2>3 — Eco-Friendly Food Court</h2>
           <div class="small-meta">Files: <code>Pranav/case3/case3.cpp</code> • <code>Pranav/case3/case3.csv</code></div>
         </div>
-        <p>A sustainable food court offering healthy meals, fresh juices, and eco-friendly packaging can attract visitors from the theatre, mall, and hostels.</p>
+        <p>Expiry-aware serving and discount policy.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Bucket queues + min-heap</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Earliest-expiry first with discounting</div>
+          <ol class="algo">
+            <li>Load items with expiry days, price and other details.</li>
+            <li>Bucket items by expiry days; maintain a min-heap for earliest expiry items.</li>
+            <li>When serving, pop earliest-expiry; apply discount policy if expiry low.</li>
+            <li>Track revenue, discounts and donate if near-zero expiry.</li>
+            <li>Output expiry distribution and served summary.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case3/case3.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case3/case3.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case3/case3.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case3/case3.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case4">
+      <!-- CASE 4 -->
+      <article class="case-card" id="case4">
         <div class="case-title">
-          <h2><span class="business-number">4</span> EV Charging Station with Convenience Store</h2>
+          <h2>4 — EV Charging Station</h2>
           <div class="small-meta">Files: <code>Pranav/case4/case4.cpp</code> • <code>Pranav/case4/case4.csv</code></div>
         </div>
-        <p>An EV charging station next to the existing fuel station will support clean mobility and reduce carbon emissions. Adding a convenience store creates more value for customers while they wait.</p>
+        <p>Choose best charging station combining travel and wait time.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Graph (adjacency list) + Dijkstra</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Shortest-path scoring</div>
+          <ol class="algo">
+            <li>Load requests and station info from CSV.</li>
+            <li>Build adjacency list for nearby roads/stations.</li>
+            <li>Run Dijkstra from request origin to candidate stations to get travel times.</li>
+            <li>Compute score = travel_time + normalized_wait; pick min score.</li>
+            <li>Output chosen station and score distribution.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case4/case4.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case4/case4.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case4/case4.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case4/case4.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case5">
+      <!-- CASE 5 -->
+      <article class="case-card" id="case5">
         <div class="case-title">
-          <h2><span class="business-number">5</span> Tech Repair & Sustainable Electronics Store</h2>
+          <h2>5 — Tech Repair & Sustainable Electronics</h2>
           <div class="small-meta">Files: <code>Pranav/case5/case5.cpp</code> • <code>Pranav/case5/case5.csv</code></div>
         </div>
-        <p>A shop offering laptop, mobile, and gadget repair services will be useful for hostel students and residents. By repairing instead of replacing, the store reduces e-waste.</p>
+        <p>Schedule repair jobs prioritizing urgent and short jobs.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Max-heap (priority_queue)</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Priority-driven scheduling (EDF-like)</div>
+          <ol class="algo">
+            <li>Load jobs with priority, duration and deadline.</li>
+            <li>Push jobs into max-heap keyed by priority and shorter duration tie-breaker.</li>
+            <li>Pop and schedule sequentially; compute completion vs deadline.</li>
+            <li>Report lateness count and average lateness.</li>
+            <li>Suggest reorder/reallocate if lateness high.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case5/case5.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case5/case5.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case5/case5.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case5/case5.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case6">
+      <!-- CASE 6 -->
+      <article class="case-card" id="case6">
         <div class="case-title">
-          <h2><span class="business-number">6</span> 24/7 Pharmacy & Diagnostic Center</h2>
+          <h2>6 — 24/7 Pharmacy & Diagnostic Center</h2>
           <div class="small-meta">Files: <code>Pranav/case6/case6.cpp</code> • <code>Pranav/case6/case6.csv</code></div>
         </div>
-        <p>A 24/7 pharmacy with basic diagnostics will provide essential healthcare near the hospital. It supports emergency needs and accessibility.</p>
+        <p>Medicine lookup and reorder alerts.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Hash table (unordered_map)</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Lookup & reorder detection</div>
+          <ol class="algo">
+            <li>Load medicines with stock, reorder level and demand.</li>
+            <li>Index medicines by name/ID in unordered_map for O(1) lookup.</li>
+            <li>Scan to find stock ≤ reorder → generate reorder list.</li>
+            <li>Sort top-demand medicines for priority restocking.</li>
+            <li>Output reorder and top-demand lists.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case6/case6.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case6/case6.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case6/case6.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case6/case6.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case7">
+      <!-- CASE 7 -->
+      <article class="case-card" id="case7">
         <div class="case-title">
-          <h2><span class="business-number">7</span> Budget Eco-Friendly Guest House</h2>
+          <h2>7 — Budget Eco-Friendly Guest House</h2>
           <div class="small-meta">Files: <code>Pranav/case7/case7.cpp</code> • <code>Pranav/case7/case7.csv</code></div>
         </div>
-        <p>A small eco-stay for tourists and visiting families. Use solar panels and water-saving systems to remain sustainable.</p>
+        <p>Booking conflict detection & room utilization.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Balanced BST (map)</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Interval insertion with predecessor check</div>
+          <ol class="algo">
+            <li>Load bookings and group by room.</li>
+            <li>For each room use map keyed by check-in time (BST properties).</li>
+            <li>On insertion check predecessor and successor for overlap (checkout > next.checkin etc.).</li>
+            <li>Mark conflicts and accumulate per-room booking counts.</li>
+            <li>Output conflict count and busiest rooms.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case7/case7.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case7/case7.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case7/case7.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case7/case7.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case8">
+      <!-- CASE 8 -->
+      <article class="case-card" id="case8">
         <div class="case-title">
-          <h2><span class="business-number">8</span> Fitness Café / Protein & Juice Bar</h2>
+          <h2>8 — Fitness Café / Protein & Juice Bar</h2>
           <div class="small-meta">Files: <code>Pranav/case8/case8.cpp</code> • <code>Pranav/case8/case8.csv</code></div>
         </div>
-        <p>A fitness café offering protein shakes, salads, and healthy snacks — perfect for students and gym-goers.</p>
+        <p>Choose menu items to maximize protein under budget (customer combos).</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">2D DP table (vector<vector>)</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> 0/1 Knapsack with reconstruction</div>
+          <ol class="algo">
+            <li>Load menu items with protein and price.</li>
+            <li>Run DP to compute max protein for budget B.</li>
+            <li>Reconstruct chosen items by backtracking the DP table.</li>
+            <li>Compute nutrition & cost summary for the chosen set.</li>
+            <li>Output chosen combo and totals.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case8/case8.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case8/case8.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case8/case8.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case8/case8.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case9">
+      <!-- CASE 9 -->
+      <article class="case-card" id="case9">
         <div class="case-title">
-          <h2><span class="business-number">9</span> Skill Development & Coaching Center</h2>
+          <h2>9 — Skill Development & Coaching Center</h2>
           <div class="small-meta">Files: <code>Pranav/case9/case9.cpp</code> • <code>Pranav/case9/case9.csv</code></div>
         </div>
-        <p>A learning center offering courses in coding, communication, and exam prep to empower youth and improve employability.</p>
+        <p>Time-slot assignment avoiding student conflicts.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Adjacency matrix + greedy coloring (DSATUR-like)</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> Graph coloring for slot assignment</div>
+          <ol class="algo">
+            <li>Build course conflict graph from student registrations.</li>
+            <li>Use DSATUR-like greedy ordering: pick vertex with highest saturation.</li>
+            <li>Assign smallest available color (time-slot) not used by neighbors.</li>
+            <li>Repeat until all courses colored; minimize colors used.</li>
+            <li>Output mapping course -> time-slot and number of slots used.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case9/case9.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case9/case9.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case9/case9.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case9/case9.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
-      <article class="business-card case-card" id="case10">
+      <!-- CASE 10 -->
+      <article class="case-card" id="case10">
         <div class="case-title">
-          <h2><span class="business-number">10</span> Entertainment & Gaming Zone</h2>
+          <h2>10 — Entertainment & Gaming Zone</h2>
           <div class="small-meta">Files: <code>Pranav/case10/case10.cpp</code> • <code>Pranav/case10/case10.csv</code></div>
         </div>
-        <p>A fun gaming zone with VR and arcade games to reduce stress and provide safe recreation for students and families.</p>
+        <p>Queue management with VIP priority and ageing to avoid starvation.</p>
+
+        <div class="algo-section">
+          <div class="algo-title">Data structure: <span class="ds">Deque (std::deque) with ageing checks</span></div>
+          <div style="margin-top:6px"><strong>Algorithm:</strong> FCFS with VIP front insertion + ageing promotion</div>
+          <ol class="algo">
+            <li>Load session requests with type (vip/regular), arrival and duration.</li>
+            <li>Enqueue VIPs to front, regulars to back.</li>
+            <li>Before serving, if a regular has waited > THRESHOLD, promote to front (ageing).</li>
+            <li>Serve from front, update current time, accumulate wait stats.</li>
+            <li>Report served count and average wait.</li>
+          </ol>
+        </div>
+
         <div class="btn-row">
-          <a class="btn code" href="Pranav/case10/case10.cpp" target="_blank" download>View C++ Code</a>
-          <a class="btn data" href="Pranav/case10/case10.csv" target="_blank" download>View Dataset (CSV)</a>
+          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case10/case10.cpp" target="_blank">View C++ Code</a>
+          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case10/case10.csv" target="_blank">View Dataset (CSV)</a>
         </div>
       </article>
 
