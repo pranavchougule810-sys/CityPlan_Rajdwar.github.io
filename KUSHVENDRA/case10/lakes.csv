@@ -1,0 +1,101 @@
+id,name,location,area,waterQuality,recreational,status
+L001,Lake Aurora,Downtown,2.5,78,1,active
+L002,Lake Blue,District 1,3.1,85,0,active
+L003,Lake Crystal,Northside,1.8,72,1,active
+L004,Lake Delta,West End,4.0,65,0,active
+L005,Lake Echo,Eastside,2.2,90,1,active
+L006,Lake Falcon,Southside,3.3,55,0,active
+L007,Lake Gem,Central,1.5,88,1,active
+L008,Lake Horizon,Downtown,2.8,60,0,active
+L009,Lake Indigo,District 2,3.0,77,1,active
+L010,Lake Jade,Northside,1.9,82,0,active
+L011,Lake Keystone,West End,2.6,69,1,active
+L012,Lake Lagoon,Eastside,3.2,74,0,active
+L013,Lake Mirage,Southside,2.1,91,1,active
+L014,Lake Nimbus,Central,1.7,68,0,active
+L015,Lake Opal,Downtown,2.4,80,1,active
+L016,Lake Pearl,District 1,3.0,76,0,active
+L017,Lake Quartz,Northside,2.3,62,1,active
+L018,Lake Ruby,West End,3.5,87,0,active
+L019,Lake Sapphire,Eastside,2.0,73,1,active
+L020,Lake Topaz,Southside,2.7,59,0,active
+L021,Lake Umbra,Central,3.1,81,1,active
+L022,Lake Verdant,Downtown,1.8,66,0,active
+L023,Lake Willow,District 2,2.5,92,1,active
+L024,Lake Xenon,Northside,3.0,70,0,active
+L025,Lake Yellowstone,West End,2.9,85,1,active
+L026,Lake Zenith,Eastside,2.2,60,0,active
+L027,Lake Amber,Southside,3.3,78,1,active
+L028,Lake Brook,Central,1.9,67,0,active
+L029,Lake Cove,Downtown,2.6,89,1,active
+L030,Lake Drift,District 1,3.1,71,0,active
+L031,Lake Ember,Northside,2.0,83,1,active
+L032,Lake Frost,West End,2.8,64,0,active
+L033,Lake Glacier,Eastside,3.2,79,1,active
+L034,Lake Harbor,Southside,2.1,56,0,active
+L035,Lake Isle,Central,2.7,86,1,active
+L036,Lake Jewel,Downtown,1.8,72,0,active
+L037,Lake Koi,District 2,2.9,90,1,active
+L038,Lake Lumen,Northside,3.0,68,0,active
+L039,Lake Meadow,West End,2.4,77,1,active
+L040,Lake Nova,Eastside,3.1,59,0,active
+L041,Lake Oasis,Southside,2.5,81,1,active
+L042,Lake Prism,Central,1.7,65,0,active
+L043,Lake Quill,Downtown,2.8,88,1,active
+L044,Lake Ridge,District 1,3.0,74,0,active
+L045,Lake Summit,Northside,2.2,69,1,active
+L046,Lake Tranquil,West End,2.9,84,0,active
+L047,Lake Umbrella,Eastside,3.3,61,1,active
+L048,Lake Vale,Southside,2.0,79,0,active
+L049,Lake Whisper,Central,2.6,87,1,active
+L050,Lake Xenith,Downtown,3.0,70,0,active
+L051,Lake Yonder,District 2,2.1,75,1,active
+L052,Lake Zenithal,Northside,2.7,66,0,active
+L053,Lake Arcadia,West End,3.2,82,1,active
+L054,Lake Bay,Eastside,1.9,58,0,active
+L055,Lake Crescent,Southside,2.4,91,1,active
+L056,Lake Driftwood,Central,3.1,73,0,active
+L057,Lake Emerald,Downtown,2.2,85,1,active
+L058,Lake Fern,District 1,2.8,62,0,active
+L059,Lake Garden,Northside,3.0,80,1,active
+L060,Lake Haven,West End,2.5,67,0,active
+L061,Lake Ivy,Eastside,3.3,88,1,active
+L062,Lake Juniper,Southside,2.0,69,0,active
+L063,Lake Kale,Downtown,2.7,76,1,active
+L064,Lake Lagoon,Central,3.1,60,0,active
+L065,Lake Mariner,District 2,2.1,84,1,active
+L066,Lake Nautical,Northside,2.9,71,0,active
+L067,Lake Orion,West End,3.0,77,1,active
+L068,Lake Pearl,Eastside,2.2,63,0,active
+L069,Lake Quartz,Southside,2.8,89,1,active
+L070,Lake Ripple,Central,3.1,72,0,active
+L071,Lake Serenity,Downtown,2.4,81,1,active
+L072,Lake Tide,District 1,3.0,68,0,active
+L073,Lake Unity,Northside,2.0,75,1,active
+L074,Lake Verdure,West End,2.7,61,0,active
+L075,Lake Willow,Eastside,3.2,86,1,active
+L076,Lake Xenon,Southside,1.8,70,0,active
+L077,Lake Yew,Central,2.5,78,1,active
+L078,Lake Zenith,Downtown,3.1,64,0,active
+L079,Lake Aurora,District 2,2.3,83,1,active
+L080,Lake Blue,Northside,2.9,59,0,active
+L081,Lake Crystal,West End,3.0,88,1,active
+L082,Lake Delta,Eastside,2.1,72,0,active
+L083,Lake Echo,Southside,2.8,81,1,active
+L084,Lake Falcon,Central,3.2,67,0,active
+L085,Lake Gem,Downtown,2.0,90,1,active
+L086,Lake Horizon,District 1,2.7,69,0,active
+L087,Lake Indigo,Northside,3.1,75,1,active
+L088,Lake Jade,West End,2.2,62,0,active
+L089,Lake Keystone,Eastside,2.9,84,1,active
+L090,Lake Lagoon,Southside,3.0,70,0,active
+L091,Lake Mirage,Central,2.1,77,1,active
+L092,Lake Nimbus,Downtown,2.8,65,0,active
+L093,Lake Opal,District 2,3.3,88,1,active
+L094,Lake Pearl,Northside,2.0,71,0,active
+L095,Lake Quartz,West End,2.5,80,1,active
+L096,Lake Ruby,Eastside,3.1,68,0,active
+L097,Lake Sapphire,Southside,2.2,86,1,active
+L098,Lake Topaz,Central,2.9,63,0,active
+L099,Lake Umbra,Downtown,3.0,79,1,active
+L100,Lake Verdant,District 1,2.1,66,0,active
