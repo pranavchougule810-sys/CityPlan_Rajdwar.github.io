@@ -606,20 +606,24 @@ footer {
     box-shadow: 0 0 25px rgba(0,0,0,0.45);
 }
 
-/* ----------------------
-   Custom Algo Badge Style
------------------------ */
-/* — Fix A: keep algorithm on one line — */
+/* FIX: Algorithm Badge overflow */
 .algo-badge {
-  display: inline-block;
-  white-space: nowrap !important;   /* prevent break */
-  padding: 10px 16px;
-  font-weight: 700;
-  color: #38bdf8;
-  border-radius: 14px;
-  border: 1px solid rgba(56,189,248,0.18);
-  background: rgba(56,189,248,0.06);
-  box-shadow: 0 3px 12px rgba(0,0,0,0.22);
+    display: inline-block;
+    background: #005dff;
+    color: white;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 12px;
+    margin-top: 14px;
+
+    max-width: 100%;         /* stay inside the card */
+    white-space: normal;     /* allows wrapping */
+    word-break: break-word;  /* breaks long words */
+}
+
+/* Ensure card content does not overflow */
+.structure-card .card-body {
+    overflow: hidden;
 }
 
 
