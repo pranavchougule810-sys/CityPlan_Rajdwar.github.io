@@ -1,0 +1,4 @@
+booking_id,cust_id,room_id,start_date,end_date,occupants,status,notes
+BK001,C001,R103,2025-12-20,2025-12-22,2,booked,Anniversary
+BK002,C002,R202,2025-12-25,2025-12-27,3,booked,Family
+BK003,C003,R301,2025-12-24,2025-12-25,1,booked,Business

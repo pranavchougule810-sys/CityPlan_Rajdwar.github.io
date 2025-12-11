@@ -1,0 +1,3 @@
+sched_id,staff_id,date,start,end,role
+S001,ST01,2025-12-20,09:00,17:00,FrontDesk
+S002,ST02,2025-12-20,07:00,15:00,Housekeeping
