@@ -1,0 +1,21 @@
+task_id,emp_id,title,priority,status
+T01,E01,Fix login bug,1,open
+T02,E04,Server maintenance,1,open
+T03,E05,Write blog article,3,open
+T04,E07,Test checkout flow,2,open
+T05,E10,Optimize DB,1,open
+T06,E08,Design landing page,2,open
+T07,E18,API endpoint,1,open
+T08,E14,CI pipeline,1,open
+T09,E02,Employee onboarding doc,3,open
+T10,E12,Monthly report,2,open
+T11,E15,UX research,2,open
+T12,E06,Vendor coordination,3,open
+T13,E09,Support ticket backlog,2,open
+T14,E11,Recruitment ads,3,open
+T15,E13,Intern task: tests,3,open
+T16,E16,Logistics planning,2,open
+T17,E17,Customer followup,2,open
+T18,E19,Budget sheet,2,open
+T19,E20,Office supplies order,3,open
+T20,E03,Invoice reconciliation,2,open

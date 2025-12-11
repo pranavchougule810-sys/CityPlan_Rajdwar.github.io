@@ -1,0 +1,21 @@
+item_id,type,assigned_to,status,notes
+I01,Laptop,E01,assigned,Dell Latitude 5400
+I02,Keyboard,,available,Mechanical KB
+I03,Mouse,E05,assigned,Logitech MX
+I04,Monitor,E07,assigned,24in IPS
+I05,Chair,,available,Ergo chair
+I06,Phone,E09,assigned,Desk phone
+I07,Dock,E10,assigned,USB-C dock
+I08,Headset,E03,assigned,Noise-cancel
+I09,Router,,available,Spare router
+I10,SSD,E14,assigned,512GB NVMe
+I11,Webcam,E08,assigned,1080p cam
+I12,Tablet,E15,assigned,iPad mini
+I13,Projector,,available,Office projector
+I14,Scanner,E12,assigned,Flatbed
+I15,Whiteboard,,available,6x4 ft
+I16,UPS,E06,assigned,1kVA UPS
+I17,Switch,,available,8-port switch
+I18,Microphone,E11,assigned,Condenser mic
+I19,Cable Kit,,available,Assorted cables
+I20,Locker,E20,assigned,Personal locker

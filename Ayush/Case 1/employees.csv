@@ -1,0 +1,22 @@
+id,name,age,department,designation
+E01,John,25,IT,Developer
+E02,Aarav,28,HR,HR Executive
+E03,Riya,24,Finance,Accountant
+E04,Karan,30,IT,System Admin
+E05,Neha,27,Marketing,Content Writer
+E06,Manoj,32,Operations,Manager
+E07,Pooja,26,IT,Tester
+E08,Arjun,29,Design,UI Designer
+E09,Simran,23,Support,Helpdesk
+E10,Rahul,31,IT,Team Lead
+E11,Tara,26,HR,Recruiter
+E12,Vikram,34,Finance,Senior Accountant
+E13,Maya,22,Marketing,Intern
+E14,Sahil,29,IT,DevOps
+E15,Isha,28,Design,UX Researcher
+E16,Rohit,33,Operations,Logistics
+E17,Anita,27,Support,Customer Rep
+E18,Dev,30,IT,Backend Dev
+E19,Lina,25,Finance,Analyst
+E20,Omar,35,Admin,Office Manager
+E21,Ayu,24,IT,Dev

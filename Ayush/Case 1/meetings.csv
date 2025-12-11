@@ -1,0 +1,21 @@
+meeting_id,date,start_time,end_time,room,title
+M01,2025-01-02,10:00,11:00,Room1,Project kickoff
+M02,2025-01-03,11:30,12:30,Room2,Design review
+M03,2025-01-04,14:00,15:00,Room1,Client call
+M04,2025-01-05,09:00,10:00,Room3,Sprint planning
+M05,2025-01-06,16:00,17:00,Room2,Retrospective
+M06,2025-01-07,13:00,14:00,Room1,Sales sync
+M07,2025-01-08,15:00,16:00,Room4,Ops meeting
+M08,2025-01-09,10:00,11:00,Room2,Marketing plan
+M09,2025-01-10,11:00,12:00,Room1,Tech grooming
+M10,2025-01-11,09:30,10:30,Room3,HR policies
+M11,2025-01-12,14:00,15:00,Room4,Vendor call
+M12,2025-01-13,16:00,17:00,Room1,Budget review
+M13,2025-01-14,10:00,11:00,Room2,UX review
+M14,2025-01-15,11:30,12:30,Room3,Security audit
+M15,2025-01-16,13:30,14:30,Room1,Product roadmap
+M16,2025-01-17,15:00,16:00,Room4,Customer feedback
+M17,2025-01-18,09:00,10:00,Room2,Hiring panel
+M18,2025-01-19,10:30,11:30,Room1,All-hands prep
+M19,2025-01-20,14:00,15:00,Room3,Legal review
+M20,2025-01-21,16:00,17:00,Room2,Deployment plan
