@@ -1,86 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranav Chougule | City Design Team</title>
-    <link rel="stylesheet" href="style.css" />
-    <style>
-        /* Small helper styles for the Data Structure / Algorithm blocks and buttons */
-        .tech-meta {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-            margin-bottom: 10px;
-        }
-        .chip {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 8px 12px;
-            border-radius: 999px;
-            font-size: 0.92rem;
-            color: #e6eef8;
-            backdrop-filter: blur(6px);
-        }
-
-        .algo {
-            margin-top: 6px;
-            background: rgba(0,0,0,0.15);
-            padding: 10px 12px;
-            border-radius: 10px;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
-            font-size: 0.9rem;
-            color: #f8fafc;
-            line-height: 1.4;
-        }
-
-        .button-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-        }
-
-        .btn {
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-            color: #fff;
-        }
-
-        .btn.secondary {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            color: #dbeafe;
-        }
-
-        /* make sure business-number stays visible */
-        .business-number {
-            background: linear-gradient(135deg,#667eea,#764ba2);
-            color: white;
-            padding: 6px 10px;
-            border-radius: 50%;
-            margin-right: 10px;
-            font-weight: 700;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        /* keep cards readable on dark backgrounds */
-        .business-card { 
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .tech-meta { gap: 8px; }
-            .algo { font-size: 0.85rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav>
@@ -98,214 +24,294 @@
     </nav>
 
     <main class="container">
+
         <header class="page-header">
             <h1>💡 Business Ideas for East Sector</h1>
             <p>Sustainable & innovative business opportunities that support Rajdwar’s east-side development.</p>
         </header>
 
         <section class="content">
-            <!-- 1 -->
-            <div class="business-card">
-                <h2><span class="business-number">1</span>Co-Working & Innovation Hub</h2>
-                <p>A co-working and innovation hub in the East Sector can support students, freelancers, and early-stage startups by giving them affordable workspaces. It will encourage creativity, entrepreneurship, and digital learning in your city.</p>
-                <p>This business strongly contributes to economic growth and innovation-driven development by promoting job creation and innovation-driven growth.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 8: Decent Work & Economic Growth</span>
-                    <span class="sdg-tag">SDG 9: Industry, Innovation & Infrastructure</span>
-                </div>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: vector / array of intervals (bookings)</span>
-                    <span class="chip">Algorithm: Interval Scheduling (Greedy)</span>
-                </div>
-                <div class="algo">
-                    Steps: Represent bookings as [start,end] → sort by end time → iterate and pick booking if start ≥ last_end.  
-                    Pseudocode: <code>sort(by end); for b in bookings: if b.start >= last_end: select b; last_end=b.end</code>
-                </div>
-            </div>
 
-            <!-- 2 -->
-            <div class="business-card">
-                <h2><span class="business-number">2</span>Health & Wellness Center</h2>
-                <p>A wellness center combining a gym, yoga studio, and physiotherapy clinic can improve the physical and mental well-being of residents and hostel students. It promotes a healthier lifestyle and reduces stress levels in the community.</p>
-                <p>This idea supports community health and sustainable urban development through accessible health services.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 3: Good Health & Well-Being</span>
-                    <span class="sdg-tag">SDG 11: Sustainable Cities & Communities</span>
-                </div>
+<!-- 1️⃣ Co-Working Hub -->
+<div class="business-card">
+    <h2><span class="business-number">1</span>Co-Working & Innovation Hub</h2>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Priority Queue (heap) of patients</span>
-                    <span class="chip">Algorithm: Priority Scheduling (Heap)</span>
-                </div>
-                <div class="algo">
-                    Steps: Push arriving patients keyed by (priority, arrival_time). When a server is free pop top patient and serve.  
-                    Pseudocode: <code>while events: push arrivals; if server free and heap not empty: serve(heap.pop())</code>
-                </div>
-            </div>
+    <p>A shared working space providing affordable access to freelancers, students, and startups using efficient scheduling and space management algorithms.</p>
 
-            <!-- 3 -->
-            <div class="business-card">
-                <h2><span class="business-number">3</span>Eco-Friendly Food Court / Healthy Café</h2>
-                <p>A sustainable food court offering healthy meals, fresh juices, and eco-friendly packaging can attract visitors from the theatre, mall, and hostels. It encourages good eating habits while minimizing food waste and plastic usage.</p>
-                <p>This aligns with nutrition security, health promotion, and responsible consumption practices.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 2: Zero Hunger</span>
-                    <span class="sdg-tag">SDG 3: Good Health</span>
-                    <span class="sdg-tag">SDG 12: Responsible Consumption</span>
-                </div>
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 8: Decent Work</span>
+        <span class="sdg-tag">SDG 9: Innovation</span>
+    </div>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Min-Heap (by expiry_days_left)</span>
-                    <span class="chip">Algorithm: Expiry-first serving (Min-Heap)</span>
-                </div>
-                <div class="algo">
-                    Steps: Insert items into min-heap keyed by expiry. To serve, pop item with smallest expiry. Periodically remove expired items.  
-                    Pseudocode: <code>push(items); for order: item=heap.pop(); serve(item)</code>
-                </div>
-            </div>
+    <h3>Data Structure Used: Array (Intervals)</h3>
+    <h3>Algorithm: Interval Scheduling Optimization (Greedy)</h3>
 
-            <!-- 4 -->
-            <div class="business-card">
-                <h2><span class="business-number">4</span>EV Charging Station with Convenience Store</h2>
-                <p>An EV charging station next to the existing fuel station will support clean mobility and reduce carbon emissions. Adding a convenience store creates more value for customers while they wait.</p>
-                <p>This business strongly connects to clean energy, sustainable cities, and climate action initiatives.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 7: Clean Energy</span>
-                    <span class="sdg-tag">SDG 11: Sustainable Cities</span>
-                    <span class="sdg-tag">SDG 13: Climate Action</span>
-                </div>
+    <div class="code-block">
+Algorithm 1: WORKSPACE_SCHEDULING(intervals)
+1. Read all booking intervals as (start, end) pairs.
+2. Sort all intervals in ascending order of their end times.
+3. Select the interval with the earliest finishing time.
+4. For each remaining interval:
+       a. If interval.start ≥ last_selected_end:
+              i. Select interval.
+              ii. Update last_selected_end ← interval.end
+5. Output the complete set of selected non-overlapping bookings.
+    </div>
+</div>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Graph (adjacency list) + Priority Queue</span>
-                    <span class="chip">Algorithm: Dijkstra's Shortest Path (with wait-time)</span>
-                </div>
-                <div class="algo">
-                    Steps: Run Dijkstra from origin to compute shortest travel times; for each station compute travel + est_wait; choose station with min total.  
-                    Pseudocode: <code>dist=dijkstra(origin); best = argmin(dist[s]+wait[s])</code>
-                </div>
-            </div>
 
-            <!-- 5 -->
-            <div class="business-card">
-                <h2><span class="business-number">5</span>Tech Repair & Sustainable Electronics Store</h2>
-                <p>A shop offering laptop, mobile, and gadget repair services will be extremely useful for hostel students, professionals, and residents. By repairing instead of replacing devices, the store will help reduce e-waste and promote sustainability.</p>
-                <p>This idea aligns with innovation promotion and responsible consumption practices.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 9: Industry & Innovation</span>
-                    <span class="sdg-tag">SDG 12: Responsible Consumption</span>
-                </div>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Priority Queue of jobs (deadline / duration)</span>
-                    <span class="chip">Algorithm: EDF or Shortest-Job-First scheduling</span>
-                </div>
-                <div class="algo">
-                    Steps: Insert jobs with keys (deadline or duration). To minimize lateness use EDF (pop smallest deadline); to maximize throughput choose SJF (pop smallest duration).  
-                    Pseudocode: <code>push(jobs); while pq: schedule(pq.pop())</code>
-                </div>
-            </div>
+<!-- 2️⃣ Health & Wellness Center -->
+<div class="business-card">
+    <h2><span class="business-number">2</span>Health & Wellness Center</h2>
 
-            <!-- 6 -->
-            <div class="business-card">
-                <h2><span class="business-number">6</span>24/7 Pharmacy & Diagnostic Center</h2>
-                <p>A 24/7 pharmacy with basic diagnostic services will provide essential healthcare access near the hospital. It can support emergency needs and make medical help more reachable for everyone in the East Sector.</p>
-                <p>This directly contributes to community health by improving timely access to medicine and healthcare.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 3: Good Health & Well-Being</span>
-                </div>
+    <p>A center combining yoga, gym, and physiotherapy, requiring efficient appointment priority handling.</p>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Hash Table (unordered_map) for medicine lookup</span>
-                    <span class="chip">Algorithm: O(1) lookup + reorder-alert scan</span>
-                </div>
-                <div class="algo">
-                    Steps: Store medicines keyed by name with stock and reorder_level. Lookup by name O(1). Periodically scan map for stock ≤ reorder_level to create reorder list.  
-                    Pseudocode: <code>if map[name].stock <= map[name].reorder_level: reorder.push(name)</code>
-                </div>
-            </div>
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 3: Good Health</span>
+        <span class="sdg-tag">SDG 11: Sustainable Communities</span>
+    </div>
 
-            <!-- 7 -->
-            <div class="business-card">
-                <h2><span class="business-number">7</span>Budget Eco-Friendly Guest House</h2>
-                <p>A small eco-stay or budget guest house can serve tourists visiting the water park, families of hostel students, and business visitors. Using solar panels, water-saving systems, and green construction materials will make it environmentally responsible.</p>
-                <p>This supports economic growth, sustainable cities, and responsible consumption.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 8: Economic Growth</span>
-                    <span class="sdg-tag">SDG 11: Sustainable Cities</span>
-                    <span class="sdg-tag">SDG 12: Responsible Consumption</span>
-                </div>
+    <h3>Data Structure Used: Min-Heap (Priority Queue)</h3>
+    <h3>Algorithm: Appointment Priority Scheduling</h3>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Balanced BST (map) or sorted interval list</span>
-                    <span class="chip">Algorithm: Interval insertion + clash detection</span>
-                </div>
-                <div class="algo">
-                    Steps: Represent bookings as [checkin,checkout). Use map.lower_bound(checkin) to find neighbors; accept if no overlap with previous and next intervals.  
-                    Pseudocode: <code>it=map.lower_bound(checkin); if prev.end <= checkin && checkout <= it.start: insert</code>
-                </div>
-            </div>
+    <div class="code-block">
+Algorithm 2: WELLNESS_APPOINTMENT_SCHEDULER(requests)
+1. Insert each appointment request into a min-heap based on start time or priority.
+2. While heap is not empty:
+       a. Extract the appointment with minimum start time.
+       b. Compare with last scheduled appointment.
+       c. If no conflict:
+              i. Approve appointment.
+3. Continue until all appointments processed.
+4. Output final approved appointment schedule.
+    </div>
+</div>
 
-            <!-- 8 -->
-            <div class="business-card">
-                <h2><span class="business-number">8</span>Fitness Café / Protein & Juice Bar</h2>
-                <p>A fitness café offering protein shakes, salads, and healthy snacks will become a hotspot for young people from the hostels. It supports better dietary habits and encourages students to adopt a healthier lifestyle.</p>
-                <p>This business supports health promotion and responsible consumption practices.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 3: Good Health</span>
-                    <span class="sdg-tag">SDG 12: Responsible Consumption</span>
-                </div>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: DP table (1D/2D array)</span>
-                    <span class="chip">Algorithm: 0/1 Knapsack to maximize nutrition under budget</span>
-                </div>
-                <div class="algo">
-                    Steps: Treat each menu item as (value=nutrition_score, weight=price). Use dp[b] (1D optimized) or dp[i][b] (2D) to compute max nutrition for budget B.  
-                    Pseudocode: <code>for item: for b=B..weight: dp[b]=max(dp[b],dp[b-weight]+value)</code>
-                </div>
-            </div>
 
-            <!-- 9 -->
-            <div class="business-card">
-                <h2><span class="business-number">9</span>Skill Development & Coaching Center</h2>
-                <p>A learning center that teaches coding, communication skills, and competitive exam preparation can empower the youth in the East Sector. It improves employability and gives equal opportunities to students from different backgrounds.</p>
-                <p>This aligns with quality education, decent work opportunities, and reduced inequalities.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 4: Quality Education</span>
-                    <span class="sdg-tag">SDG 8: Decent Work</span>
-                    <span class="sdg-tag">SDG 10: Reduced Inequalities</span>
-                </div>
+<!-- 3️⃣ Eco-Friendly Food Court -->
+<div class="business-card">
+    <h2><span class="business-number">3</span>Eco-Friendly Food Court / Healthy Café</h2>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Graph (adjacency list) + color array</span>
-                    <span class="chip">Algorithm: Graph Coloring (Greedy order by degree)</span>
-                </div>
-                <div class="algo">
-                    Steps: Build graph where nodes conflict if they share students/teachers. Order nodes by degree and assign smallest available color not used by neighbors.  
-                    Pseudocode: <code>order by degree; for node: assign min color ≠ neighbor_colors</code>
-                </div>
-            </div>
+    <p>A sustainable café that manages perishable food inventory using expiry-based optimization.</p>
 
-            <!-- 10 -->
-            <div class="business-card">
-                <h2><span class="business-number">10</span>Entertainment & Gaming Zone</h2>
-                <p>A fun-filled entertainment zone with VR games, arcade machines, and indoor activities can attract visitors from the shopping mall and theatre. It offers a safe recreational space and helps reduce stress among students and families.</p>
-                <p>This supports mental well-being and sustainable communities by encouraging healthy recreation.</p>
-                <div class="sdg-tags">
-                    <span class="sdg-tag">SDG 3: Mental Well-Being</span>
-                    <span class="sdg-tag">SDG 11: Sustainable Communities</span>
-                </div>
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 2: Zero Hunger</span>
+        <span class="sdg-tag">SDG 12: Responsible Consumption</span>
+    </div>
 
-                <div class="tech-meta">
-                    <span class="chip">Data Structure: Queue (FIFO) or two-queue model (VIP + regular)</span>
-                    <span class="chip">Algorithm: Round-Robin / Multi-Queue Scheduling with ageing</span>
-                </div>
-                <div class="algo">
-                    Steps: Maintain vip_queue and regular_queue; serve vip first, else regular; apply time-slice for consoles and use ageing to avoid starvation.  
-                    Pseudocode: <code>while queues not empty: if vip: serve(vip.pop()); else serve(regular.pop())</code>
-                </div>
-            </div>
+    <h3>Data Structure Used: Min-Heap</h3>
+    <h3>Algorithm: Expiry-Based Stock Rotation</h3>
+
+    <div class="code-block">
+Algorithm 3: FOOD_STOCK_ROTATION(food_items)
+1. Insert all food items into a min-heap keyed by expiry_time.
+2. While heap is not empty:
+       a. Extract item with minimum expiry_time.
+       b. Serve or process item first.
+       c. Replace stock and push new item if added.
+3. Ensure no expired item remains unprocessed.
+4. Output efficient consumption ordering.
+    </div>
+</div>
+
+
+
+<!-- 4️⃣ EV Charging Station -->
+<div class="business-card">
+    <h2><span class="business-number">4</span>EV Charging Station with Convenience Store</h2>
+
+    <p>EV routing and charging optimization using shortest-route selection.</p>
+
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 7: Clean Energy</span>
+        <span class="sdg-tag">SDG 13: Climate Action</span>
+    </div>
+
+    <h3>Data Structure Used: Graph + Priority Queue</h3>
+    <h3>Algorithm: Dijkstra’s Shortest Path</h3>
+
+    <div class="code-block">
+Algorithm 4: EV_ROUTE_OPTIMIZATION(G, source)
+1. Initialize distance array dist[] with ∞.
+2. Set dist[source] ← 0.
+3. Create a min-priority queue PQ and push (source, 0).
+4. While PQ is not empty:
+       a. Extract node u with smallest dist[u].
+       b. For each neighbor v of u:
+              i. If dist[u] + w(u,v) < dist[v]:
+                     Update dist[v].
+                     Push (v, dist[v]) into PQ.
+5. Return dist[] containing optimal charging routes.
+    </div>
+</div>
+
+
+
+<!-- 5️⃣ Tech Repair Store -->
+<div class="business-card">
+    <h2><span class="business-number">5</span>Tech Repair & Sustainable Electronics Store</h2>
+
+    <p>Efficient repair job arrangement using priority queues.</p>
+
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 9: Innovation</span>
+        <span class="sdg-tag">SDG 12: Responsible Consumption</span>
+    </div>
+
+    <h3>Data Structure Used: Priority Queue</h3>
+    <h3>Algorithm: Job Scheduling (Shortest Repair Time First)</h3>
+
+    <div class="code-block">
+Algorithm 5: REPAIR_JOB_SCHEDULER(jobs)
+1. Insert all repair jobs into a min-heap keyed by estimated repair time.
+2. While heap is not empty:
+       a. Extract job with minimum repair time.
+       b. Process job.
+       c. Update completion timeline.
+3. Continue until all repair tasks are executed.
+4. Output optimized repair sequence.
+    </div>
+</div>
+
+
+
+<!-- 6️⃣ Pharmacy -->
+<div class="business-card">
+    <h2><span class="business-number">6</span>24/7 Pharmacy & Diagnostic Center</h2>
+
+    <p>Fast medicine lookup and inventory tracking using hashing.</p>
+
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 3: Good Health</span>
+    </div>
+
+    <h3>Data Structure Used: Hash Table</h3>
+    <h3>Algorithm: O(1) Medicine Lookup</h3>
+
+    <div class="code-block">
+Algorithm 6: PHARMACY_LOOKUP_STORE(medicines)
+1. Initialize hash table H.
+2. For each medicine:
+       a. Compute hash key.
+       b. Store (medicine_name, expiry, stock) in H.
+3. For each query:
+       a. Compute hash key.
+       b. Retrieve information in O(1).
+4. Output results instantly using hashing.
+    </div>
+</div>
+
+
+
+<!-- 7️⃣ Eco-Friendly Guest House -->
+<div class="business-card">
+    <h2><span class="business-number">7</span>Eco-Friendly Guest House</h2>
+
+    <p>Booking and room allocation using sorted intervals / BST.</p>
+
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 11: Sustainable Cities</span>
+    </div>
+
+    <h3>Data Structure Used: Balanced BST (C++ map)</h3>
+    <h3>Algorithm: Room Interval Allocation</h3>
+
+    <div class="code-block">
+Algorithm 7: ROOM_BOOKING(intervals)
+1. Sort all booking intervals by start time.
+2. Insert first interval into BST with end time as key.
+3. For each next interval:
+       a. Find nearest interval in BST.
+       b. If no overlap:
+              Insert interval into BST.
+4. Output all non-conflicting guest bookings.
+    </div>
+</div>
+
+
+
+<!-- 8️⃣ Fitness Café -->
+<div class="business-card">
+    <h2><span class="business-number">8</span>Fitness Café / Protein & Juice Bar</h2>
+
+    <p>Menu optimization and nutrient planning using Dynamic Programming.</p>
+
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 3: Health</span>
+        <span class="sdg-tag">SDG 12: Responsible Consumption</span>
+    </div>
+
+    <h3>Data Structure Used: DP Array</h3>
+    <h3>Algorithm: Nutrient Optimization (Knapsack)</h3>
+
+    <div class="code-block">
+Algorithm 8: NUTRITION_OPTIMIZER(items, max_calories)
+1. Initialize DP array dp[] of size max_calories.
+2. For each item:
+       a. For cal from max_calories down to item.cal:
+              i. dp[cal] ← max(dp[cal], dp[cal - item.cal] + item.value)
+3. Return dp[max_calories] as optimized nutritional value.
+    </div>
+</div>
+
+
+
+<!-- 9️⃣ Skill Development Center -->
+<div class="business-card">
+    <h2><span class="business-number">9</span>Skill Development & Coaching Center</h2>
+
+    <p>Batch allocation and clash-free scheduling using graph coloring.</p>
+
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 4: Quality Education</span>
+        <span class="sdg-tag">SDG 10: Reduced Inequalities</span>
+    </div>
+
+    <h3>Data Structure Used: Graph + Color Array</h3>
+    <h3>Algorithm: Greedy Graph Coloring</h3>
+
+    <div class="code-block">
+Algorithm 9: BATCH_COLORING(G)
+1. Initialize all vertices with color 0.
+2. For each class (vertex):
+       a. Look at colors of adjacent vertices.
+       b. Assign the smallest available color.
+3. Continue until all vertices are colored.
+4. Output time-slot groups based on color.
+    </div>
+</div>
+
+
+
+<!-- 🔟 Gaming Zone -->
+<div class="business-card">
+    <h2><span class="business-number">10</span>Entertainment & Gaming Zone</h2>
+
+    <p>Queue management & customer flow optimization.</p>
+
+    <div class="sdg-tags">
+        <span class="sdg-tag">SDG 3: Well-Being</span>
+        <span class="sdg-tag">SDG 11: Sustainable Communities</span>
+    </div>
+
+    <h3>Data Structure Used: Queue</h3>
+    <h3>Algorithm: FCFS Queue Simulation</h3>
+
+    <div class="code-block">
+Algorithm 10: GAME_ZONE_QUEUE(customers)
+1. Initialize empty queue Q.
+2. For each customer:
+       a. Enqueue(customer).
+3. While Q is not empty:
+       a. Serve front customer.
+       b. Dequeue().
+4. Output total waiting and service times.
+    </div>
+</div>
+
 
         </section>
 
