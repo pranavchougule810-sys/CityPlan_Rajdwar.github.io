@@ -1,323 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranav Chougule | City Design Team</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pranav Chougule | City Design Team</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Small button styles (will inherit from your style.css but safe to include) */
+    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .btn { display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600; border:1px solid rgba(255,255,255,0.08); background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); color:inherit; }
+    .btn.code{ border-color: rgba(79,70,229,0.9); background: linear-gradient(90deg, rgba(79,70,229,0.15), rgba(168,85,247,0.06)); }
+    .btn.data{ border-color: rgba(249,115,22,0.9); background: linear-gradient(90deg, rgba(249,115,22,0.12), rgba(250,204,21,0.04)); }
+    .case-card{ margin-bottom:18px; }
+    .case-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .small-meta{ font-size:0.92rem; opacity:0.85; }
+  </style>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-inner">
-            <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="project.html">Project</a></li>
-                <li><a href="kushvendra.html">Kushvendra</a></li>
-                <li><a href="manthan.html">Manthan</a></li>
-                <li><a href="pranav.html" class="active">Pranav</a></li>
-                <li><a href="ayush.html">Ayush</a></li>
-            </ul>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="project.html">Project</a></li>
+        <li><a href="kushvendra.html">Kushvendra</a></li>
+        <li><a href="manthan.html">Manthan</a></li>
+        <li><a href="pranav.html" class="active">Pranav</a></li>
+        <li><a href="ayush.html">Ayush</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="page-header">
+      <h1>💡 Business Ideas for East Sector</h1>
+      <p>Sustainable & innovative business opportunities that support Rajdwar’s east-side development.</p>
+    </header>
+
+    <section class="content">
+
+      <!-- Case template: copy/paste for each case -->
+
+      <article class="business-card case-card" id="case1">
+        <div class="case-title">
+          <h2><span class="business-number">1</span> Co-Working & Innovation Hub</h2>
+          <div class="small-meta">Files: <code>Pranav/case1/case1.cpp</code> • <code>Pranav/case1/case1.csv</code></div>
         </div>
-    </nav>
-
-    <main class="container">
-
-        <header class="page-header">
-            <h1>💡 Business Ideas for East Sector</h1>
-            <p>Sustainable & innovative business opportunities that support Rajdwar’s east-side development.</p>
-        </header>
-
-        <section class="content">
-
-
-<!-- 1️⃣ Co-Working Hub -->
-<div class="business-card">
-    <h2><span class="business-number">1</span>Co-Working & Innovation Hub</h2>
-
-    <p>A shared working space providing affordable access to freelancers, students, and startups using efficient scheduling and space management algorithms.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 8: Decent Work</span>
-        <span class="sdg-tag">SDG 9: Innovation</span>
-    </div>
-
-    <h3>Data Structure Used: Array (Intervals)</h3>
-    <h3>Algorithm: Interval Scheduling Optimization (Greedy)</h3>
-
-    <div class="code-block">
-Algorithm 1: WORKSPACE_SCHEDULING(intervals)
-1. Read all booking intervals as (start, end) pairs.
-2. Sort all intervals in ascending order of their end times.
-3. Select the interval with the earliest finishing time.
-4. For each remaining interval:
-       a. If interval.start ≥ last_selected_end:
-              i. Select interval.
-              ii. Update last_selected_end ← interval.end
-5. Output the complete set of selected non-overlapping bookings.
-    </div>
-</div>
-
-
-
-<!-- 2️⃣ Health & Wellness Center -->
-<div class="business-card">
-    <h2><span class="business-number">2</span>Health & Wellness Center</h2>
-
-    <p>A center combining yoga, gym, and physiotherapy, requiring efficient appointment priority handling.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 3: Good Health</span>
-        <span class="sdg-tag">SDG 11: Sustainable Communities</span>
-    </div>
-
-    <h3>Data Structure Used: Min-Heap (Priority Queue)</h3>
-    <h3>Algorithm: Appointment Priority Scheduling</h3>
-
-    <div class="code-block">
-Algorithm 2: WELLNESS_APPOINTMENT_SCHEDULER(requests)
-1. Insert each appointment request into a min-heap based on start time or priority.
-2. While heap is not empty:
-       a. Extract the appointment with minimum start time.
-       b. Compare with last scheduled appointment.
-       c. If no conflict:
-              i. Approve appointment.
-3. Continue until all appointments processed.
-4. Output final approved appointment schedule.
-    </div>
-</div>
-
-
-
-<!-- 3️⃣ Eco-Friendly Food Court -->
-<div class="business-card">
-    <h2><span class="business-number">3</span>Eco-Friendly Food Court / Healthy Café</h2>
-
-    <p>A sustainable café that manages perishable food inventory using expiry-based optimization.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 2: Zero Hunger</span>
-        <span class="sdg-tag">SDG 12: Responsible Consumption</span>
-    </div>
-
-    <h3>Data Structure Used: Min-Heap</h3>
-    <h3>Algorithm: Expiry-Based Stock Rotation</h3>
-
-    <div class="code-block">
-Algorithm 3: FOOD_STOCK_ROTATION(food_items)
-1. Insert all food items into a min-heap keyed by expiry_time.
-2. While heap is not empty:
-       a. Extract item with minimum expiry_time.
-       b. Serve or process item first.
-       c. Replace stock and push new item if added.
-3. Ensure no expired item remains unprocessed.
-4. Output efficient consumption ordering.
-    </div>
-</div>
-
-
-
-<!-- 4️⃣ EV Charging Station -->
-<div class="business-card">
-    <h2><span class="business-number">4</span>EV Charging Station with Convenience Store</h2>
-
-    <p>EV routing and charging optimization using shortest-route selection.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 7: Clean Energy</span>
-        <span class="sdg-tag">SDG 13: Climate Action</span>
-    </div>
-
-    <h3>Data Structure Used: Graph + Priority Queue</h3>
-    <h3>Algorithm: Dijkstra’s Shortest Path</h3>
-
-    <div class="code-block">
-Algorithm 4: EV_ROUTE_OPTIMIZATION(G, source)
-1. Initialize distance array dist[] with ∞.
-2. Set dist[source] ← 0.
-3. Create a min-priority queue PQ and push (source, 0).
-4. While PQ is not empty:
-       a. Extract node u with smallest dist[u].
-       b. For each neighbor v of u:
-              i. If dist[u] + w(u,v) < dist[v]:
-                     Update dist[v].
-                     Push (v, dist[v]) into PQ.
-5. Return dist[] containing optimal charging routes.
-    </div>
-</div>
-
-
-
-<!-- 5️⃣ Tech Repair Store -->
-<div class="business-card">
-    <h2><span class="business-number">5</span>Tech Repair & Sustainable Electronics Store</h2>
-
-    <p>Efficient repair job arrangement using priority queues.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 9: Innovation</span>
-        <span class="sdg-tag">SDG 12: Responsible Consumption</span>
-    </div>
-
-    <h3>Data Structure Used: Priority Queue</h3>
-    <h3>Algorithm: Job Scheduling (Shortest Repair Time First)</h3>
-
-    <div class="code-block">
-Algorithm 5: REPAIR_JOB_SCHEDULER(jobs)
-1. Insert all repair jobs into a min-heap keyed by estimated repair time.
-2. While heap is not empty:
-       a. Extract job with minimum repair time.
-       b. Process job.
-       c. Update completion timeline.
-3. Continue until all repair tasks are executed.
-4. Output optimized repair sequence.
-    </div>
-</div>
-
-
-
-<!-- 6️⃣ Pharmacy -->
-<div class="business-card">
-    <h2><span class="business-number">6</span>24/7 Pharmacy & Diagnostic Center</h2>
-
-    <p>Fast medicine lookup and inventory tracking using hashing.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 3: Good Health</span>
-    </div>
-
-    <h3>Data Structure Used: Hash Table</h3>
-    <h3>Algorithm: O(1) Medicine Lookup</h3>
-
-    <div class="code-block">
-Algorithm 6: PHARMACY_LOOKUP_STORE(medicines)
-1. Initialize hash table H.
-2. For each medicine:
-       a. Compute hash key.
-       b. Store (medicine_name, expiry, stock) in H.
-3. For each query:
-       a. Compute hash key.
-       b. Retrieve information in O(1).
-4. Output results instantly using hashing.
-    </div>
-</div>
-
-
-
-<!-- 7️⃣ Eco-Friendly Guest House -->
-<div class="business-card">
-    <h2><span class="business-number">7</span>Eco-Friendly Guest House</h2>
-
-    <p>Booking and room allocation using sorted intervals / BST.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 11: Sustainable Cities</span>
-    </div>
-
-    <h3>Data Structure Used: Balanced BST (C++ map)</h3>
-    <h3>Algorithm: Room Interval Allocation</h3>
-
-    <div class="code-block">
-Algorithm 7: ROOM_BOOKING(intervals)
-1. Sort all booking intervals by start time.
-2. Insert first interval into BST with end time as key.
-3. For each next interval:
-       a. Find nearest interval in BST.
-       b. If no overlap:
-              Insert interval into BST.
-4. Output all non-conflicting guest bookings.
-    </div>
-</div>
-
-
-
-<!-- 8️⃣ Fitness Café -->
-<div class="business-card">
-    <h2><span class="business-number">8</span>Fitness Café / Protein & Juice Bar</h2>
-
-    <p>Menu optimization and nutrient planning using Dynamic Programming.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 3: Health</span>
-        <span class="sdg-tag">SDG 12: Responsible Consumption</span>
-    </div>
-
-    <h3>Data Structure Used: DP Array</h3>
-    <h3>Algorithm: Nutrient Optimization (Knapsack)</h3>
-
-    <div class="code-block">
-Algorithm 8: NUTRITION_OPTIMIZER(items, max_calories)
-1. Initialize DP array dp[] of size max_calories.
-2. For each item:
-       a. For cal from max_calories down to item.cal:
-              i. dp[cal] ← max(dp[cal], dp[cal - item.cal] + item.value)
-3. Return dp[max_calories] as optimized nutritional value.
-    </div>
-</div>
-
-
-
-<!-- 9️⃣ Skill Development Center -->
-<div class="business-card">
-    <h2><span class="business-number">9</span>Skill Development & Coaching Center</h2>
-
-    <p>Batch allocation and clash-free scheduling using graph coloring.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 4: Quality Education</span>
-        <span class="sdg-tag">SDG 10: Reduced Inequalities</span>
-    </div>
-
-    <h3>Data Structure Used: Graph + Color Array</h3>
-    <h3>Algorithm: Greedy Graph Coloring</h3>
-
-    <div class="code-block">
-Algorithm 9: BATCH_COLORING(G)
-1. Initialize all vertices with color 0.
-2. For each class (vertex):
-       a. Look at colors of adjacent vertices.
-       b. Assign the smallest available color.
-3. Continue until all vertices are colored.
-4. Output time-slot groups based on color.
-    </div>
-</div>
-
-
-
-<!-- 🔟 Gaming Zone -->
-<div class="business-card">
-    <h2><span class="business-number">10</span>Entertainment & Gaming Zone</h2>
-
-    <p>Queue management & customer flow optimization.</p>
-
-    <div class="sdg-tags">
-        <span class="sdg-tag">SDG 3: Well-Being</span>
-        <span class="sdg-tag">SDG 11: Sustainable Communities</span>
-    </div>
-
-    <h3>Data Structure Used: Queue</h3>
-    <h3>Algorithm: FCFS Queue Simulation</h3>
-
-    <div class="code-block">
-Algorithm 10: GAME_ZONE_QUEUE(customers)
-1. Initialize empty queue Q.
-2. For each customer:
-       a. Enqueue(customer).
-3. While Q is not empty:
-       a. Serve front customer.
-       b. Dequeue().
-4. Output total waiting and service times.
-    </div>
-</div>
-
-
-        </section>
-
-        <footer>
-            Sustainable Development Goals (SDG) – Aligned Business Ideas for East Sector • Pranav Chougule
-        </footer>
-    </main>
+        <p>A co-working and innovation hub in the East Sector can support students, freelancers, and early-stage startups by giving them affordable workspaces. It will encourage creativity, entrepreneurship, and digital learning in your city.</p>
+
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case1/case1.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case1/case1.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case2">
+        <div class="case-title">
+          <h2><span class="business-number">2</span> Health & Wellness Center</h2>
+          <div class="small-meta">Files: <code>Pranav/case2/case2.cpp</code> • <code>Pranav/case2/case2.csv</code></div>
+        </div>
+        <p>A wellness center combining a gym, yoga studio, and physiotherapy clinic can improve the physical and mental well-being of residents and hostel students. It promotes a healthier lifestyle and reduces stress levels in the community.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case2/case2.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case2/case2.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case3">
+        <div class="case-title">
+          <h2><span class="business-number">3</span> Eco-Friendly Food Court / Healthy Café</h2>
+          <div class="small-meta">Files: <code>Pranav/case3/case3.cpp</code> • <code>Pranav/case3/case3.csv</code></div>
+        </div>
+        <p>A sustainable food court offering healthy meals, fresh juices, and eco-friendly packaging can attract visitors from the theatre, mall, and hostels.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case3/case3.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case3/case3.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case4">
+        <div class="case-title">
+          <h2><span class="business-number">4</span> EV Charging Station with Convenience Store</h2>
+          <div class="small-meta">Files: <code>Pranav/case4/case4.cpp</code> • <code>Pranav/case4/case4.csv</code></div>
+        </div>
+        <p>An EV charging station next to the existing fuel station will support clean mobility and reduce carbon emissions. Adding a convenience store creates more value for customers while they wait.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case4/case4.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case4/case4.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case5">
+        <div class="case-title">
+          <h2><span class="business-number">5</span> Tech Repair & Sustainable Electronics Store</h2>
+          <div class="small-meta">Files: <code>Pranav/case5/case5.cpp</code> • <code>Pranav/case5/case5.csv</code></div>
+        </div>
+        <p>A shop offering laptop, mobile, and gadget repair services will be useful for hostel students and residents. By repairing instead of replacing, the store reduces e-waste.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case5/case5.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case5/case5.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case6">
+        <div class="case-title">
+          <h2><span class="business-number">6</span> 24/7 Pharmacy & Diagnostic Center</h2>
+          <div class="small-meta">Files: <code>Pranav/case6/case6.cpp</code> • <code>Pranav/case6/case6.csv</code></div>
+        </div>
+        <p>A 24/7 pharmacy with basic diagnostics will provide essential healthcare near the hospital. It supports emergency needs and accessibility.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case6/case6.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case6/case6.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case7">
+        <div class="case-title">
+          <h2><span class="business-number">7</span> Budget Eco-Friendly Guest House</h2>
+          <div class="small-meta">Files: <code>Pranav/case7/case7.cpp</code> • <code>Pranav/case7/case7.csv</code></div>
+        </div>
+        <p>A small eco-stay for tourists and visiting families. Use solar panels and water-saving systems to remain sustainable.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case7/case7.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case7/case7.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case8">
+        <div class="case-title">
+          <h2><span class="business-number">8</span> Fitness Café / Protein & Juice Bar</h2>
+          <div class="small-meta">Files: <code>Pranav/case8/case8.cpp</code> • <code>Pranav/case8/case8.csv</code></div>
+        </div>
+        <p>A fitness café offering protein shakes, salads, and healthy snacks — perfect for students and gym-goers.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case8/case8.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case8/case8.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case9">
+        <div class="case-title">
+          <h2><span class="business-number">9</span> Skill Development & Coaching Center</h2>
+          <div class="small-meta">Files: <code>Pranav/case9/case9.cpp</code> • <code>Pranav/case9/case9.csv</code></div>
+        </div>
+        <p>A learning center offering courses in coding, communication, and exam prep to empower youth and improve employability.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case9/case9.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case9/case9.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+      <article class="business-card case-card" id="case10">
+        <div class="case-title">
+          <h2><span class="business-number">10</span> Entertainment & Gaming Zone</h2>
+          <div class="small-meta">Files: <code>Pranav/case10/case10.cpp</code> • <code>Pranav/case10/case10.csv</code></div>
+        </div>
+        <p>A fun gaming zone with VR and arcade games to reduce stress and provide safe recreation for students and families.</p>
+        <div class="btn-row">
+          <a class="btn code" href="Pranav/case10/case10.cpp" target="_blank" download>View C++ Code</a>
+          <a class="btn data" href="Pranav/case10/case10.csv" target="_blank" download>View Dataset (CSV)</a>
+        </div>
+      </article>
+
+    </section>
+
+    <footer style="margin-top:40px; text-align:center; opacity:0.9;">
+      Sustainable Development Goals (SDG) – Aligned Business Ideas for East Sector • Pranav Chougule
+    </footer>
+  </main>
 </body>
 </html>
