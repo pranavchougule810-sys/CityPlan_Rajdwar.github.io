@@ -609,16 +609,17 @@ footer {
 /* ----------------------
    Custom Algo Badge Style
 ----------------------- */
+/* — Fix A: keep algorithm on one line — */
 .algo-badge {
-    display: inline-block;
-    margin-top: 14px;
-    padding: 10px 14px;
-    font-weight: 700;
-    color: #38bdf8;
-    border-radius: 14px;
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    background: rgba(56, 189, 248, 0.08);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
-    white-space: nowrap; /* 🔥 prevents text from breaking */
+  display: inline-block;
+  white-space: nowrap !important;   /* prevent break */
+  padding: 10px 16px;
+  font-weight: 700;
+  color: #38bdf8;
+  border-radius: 14px;
+  border: 1px solid rgba(56,189,248,0.18);
+  background: rgba(56,189,248,0.06);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.22);
 }
+
 
