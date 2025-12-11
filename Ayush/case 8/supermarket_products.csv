@@ -1,0 +1,11 @@
+id,name,category,price,stock
+P01,Rice 1kg,Grocery,55,120
+P02,Wheat Flour 1kg,Grocery,48,150
+P03,Milk 1L,Dairy,52,80
+P04,Bread,Bakery,35,60
+P05,Eggs 12pc,Poultry,72,200
+P06,Sugar 1kg,Grocery,44,100
+P07,Cola 1L,Beverage,40,90
+P08,Soap,Personal Care,32,140
+P09,Shampoo,Personal Care,120,70
+P10,Tea 500g,Grocery,140,50
