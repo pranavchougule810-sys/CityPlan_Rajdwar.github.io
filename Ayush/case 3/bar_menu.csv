@@ -1,0 +1,6 @@
+drink_id,name,price,alcohol,notes
+D001,Whiskey,150,40,Premium
+D002,Rum,120,42,Dark
+D003,Beer,90,5,Chilled
+D004,Vodka,140,38,Imported
+D005,Wine,180,12,Red Wine

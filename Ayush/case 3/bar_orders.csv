@@ -1,0 +1,4 @@
+order_id,drink_id,qty,customer,total,date,time,notes
+O001,D003,2,Amit,180,2025-01-20,19:20,
+O002,D001,1,Ravi,150,2025-01-21,20:10,
+O003,D005,1,Neha,180,2025-01-21,21:00,
