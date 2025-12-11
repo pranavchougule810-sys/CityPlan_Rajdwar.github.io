@@ -1,0 +1,4 @@
+grade_id,student_id,subject,term,marks
+G01,ST01,Math,Midterm,78
+G02,ST01,Science,Midterm,82
+G03,ST02,English,Midterm,69
