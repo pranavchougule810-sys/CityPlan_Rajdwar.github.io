@@ -1,0 +1,3 @@
+td_id,vehicle_id,customer,date,time,phone,status
+TD01,V02,Amit,2025-01-10,10:00,9876543210,Scheduled
+TD02,V04,Neha,2025-01-11,11:30,9123456780,Scheduled

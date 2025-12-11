@@ -1,0 +1,6 @@
+id,make,model,year,price,stock,color,notes
+V01,Maruti,Swift,2024,650000,5,Red,Hatchback
+V02,Hyundai,Creta,2024,1200000,3,White,SUV
+V03,Tata,Nexon,2023,900000,4,Blue,Electric option
+V04,Kia,Seltos,2024,1350000,2,Black,Premium
+V05,Toyota,Urban Cruiser,2024,1100000,1,Silver,Compact SUV
