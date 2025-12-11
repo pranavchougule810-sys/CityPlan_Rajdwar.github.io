@@ -1,0 +1,10 @@
+M01,CuttingMachine,Working
+M02,WeldingMachine,Broken
+M03,PackingMachine,Working
+M04,DrillPress,Working
+M05,LatheMachine,Broken
+M06,HydraulicPress,Working
+M07,CNC_Machine,Working
+M08,GrindingMachine,Broken
+M09,MillingMachine,Working
+M10,ShaperMachine,Working
