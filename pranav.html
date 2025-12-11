@@ -1,537 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pranav Chougule | City Design Team</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Kushvendra's case-studies grid styles (kept identical) */
-    #kushv-case-studies-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin-bottom: 50px;
-    }
-
-    .kushv-case-card {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 20px 24px;
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
-        border: 1px solid rgba(148, 163, 184, 0.3);
-        border-radius: 16px;
-        text-decoration: none;
-        color: #e5e7eb;
-        transition: all 0.3s ease;
-        overflow: hidden;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .kushv-case-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 4px;
-        height: 100%;
-        background: linear-gradient(180deg, #facc15, #f97316);
-        transform: scaleY(0);
-        transition: transform 0.3s ease;
-    }
-
-    .kushv-case-card:hover {
-        transform: translateX(8px);
-        border-color: #facc15;
-        box-shadow: 0 8px 24px rgba(250, 204, 21, 0.2);
-        background: linear-gradient(135deg, rgba(30, 41, 59, 1), rgba(30, 64, 175, 0.3));
-    }
-
-    .kushv-case-card:hover::before {
-        transform: scaleY(1);
-    }
-
-    .kushv-case-icon {
-        font-size: 2rem;
-        flex-shrink: 0;
-        transition: transform 0.3s ease;
-    }
-
-    .kushv-case-card:hover .kushv-case-icon {
-        transform: scale(1.1) rotate(5deg);
-    }
-
-    .kushv-case-content {
-        flex: 1;
-    }
-
-    .kushv-case-content h3 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 4px;
-        color: #e5e7eb;
-    }
-
-    .kushv-case-content p {
-        font-size: 0.9rem;
-        color: #94a3b8;
-        margin: 0;
-    }
-
-    .kushv-case-arrow {
-        font-size: 1.5rem;
-        color: #facc15;
-        flex-shrink: 0;
-        transition: transform 0.3s ease;
-    }
-
-    .kushv-case-card:hover .kushv-case-arrow {
-        transform: translateX(5px);
-    }
-
-    @media (max-width: 768px) {
-        #kushv-case-studies-grid {
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        .kushv-case-card {
-            padding: 16px 20px;
-        }
-
-        .kushv-case-content h3 {
-            font-size: 1rem;
-        }
-
-        .kushv-case-content p {
-            font-size: 0.85rem;
-        }
-    }
-
-    /* Minimal extra styles used by your detailed cards */
-    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
-    .btn { display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600; border:1px solid rgba(255,255,255,0.08); background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); color:inherit; }
-    .btn.code{ border-color: rgba(79,70,229,0.9); background: linear-gradient(90deg, rgba(79,70,229,0.12), rgba(168,85,247,0.04)); }
-    .btn.data{ border-color: rgba(249,115,22,0.9); background: linear-gradient(90deg, rgba(249,115,22,0.12), rgba(250,204,21,0.04)); }
-    .case-card{ margin-bottom:18px; padding:18px; border-radius:12px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
-    .case-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
-    .small-meta{ font-size:0.92rem; opacity:0.85; }
-    .algo-section { margin-top:12px; background: rgba(0,0,0,0.04); padding:12px; border-radius:8px; }
-    .algo-title { font-weight:700; color: #f97316; }
-    ol.algo { margin-left:18px; }
-    .ds { font-weight:700; color:#60a5fa; }
-    .sdg { font-weight:700; color:#34d399; margin-top:6px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranav Chougule | City Design Team</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="project.html">Project</a></li>
-        <li><a href="kushvendra.html">Kushvendra</a></li>
-        <li><a href="manthan.html">Manthan</a></li>
-        <li><a href="pranav.html" class="active">Pranav</a></li>
-        <li><a href="ayush.html">Ayush</a></li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="project.html">Project</a></li>
+                <li><a href="kushvendra.html">Kushvendra</a></li>
+                <li><a href="manthan.html">Manthan</a></li>
+                <li><a href="pranav.html" class="active">Pranav</a></li>
+                <li><a href="ayush.html">Ayush</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <main class="container">
-    <header class="page-header">
-      <h1>💡 Business Ideas for East Sector</h1>
-      <p>Sustainable & innovative business opportunities that support Rajdwar’s east-side development.</p>
-    </header>
+    <main class="container">
+        <header class="page-header">
+            <h1>Hello, I am Pranav Chougule</h1>
+            <p>This page is presented as part of our college project on development of a sustainable city.</p>
 
-    <!-- ======= Top: compact 10 case-study grid (Kushvendra style) ======= -->
-    <section style="margin-top: 28px;">
-      <div style="text-align: center; margin-bottom: 24px;">
-        <h2 style="font-size: 2.2rem; color: #e5e7eb; margin-bottom: 12px;">📚 My Algorithm Case Studies</h2>
-        <p style="color: #94a3b8; font-size: 1rem;">Click a case to open its folder on GitHub (Pranav's implementations).</p>
-      </div>
-
-      <div id="kushv-case-studies-grid">
-        <!-- 1 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case1" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 1 — Co-Working & Innovation Hub</h3>
-                <p>Interval Scheduling (Interval list + sort)</p>
+            <div class="portfolio-info-box">
+                <h2>Portfolio Information</h2>
+                <div class="info-grid">
+                    <div class="info-item"><strong>Name:</strong> Pranav Chougule</div>
+                    <div class="info-item"><strong>Course:</strong> DAA</div>
+                    <div class="info-item"><strong>Project Topic:</strong> Building a Sustainable City</div>
+                    <div class="info-item"><strong>University:</strong> KLE Technological University</div>
+                </div>
+                <div style="margin-top: 16px; padding-top: 10px; border-top: 1px solid rgba(148,163,184,0.6); font-size: 0.9rem;">
+                    <strong>My Contribution:</strong>
+                    <p style="margin-top: 4px;">
+                        I identified sustainable business opportunities for the East Sector, designed algorithms for their operational efficiency,
+                        and mapped them to relevant SDG targets to ensure economic and environmental sustainability.
+                    </p>
+                </div>
             </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
+        </header>
 
-        <!-- 2 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case2" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 2 — Health & Wellness Center</h3>
-                <p>Priority scheduling simulation (Min-heap)</p>
+        <section>
+            <div class="project-title">
+                <h1>Sustainable Business Solutions for East Sector</h1>
+                <p>How innovative businesses support sustainable development and align with SDG goals for economic growth and community well-being.</p>
             </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
 
-        <!-- 3 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case3" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 3 — Eco-Friendly Food Court</h3>
-                <p>Earliest-expiry first (Bucket queues + min-heap)</p>
+            <section class="city-grid">
+
+                <!-- BUSINESS 1 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">💼 Co-Working & Innovation Hub</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 8 & 9</span>
+                                <span class="sdg-target-desc">Decent Work & Innovation Infrastructure</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Supports students, freelancers, and startups with affordable workspaces.</li>
+                            <li>Encourages creativity, entrepreneurship, and digital learning.</li>
+                            <li>Promotes job creation and innovation-driven growth.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Hash Map + Priority Queue</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 2 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">🏋️ Health & Wellness Center</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 3 & 11</span>
+                                <span class="sdg-target-desc">Good Health & Sustainable Communities</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Combines gym, yoga studio, and physiotherapy clinic.</li>
+                            <li>Improves physical and mental well-being of residents.</li>
+                            <li>Promotes healthier lifestyle and reduces stress levels.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Queue + Linked List</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 3 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">🍃 Eco-Friendly Food Court</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 2, 3 & 12</span>
+                                <span class="sdg-target-desc">Zero Hunger & Responsible Consumption</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Offers healthy meals with eco-friendly packaging.</li>
+                            <li>Encourages good eating habits and minimizes food waste.</li>
+                            <li>Attracts visitors from theatre, mall, and hostels.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Stack + Hash Map</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 4 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">⚡ EV Charging Station</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 7, 11 & 13</span>
+                                <span class="sdg-target-desc">Clean Energy & Climate Action</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Supports clean mobility and reduces carbon emissions.</li>
+                            <li>Includes convenience store for waiting customers.</li>
+                            <li>Promotes sustainable transportation infrastructure.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Queue + Greedy Algorithm</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 5 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">🔧 Tech Repair & Electronics Store</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 9 & 12</span>
+                                <span class="sdg-target-desc">Innovation & Responsible Consumption</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Offers laptop, mobile, and gadget repair services.</li>
+                            <li>Reduces e-waste by repairing instead of replacing.</li>
+                            <li>Useful for students, professionals, and residents.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Queue + Hash Table</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 6 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">💊 24/7 Pharmacy & Diagnostic Center</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 3</span>
+                                <span class="sdg-target-desc">Good Health & Well-Being</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Provides essential healthcare access near hospital.</li>
+                            <li>Supports emergency needs with 24/7 availability.</li>
+                            <li>Offers basic diagnostic services for quick testing.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Hash Map + Binary Search</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 7 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">🏡 Budget Eco-Friendly Guest House</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 8, 11 & 12</span>
+                                <span class="sdg-target-desc">Economic Growth & Sustainability</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Serves tourists, families of students, and business visitors.</li>
+                            <li>Uses solar panels and water-saving systems.</li>
+                            <li>Built with green construction materials.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Priority Queue + Greedy</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 8 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">🥗 Fitness Café / Protein Bar</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 3 & 12</span>
+                                <span class="sdg-target-desc">Good Health & Responsible Consumption</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Offers protein shakes, salads, and healthy snacks.</li>
+                            <li>Supports better dietary habits for students.</li>
+                            <li>Encourages adoption of healthier lifestyles.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Hash Map + Sorting</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 9 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">📚 Skill Development Center</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 4, 8 & 10</span>
+                                <span class="sdg-target-desc">Quality Education & Reduced Inequalities</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Teaches coding, communication, and exam preparation.</li>
+                            <li>Empowers youth and improves employability.</li>
+                            <li>Provides equal opportunities for all backgrounds.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Graph + BFS</div>
+                    </div>
+                </article>
+
+                <!-- BUSINESS 10 -->
+                <article class="structure-card">
+                    <div class="card-header">
+                        <h3 class="structure-name">🎮 Entertainment & Gaming Zone</h3>
+                        <div class="sdg-badge">
+                            <div class="sdg-text">
+                                <span class="sdg-target-num">SDG 3 & 11</span>
+                                <span class="sdg-target-desc">Mental Well-Being & Communities</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="contribution-list">
+                            <li>Features VR games, arcade machines, and activities.</li>
+                            <li>Offers safe recreational space for stress relief.</li>
+                            <li>Attracts visitors from mall and theatre.</li>
+                        </ul>
+                        <div class="algo-badge">Algorithm: Hash Map + Heap</div>
+                    </div>
+                </article>
+
+            </section>
+        </section>
+
+        <!-- ===================== CASE STUDIES SECTION ===================== -->
+        <section style="margin-top: 70px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.2rem; color: #e5e7eb; margin-bottom: 12px;">
+                    📚 My Algorithm Case Studies
+                </h2>
+                <p style="color: #94a3b8; font-size: 1rem;">
+                    Explore detailed implementations and analysis for each business solution
+                </p>
             </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
 
-        <!-- 4 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case4" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 4 — EV Charging Station</h3>
-                <p>Shortest-path scoring (Dijkstra + Graph)</p>
+            <div id="pranav-case-studies-grid">
+                <!-- Case Study 1 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case1" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 1</h3>
+                        <p>Hash Map + Priority Queue</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 2 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case2" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 2</h3>
+                        <p>Queue + Linked List Implementation</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 3 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case3" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 3</h3>
+                        <p>Stack + Hash Map Analysis</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 4 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case4" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 4</h3>
+                        <p>Queue + Greedy Algorithm</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 5 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case5" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 5</h3>
+                        <p>Queue + Hash Table System</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 6 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case6" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 6</h3>
+                        <p>Hash Map + Binary Search</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 7 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case7" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 7</h3>
+                        <p>Priority Queue + Greedy Design</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 8 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case8" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 8</h3>
+                        <p>Hash Map + Sorting Techniques</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 9 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case9" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 9</h3>
+                        <p>Graph + BFS Implementation</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
+
+                <!-- Case Study 10 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case10" target="_blank" class="pranav-case-card">
+                    <div class="pranav-case-icon">📁</div>
+                    <div class="pranav-case-content">
+                        <h3>Case Study 10</h3>
+                        <p>Hash Map + Heap Operations</p>
+                    </div>
+                    <div class="pranav-case-arrow">→</div>
+                </a>
             </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
+        </section>
 
-        <!-- 5 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case5" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 5 — Tech Repair & Sustainable Electronics</h3>
-                <p>Priority-driven scheduling (Max-heap)</p>
-            </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
+        <style>
+            /* Scoped Case Studies Grid Styles - Only for Pranav's page */
+            #pranav-case-studies-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+                margin-bottom: 50px;
+            }
 
-        <!-- 6 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case6" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 6 — 24/7 Pharmacy & Diagnostic Center</h3>
-                <p>Lookup & reorder detection (Hash table)</p>
-            </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
+            .pranav-case-card {
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 20px 24px;
+                background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+                border: 1px solid rgba(148, 163, 184, 0.3);
+                border-radius: 16px;
+                text-decoration: none;
+                color: #e5e7eb;
+                transition: all 0.3s ease;
+                overflow: hidden;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            }
 
-        <!-- 7 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case7" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 7 — Budget Eco-Friendly Guest House</h3>
-                <p>Interval insertion with predecessor check (map)</p>
-            </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
+            .pranav-case-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(180deg, #facc15, #f97316);
+                transform: scaleY(0);
+                transition: transform 0.3s ease;
+            }
 
-        <!-- 8 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case8" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 8 — Fitness Café / Protein & Juice Bar</h3>
-                <p>0/1 Knapsack (2D DP)</p>
-            </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
+            .pranav-case-card:hover {
+                transform: translateX(8px);
+                border-color: #facc15;
+                box-shadow: 0 8px 24px rgba(250, 204, 21, 0.2);
+                background: linear-gradient(135deg, rgba(30, 41, 59, 1), rgba(30, 64, 175, 0.3));
+            }
 
-        <!-- 9 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case9" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 9 — Skill Development & Coaching Center</h3>
-                <p>Graph coloring for slot assignment (Adjacency matrix)</p>
-            </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
+            .pranav-case-card:hover::before {
+                transform: scaleY(1);
+            }
 
-        <!-- 10 -->
-        <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Pranav/case10" target="_blank" class="kushv-case-card">
-            <div class="kushv-case-icon">📁</div>
-            <div class="kushv-case-content">
-                <h3>Case Study 10 — Entertainment & Gaming Zone</h3>
-                <p>FCFS with VIP insertion + ageing (Deque)</p>
-            </div>
-            <div class="kushv-case-arrow">→</div>
-        </a>
-      </div>
-    </section>
+            .pranav-case-icon {
+                font-size: 2rem;
+                flex-shrink: 0;
+                transition: transform 0.3s ease;
+            }
 
-    <!-- ======= Below: full detailed case cards with cpp / csv (your original Pranav content) ======= -->
-    <section class="content" style="margin-top: 10px;">
-      <!-- CASE 1 -->
-      <article class="case-card" id="case1">
-        <div class="case-title">
-          <h2>1 — Co-Working & Innovation Hub</h2>
-          <div class="small-meta">Files: <code>Pranav/case1/case1.cpp</code> • <code>Pranav/case1/case1.csv</code></div>
-        </div>
-        <p>This co-working hub provides flexible workspace for students, freelancers and early-stage startups in the East Sector. It encourages collaboration, lowers individual costs, and creates a local ecosystem for knowledge sharing and incubation. The space can host events, workshops and short-term project teams to boost local entrepreneurship.</p>
+            .pranav-case-card:hover .pranav-case-icon {
+                transform: scale(1.1) rotate(5deg);
+            }
 
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 8 (Decent Work & Economic Growth), SDG 11 (Sustainable Cities)</div>
-          <div class="algo-title">Data structure: <span class="ds">Interval list (vector) + sort</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Interval Scheduling (Max non-overlapping bookings)</div>
-          <ol class="algo">
-            <li>Read all booking intervals from CSV into a vector.</li>
-            <li>Convert start+duration to numeric interval [start,end).</li>
-            <li>Sort intervals by end time ascending.</li>
-            <li>Iterate sorted list; if interval.start ≥ last_selected_end → select it and update last_selected_end.</li>
-            <li>Output chosen bookings and per-room utilization stats.</li>
-          </ol>
-        </div>
+            .pranav-case-content {
+                flex: 1;
+            }
 
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case1/case1.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case1/case1.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
+            .pranav-case-content h3 {
+                font-size: 1.1rem;
+                font-weight: 700;
+                margin-bottom: 4px;
+                color: #e5e7eb;
+            }
 
-      <!-- CASE 2 -->
-      <article class="case-card" id="case2">
-        <div class="case-title">
-          <h2>2 — Health & Wellness Center</h2>
-          <div class="small-meta">Files: <code>Pranav/case2/case2.cpp</code> • <code>Pranav/case2/case2.csv</code></div>
-        </div>
-        <p>The Health & Wellness Center offers preventive and immediate healthcare services, combining a gym, physiotherapy and basic diagnostics. It reduces travel time for students and residents seeking care, and supports a healthier campus community. Accessible healthcare facilities are essential for resilient urban neighborhoods.</p>
+            .pranav-case-content p {
+                font-size: 0.9rem;
+                color: #94a3b8;
+                margin: 0;
+            }
 
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 3 (Good Health & Well-being), SDG 11 (Sustainable Cities)</div>
-          <div class="algo-title">Data structure: <span class="ds">Min-heap (priority_queue)</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Priority scheduling simulation</div>
-          <ol class="algo">
-            <li>Load appointments with arrival time, priority and service time.</li>
-            <li>Sort by arrival time; push arrivals into min-heap keyed by priority (then arrival).</li>
-            <li>Simulate multiple servers: pick top-priority patient when server free, schedule, update server availability.</li>
-            <li>Compute avg wait and throughput.</li>
-            <li>Report top-wait patients and server utilization.</li>
-          </ol>
-        </div>
+            .pranav-case-arrow {
+                font-size: 1.5rem;
+                color: #facc15;
+                flex-shrink: 0;
+                transition: transform 0.3s ease;
+            }
 
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case2/case2.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case2/case2.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
+            .pranav-case-card:hover .pranav-case-arrow {
+                transform: translateX(5px);
+            }
 
-      <!-- CASE 3 -->
-      <article class="case-card" id="case3">
-        <div class="case-title">
-          <h2>3 — Eco-Friendly Food Court</h2>
-          <div class="small-meta">Files: <code>Pranav/case3/case3.cpp</code> • <code>Pranav/case3/case3.csv</code></div>
-        </div>
-        <p>The Eco-Friendly Food Court offers healthy, low-waste dining options and uses sustainable packaging to reduce environmental impact. It can partner with local suppliers to minimize transport emissions and provide nutritious food near hostels and campus facilities. Discounting soon-to-expire food reduces waste and supports food security.</p>
+            @media (max-width: 768px) {
+                #pranav-case-studies-grid {
+                    grid-template-columns: 1fr;
+                    gap: 16px;
+                }
 
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 2 (Zero Hunger), SDG 12 (Responsible Consumption)</div>
-          <div class="algo-title">Data structure: <span class="ds">Bucket queues + min-heap</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Earliest-expiry first with discounting</div>
-          <ol class="algo">
-            <li>Load items with expiry days, price and other details.</li>
-            <li>Bucket items by expiry days; maintain a min-heap for earliest expiry items.</li>
-            <li>When serving, pop earliest-expiry; apply discount policy if expiry low.</li>
-            <li>Track revenue, discounts and donate if near-zero expiry.</li>
-            <li>Output expiry distribution and served summary.</li>
-          </ol>
-        </div>
+                .pranav-case-card {
+                    padding: 16px 20px;
+                }
 
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case3/case3.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case3/case3.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
+                .pranav-case-content h3 {
+                    font-size: 1rem;
+                }
 
-      <!-- CASE 4 -->
-      <article class="case-card" id="case4">
-        <div class="case-title">
-          <h2>4 — EV Charging Station</h2>
-          <div class="small-meta">Files: <code>Pranav/case4/case4.cpp</code> • <code>Pranav/case4/case4.csv</code></div>
-        </div>
-        <p>The EV Charging Station provides fast and reliable charging for electric vehicles and supports the city's clean mobility goals. A nearby convenience store increases convenience for users while vehicles charge. Smart routing to the least-wait station makes for efficient charging and lower emissions.</p>
+                .pranav-case-content p {
+                    font-size: 0.85rem;
+                }
+            }
+        </style>
+        <!-- =================== END CASE STUDIES SECTION =================== -->
 
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 7 (Affordable & Clean Energy), SDG 13 (Climate Action)</div>
-          <div class="algo-title">Data structure: <span class="ds">Graph (adjacency list) + Dijkstra</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Shortest-path scoring</div>
-          <ol class="algo">
-            <li>Load requests and station info from CSV.</li>
-            <li>Build adjacency list for nearby roads/stations.</li>
-            <li>Run Dijkstra from request origin to candidate stations to get travel times.</li>
-            <li>Compute score = travel_time + normalized_wait; pick min score.</li>
-            <li>Output chosen station and score distribution.</li>
-          </ol>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case4/case4.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case4/case4.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
-
-      <!-- CASE 5 -->
-      <article class="case-card" id="case5">
-        <div class="case-title">
-          <h2>5 — Tech Repair & Sustainable Electronics</h2>
-          <div class="small-meta">Files: <code>Pranav/case5/case5.cpp</code> • <code>Pranav/case5/case5.csv</code></div>
-        </div>
-        <p>The Tech Repair store offers device repair services that extend product life and reduce electronic waste. It serves students and local residents with affordable repairs and parts recycling. Prioritizing urgent and short jobs increases throughput and customer satisfaction.</p>
-
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 9 (Industry, Innovation & Infrastructure), SDG 12 (Responsible Consumption)</div>
-          <div class="algo-title">Data structure: <span class="ds">Max-heap (priority_queue)</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Priority-driven scheduling (EDF-like)</div>
-          <ol class="algo">
-            <li>Load jobs with priority, duration and deadline.</li>
-            <li>Push jobs into max-heap keyed by priority and shorter duration tie-breaker.</li>
-            <li>Pop and schedule sequentially; compute completion vs deadline.</li>
-            <li>Report lateness count and average lateness.</li>
-            <li>Suggest reorder/reallocate if lateness high.</li>
-          </ol>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case5/case5.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case5/case5.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
-
-      <!-- CASE 6 -->
-      <article class="case-card" id="case6">
-        <div class="case-title">
-          <h2>6 — 24/7 Pharmacy & Diagnostic Center</h2>
-          <div class="small-meta">Files: <code>Pranav/case6/case6.cpp</code> • <code>Pranav/case6/case6.csv</code></div>
-        </div>
-        <p>A 24/7 pharmacy with diagnostics improves access to medicine and emergency care for residents and students. It reduces delays in treatment and supports healthier communities. Timely restocking and demand analysis keep essential medicines available.</p>
-
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 3 (Good Health & Well-being), SDG 11 (Sustainable Cities)</div>
-          <div class="algo-title">Data structure: <span class="ds">Hash table (unordered_map)</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Lookup & reorder detection</div>
-          <ol class="algo">
-            <li>Load medicines with stock, reorder level and demand.</li>
-            <li>Index medicines by name/ID in unordered_map for O(1) lookup.</li>
-            <li>Scan to find stock ≤ reorder → generate reorder list.</li>
-            <li>Sort top-demand medicines for priority restocking.</li>
-            <li>Output reorder and top-demand lists.</li>
-          </ol>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case6/case6.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case6/case6.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
-
-      <!-- CASE 7 -->
-      <article class="case-card" id="case7">
-        <div class="case-title">
-          <h2>7 — Budget Eco-Friendly Guest House</h2>
-          <div class="small-meta">Files: <code>Pranav/case7/case7.cpp</code> • <code>Pranav/case7/case7.csv</code></div>
-        </div>
-        <p>This guest house provides affordable, eco-conscious lodging for visitors and families. Using renewable energy and water-saving fixtures reduces operating costs and environmental impact. Smooth booking management keeps occupancy high while avoiding double-bookings.</p>
-
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 11 (Sustainable Cities), SDG 7 (Clean Energy)</div>
-          <div class="algo-title">Data structure: <span class="ds">Balanced BST (map)</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Interval insertion with predecessor check</div>
-          <ol class="algo">
-            <li>Load bookings and group by room.</li>
-            <li>For each room use map keyed by check-in time (BST properties).</li>
-            <li>On insertion check predecessor and successor for overlap (checkout > next.checkin etc.).</li>
-            <li>Mark conflicts and accumulate per-room booking counts.</li>
-            <li>Output conflict count and busiest rooms.</li>
-          </ol>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case7/case7.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case7/case7.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
-
-      <!-- CASE 8 -->
-      <article class="case-card" id="case8">
-        <div class="case-title">
-          <h2>8 — Fitness Café / Protein & Juice Bar</h2>
-          <div class="small-meta">Files: <code>Pranav/case8/case8.cpp</code> • <code>Pranav/case8/case8.csv</code></div>
-        </div>
-        <p>The Fitness Café provides healthy on-the-go meals and protein-rich snacks tailored for students and gym-goers. It promotes good nutrition and reduces reliance on unhealthy fast food near campus. Combo recommendations help customers meet macronutrient goals affordably.</p>
-
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 3 (Good Health), SDG 12 (Responsible Consumption)</div>
-          <div class="algo-title">Data structure: <span class="ds">2D DP table (vector&lt;vector&gt;)</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> 0/1 Knapsack with reconstruction</div>
-          <ol class="algo">
-            <li>Load menu items with protein and price.</li>
-            <li>Run DP to compute max protein for budget B.</li>
-            <li>Reconstruct chosen items by backtracking the DP table.</li>
-            <li>Compute nutrition & cost summary for the chosen set.</li>
-            <li>Output chosen combo and totals.</li>
-          </ol>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case8/case8.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case8/case8.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
-
-      <!-- CASE 9 -->
-      <article class="case-card" id="case9">
-        <div class="case-title">
-          <h2>9 — Skill Development & Coaching Center</h2>
-          <div class="small-meta">Files: <code>Pranav/case9/case9.cpp</code> • <code>Pranav/case9/case9.csv</code></div>
-        </div>
-        <p>The Skill Development Center offers courses and coaching to improve employability and technical skills among students. Structured timetabling and conflict-free slot assignment make the center scalable and accessible. Partnerships with local employers create internship pipelines for trainees.</p>
-
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 4 (Quality Education), SDG 8 (Decent Work)</div>
-          <div class="algo-title">Data structure: <span class="ds">Adjacency matrix + greedy coloring (DSATUR-like)</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> Graph coloring for slot assignment</div>
-          <ol class="algo">
-            <li>Build course conflict graph from student registrations.</li>
-            <li>Use DSATUR-like greedy ordering: pick vertex with highest saturation.</li>
-            <li>Assign smallest available color (time-slot) not used by neighbors.</li>
-            <li>Repeat until all courses colored; minimize colors used.</li>
-            <li>Output mapping course -> time-slot and number of slots used.</li>
-          </ol>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case9/case9.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case9/case9.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
-
-      <!-- CASE 10 -->
-      <article class="case-card" id="case10">
-        <div class="case-title">
-          <h2>10 — Entertainment & Gaming Zone</h2>
-          <div class="small-meta">Files: <code>Pranav/case10/case10.cpp</code> • <code>Pranav/case10/case10.csv</code></div>
-        </div>
-        <p>The Entertainment & Gaming Zone offers safe, modern recreational facilities including VR and arcade areas. It supports mental well-being and community interaction for students and families. Smart queueing creates a fair and low-wait experience for both VIP and regular visitors.</p>
-
-        <div class="algo-section">
-          <div class="sdg">Aligned SDGs: SDG 3 (Well-being), SDG 11 (Sustainable Cities)</div>
-          <div class="algo-title">Data structure: <span class="ds">Deque (std::deque) with ageing checks</span></div>
-          <div style="margin-top:6px"><strong>Algorithm:</strong> FCFS with VIP front insertion + ageing promotion</div>
-          <ol class="algo">
-            <li>Load session requests with type (vip/regular), arrival and duration.</li>
-            <li>Enqueue VIPs to front, regulars to back.</li>
-            <li>Before serving, if a regular has waited &gt; THRESHOLD, promote to front (ageing).</li>
-            <li>Serve from front, update current time, accumulate wait stats.</li>
-            <li>Report served count and average wait.</li>
-          </ol>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn code" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case10/case10.cpp" target="_blank">View C++ Code</a>
-          <a class="btn data" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/blob/main/Pranav/case10/case10.csv" target="_blank">View Dataset (CSV)</a>
-        </div>
-      </article>
-    </section>
-
-    <footer style="margin-top:40px; text-align:center; opacity:0.9;">
-      Sustainable Development Goals (SDG) – Aligned Business Ideas for East Sector • Pranav Chougule
-    </footer>
-  </main>
+        <footer>
+            College Project Portfolio • SDG-Aligned Business Solutions • Pranav Chougule
+        </footer>
+    </main>
 </body>
 </html>
