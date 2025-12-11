@@ -1,0 +1,4 @@
+vehicle_id,warehouse_id,driver_name,vehicle_type,capacity_tons
+V001,W001,Rajesh,truck,10
+V002,W002,Anita,mini-truck,4
+V003,W003,Sameer,van,2

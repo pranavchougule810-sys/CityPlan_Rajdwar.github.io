@@ -1,0 +1,5 @@
+warehouse_id,name,capacity,current_stock,location
+W001,Central Depot,1000,850,Zone A
+W002,West Storage,500,80,Zone B
+W003,North Hub,750,10,Zone C
+W004,Overflow Yard,300,320,Zone D
