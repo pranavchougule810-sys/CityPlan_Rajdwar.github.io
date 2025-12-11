@@ -1,0 +1,4 @@
+parcel_id,date,status,location,time
+P001,2025-01-11,In-Transit,Sorting Center,10:45
+P001,2025-01-12,In-Transit,Delhi Office,11:50
+P002,2025-01-13,In-Transit,Mumbai Hub,09:15

@@ -1,0 +1,6 @@
+parcel_id,sender,receiver,weight,type,status,date,notes
+P001,Amit,Rohan,1.5,Speed,registered,2025-01-10,Fragile
+P002,Sara,Mehul,2.0,Standard,registered,2025-01-12,None
+P003,Pooja,Kiran,0.5,Speed,registered,2025-01-11,Urgent
+P004,Ravi,Nitin,3.2,Standard,registered,2025-01-14,Heavy
+P005,John,Arun,1.0,Speed,registered,2025-01-15,None
