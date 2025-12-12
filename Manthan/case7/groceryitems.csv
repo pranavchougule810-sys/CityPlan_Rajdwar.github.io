@@ -1,0 +1,11 @@
+item_id,name,category,price,stock_qty,reorder_level,supplier_name,perishable,expiry_date
+1001,Apple,Produce,60,120,20,FruitSuppliers,1,2025-12-31
+1002,Banana,Produce,40,150,25,FruitSuppliers,1,2025-12-30
+1003,Bread,Bakery,30,80,15,BakeHouse,0,
+1004,Milk,Dairy,50,200,40,DailyFarm,1,2025-12-20
+1005,Eggs,Dairy,70,300,50,HenCo,1,2025-12-18
+1006,Soap,HomeCare,25,500,50,CleanCo,0,
+1007,Shampoo,HomeCare,120,140,30,CleanCo,0,
+1008,Sugar,Groceries,45,250,40,FoodCorp,0,
+1009,Rice,Groceries,55,180,30,FoodCorp,0,
+1010,Wheat Flour,Groceries,48,160,20,FoodCorp,0,
