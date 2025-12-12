@@ -1,117 +1,145 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <queue>
+#include <unordered_map>
+#include <vector>
+#include <string>
 using namespace std;
 
-/*
- * Skill Development Center
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
-    }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
+struct Student {
+    string studentID;
+    string name;
+    int skillLevel;
+    string course;
+    vector<string> prerequisites;
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
+class SkillCenter {
+private:
+    unordered_map<string, Student> students;
+    unordered_map<string, vector<string>> courseGraph; // course -> prerequisites
+    unordered_map<string, int> enrollmentCount;
+    
+public:
+    SkillCenter() {
+        initializeCourseGraph();
     }
     
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
+    void initializeCourseGraph() {
+        // Build course dependency graph
+        courseGraph["Programming_Basics"] = {};
+        courseGraph["Data_Structures"] = {"Programming_Basics"};
+        courseGraph["Algorithms"] = {"Data_Structures"};
+        courseGraph["Web_Development"] = {"Programming_Basics"};
+        courseGraph["Machine_Learning"] = {"Algorithms", "Data_Structures"};
+        courseGraph["Advanced_ML"] = {"Machine_Learning"};
+    }
     
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
+    string recommendCourse(int skillLevel) {
+        if(skillLevel < 3) return "Programming_Basics";
+        else if(skillLevel < 5) return "Data_Structures";
+        else if(skillLevel < 7) return "Algorithms";
+        else if(skillLevel < 9) return "Web_Development";
+        else return "Machine_Learning";
+    }
+    
+    void enrollStudent(string id, string name, int skillLevel) {
+        Student student;
+        student.studentID = id;
+        student.name = name;
+        student.skillLevel = skillLevel;
+        student.course = recommendCourse(skillLevel);
+        student.prerequisites = courseGraph[student.course];
         
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
+        students[id] = student;
+        enrollmentCount[student.course]++;
+    }
+    
+    void BFS_CoursePath(string startCourse) {
+        cout << "\n========== BFS Course Learning Path from " << startCourse << " ==========\n";
+        
+        unordered_map<string, bool> visited;
+        queue<string> q;
+        
+        q.push(startCourse);
+        visited[startCourse] = true;
+        int level = 1;
+        
+        while(!q.empty()) {
+            int size = q.size();
+            cout << "Level " << level << ": ";
+            
+            for(int i = 0; i < size; i++) {
+                string course = q.front();
+                q.pop();
+                cout << course << " ";
+                
+                // Find courses that depend on current course
+                for(auto& pair : courseGraph) {
+                    for(auto& prereq : pair.second) {
+                        if(prereq == course && !visited[pair.first]) {
+                            visited[pair.first] = true;
+                            q.push(pair.first);
+                        }
+                    }
+                }
+            }
+            cout << endl;
+            level++;
         }
     }
-    return res;
-}
+    
+    void displayCourseEnrollments() {
+        cout << "\n========== Course Enrollments ==========\n";
+        for(auto& pair : enrollmentCount) {
+            cout << pair.first << ": " << pair.second << " students" << endl;
+        }
+    }
+    
+    void displayStatistics() {
+        cout << "\n========== Skill Center Statistics ==========\n";
+        cout << "Total Students: " << students.size() << endl;
+        cout << "Total Courses: " << courseGraph.size() << endl;
+    }
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string id, name;
+            int skillLevel;
+            
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            ss >> skillLevel;
+            
+            enrollStudent(id, name, skillLevel);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case9_skill_center/case9_skill_center.csv";
-    auto data = load_csv(csv);
+    SkillCenter center;
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
-    }
+    cout << "========== Skill Development Center System ==========\n";
+    cout << "Loading data from case9.csv...\n";
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
-    
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    center.loadFromCSV("case9.csv");
+    center.displayStatistics();
+    center.displayCourseEnrollments();
+    center.BFS_CoursePath("Programming_Basics");
     
     return 0;
 }
