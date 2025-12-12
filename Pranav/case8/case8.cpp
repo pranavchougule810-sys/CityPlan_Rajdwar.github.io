@@ -1,117 +1,167 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <iomanip>
 using namespace std;
 
-/*
- * Fitness Café
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
-    }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
+struct MenuItem {
+    string itemID;
+    string name;
+    int calories;
+    int protein;
+    int carbs;
+    double price;
+    int orderCount;
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
+struct Order {
+    string orderID;
+    string customerName;
+    string item;
+    string fitnessGoal;
+    double totalPrice;
+};
+
+class FitnessCafe {
+private:
+    unordered_map<string, MenuItem> menu;
+    vector<Order> orders;
+    double totalRevenue;
+    
+public:
+    FitnessCafe() : totalRevenue(0.0) {}
+    
+    void addMenuItem(string id, string name, int cal, int prot, int carb, double price) {
+        MenuItem item;
+        item.itemID = id;
+        item.name = name;
+        item.calories = cal;
+        item.protein = prot;
+        item.carbs = carb;
+        item.price = price;
+        item.orderCount = 0;
+        menu[id] = item;
     }
     
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
-    
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
-        
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
+    void placeOrder(string orderID, string customer, string itemID, string goal) {
+        if(menu.find(itemID) != menu.end()) {
+            MenuItem& item = menu[itemID];
+            item.orderCount++;
+            
+            Order order;
+            order.orderID = orderID;
+            order.customerName = customer;
+            order.item = item.name;
+            order.fitnessGoal = goal;
+            order.totalPrice = item.price;
+            
+            orders.push_back(order);
+            totalRevenue += item.price;
+            
+            // Provide nutrition advice
+            if(goal == "weight_loss" && item.calories > 300) {
+                cout << "💡 Tip: High calories for weight loss goal!" << endl;
+            } else if(goal == "muscle_gain" && item.protein < 20) {
+                cout << "💡 Tip: Consider adding extra protein!" << endl;
+            }
         }
     }
-    return res;
-}
+    
+    void sortMenuByPopularity() {
+        vector<MenuItem> sortedMenu;
+        for(auto& pair : menu) {
+            sortedMenu.push_back(pair.second);
+        }
+        
+        sort(sortedMenu.begin(), sortedMenu.end(), 
+             [](const MenuItem& a, const MenuItem& b) {
+                 return a.orderCount > b.orderCount;
+             });
+        
+        cout << "\n========== Top 10 Popular Items ==========\n";
+        for(int i = 0; i < min(10, (int)sortedMenu.size()); i++) {
+            cout << (i+1) << ". " << sortedMenu[i].name 
+                 << " | Orders: " << sortedMenu[i].orderCount
+                 << " | Calories: " << sortedMenu[i].calories
+                 << " | Protein: " << sortedMenu[i].protein << "g" << endl;
+        }
+    }
+    
+    void sortMenuByCalories() {
+        vector<MenuItem> sortedMenu;
+        for(auto& pair : menu) {
+            sortedMenu.push_back(pair.second);
+        }
+        
+        sort(sortedMenu.begin(), sortedMenu.end(), 
+             [](const MenuItem& a, const MenuItem& b) {
+                 return a.calories < b.calories;
+             });
+        
+        cout << "\n========== Low Calorie Options ==========\n";
+        for(int i = 0; i < min(10, (int)sortedMenu.size()); i++) {
+            cout << sortedMenu[i].name << " | " << sortedMenu[i].calories 
+                 << " cal | Rs." << sortedMenu[i].price << endl;
+        }
+    }
+    
+    void displayStatistics() {
+        cout << "\n========== Fitness Café Statistics ==========\n";
+        cout << "Menu Items: " << menu.size() << endl;
+        cout << "Total Orders: " << orders.size() << endl;
+        cout << "Total Revenue: Rs." << fixed << setprecision(2) << totalRevenue << endl;
+        cout << "Avg Order Value: Rs." << (orders.size() > 0 ? 
+              totalRevenue / orders.size() : 0) << endl;
+    }
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        // Initialize menu
+        addMenuItem("I001", "Protein_Shake", 250, 30, 20, 150.0);
+        addMenuItem("I002", "Green_Salad", 120, 5, 15, 100.0);
+        addMenuItem("I003", "Smoothie_Bowl", 200, 8, 35, 130.0);
+        addMenuItem("I004", "Chicken_Wrap", 400, 35, 40, 200.0);
+        addMenuItem("I005", "Fruit_Juice", 150, 2, 35, 80.0);
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string orderID, customer, itemID, goal;
+            
+            getline(ss, orderID, ',');
+            getline(ss, customer, ',');
+            getline(ss, itemID, ',');
+            getline(ss, goal, ',');
+            
+            placeOrder(orderID, customer, itemID, goal);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case8_fitness_cafe/case8_fitness_cafe.csv";
-    auto data = load_csv(csv);
+    FitnessCafe cafe;
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
-    }
+    cout << "========== Fitness Café System ==========\n";
+    cout << "Loading data from case8.csv...\n";
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
-    
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    cafe.loadFromCSV("case8.csv");
+    cafe.displayStatistics();
+    cafe.sortMenuByPopularity();
+    cafe.sortMenuByCalories();
     
     return 0;
 }
