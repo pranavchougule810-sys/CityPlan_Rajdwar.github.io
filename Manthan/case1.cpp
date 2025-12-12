@@ -891,16 +891,6 @@ vector<SearchResult> searchItemInMall(const string &pattern) {
 
     return results;
 }
-
-/********************************************************
-        END OF PART 2A + 2B
-*********************************************************/
-/********************************************************
-  PART 2C — Search + Dijkstra route (adapted to your code)
-  Paste this after Part 2B (searchItemInMall) and before main()
-*********************************************************/
-
-// helper: show route to a shop given its index in mallShops[]
 void showFastestRouteToShop_byIndex(int shopIndex) {
     if (shopIndex < 0 || shopIndex >= shopCount) {
         cout << "Invalid shop index\n";
@@ -989,18 +979,9 @@ void searchAndRoute() {
     // now show fastest routes from that shop
     showFastestRouteToShop_byIndex(chosenIndex);
 }
-
-
-
-
-
-/********************************************************
-     PART 6 — MAIN PROGRAM + MENU  (FINAL + UPDATED)
-*********************************************************/
-
 void showMenu() {
     cout << "\n====================================\n";
-    cout << "            MEGA MALL MENU\n";
+    cout << "            MALL MENU\n";
     cout << "====================================\n";
     cout << " 1. Show all shops\n";
     cout << " 2. Add new shop\n";
