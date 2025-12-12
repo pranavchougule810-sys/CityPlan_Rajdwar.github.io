@@ -1,117 +1,135 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <queue>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <iomanip>
 using namespace std;
 
-/*
- * EV Charging Station
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
+struct ChargingRequest {
+    string vehicleNo;
+    string ownerName;
+    int batteryCapacity;
+    int currentCharge;
+    string arrivalTime;
+    int priority; // 1=emergency, 2=normal, 3=flexible
+    int unitsNeeded;
+    double estimatedCost;
+    
+    bool operator<(const ChargingRequest& other) const {
+        // Greedy: Prioritize by emergency, then by units needed (smallest first)
+        if(priority != other.priority) return priority > other.priority;
+        return unitsNeeded > other.unitsNeeded;
     }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
-    }
+class EVChargingStation {
+private:
+    priority_queue<ChargingRequest> chargingQueue;
+    vector<ChargingRequest> completedCharges;
+    int totalPorts;
+    int availablePorts;
+    double costPerKWh;
+    double totalRevenue;
+    double carbonSaved; // kg CO2
     
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
+public:
+    EVChargingStation(int ports, double cost) 
+        : totalPorts(ports), availablePorts(ports), 
+          costPerKWh(cost), totalRevenue(0.0), carbonSaved(0.0) {}
     
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
+    void addChargingRequest(string vehicleNo, string owner, int capacity, 
+                            int current, string time, int priority) {
+        ChargingRequest req;
+        req.vehicleNo = vehicleNo;
+        req.ownerName = owner;
+        req.batteryCapacity = capacity;
+        req.currentCharge = current;
+        req.arrivalTime = time;
+        req.priority = priority;
+        req.unitsNeeded = capacity - current;
+        req.estimatedCost = req.unitsNeeded * costPerKWh;
         
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
-        }
+        chargingQueue.push(req);
     }
-    return res;
-}
+    
+    void processChargingQueue() {
+        cout << "\n========== Processing Charging Requests (Greedy) ==========\n";
+        int processed = 0;
+        
+        while(!chargingQueue.empty() && availablePorts > 0 && processed < 20) {
+            ChargingRequest req = chargingQueue.top();
+            chargingQueue.pop();
+            
+            cout << "Charging: " << req.vehicleNo << " | Owner: " << req.ownerName
+                 << " | Units: " << req.unitsNeeded << " kWh"
+                 << " | Priority: " << req.priority
+                 << " | Cost: Rs." << fixed << setprecision(2) << req.estimatedCost << endl;
+            
+            completedCharges.push_back(req);
+            totalRevenue += req.estimatedCost;
+            carbonSaved += req.unitsNeeded * 0.92; // 0.92 kg CO2 per kWh saved
+            availablePorts--;
+            processed++;
+        }
+        
+        availablePorts = totalPorts; // Reset for next batch
+    }
+    
+    void displayStatistics() {
+        cout << "\n========== Charging Station Statistics ==========\n";
+        cout << "Total Ports: " << totalPorts << endl;
+        cout << "Vehicles in Queue: " << chargingQueue.size() << endl;
+        cout << "Completed Charges: " << completedCharges.size() << endl;
+        cout << "Total Revenue: Rs." << fixed << setprecision(2) << totalRevenue << endl;
+        cout << "Carbon Saved: " << carbonSaved << " kg CO2" << endl;
+        cout << "Avg Charge Cost: Rs." << (completedCharges.size() > 0 ? 
+              totalRevenue / completedCharges.size() : 0) << endl;
+    }
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string vehicleNo, owner, time;
+            int capacity, current, priority;
+            
+            getline(ss, vehicleNo, ',');
+            getline(ss, owner, ',');
+            ss >> capacity;
+            ss.ignore();
+            ss >> current;
+            ss.ignore();
+            getline(ss, time, ',');
+            ss >> priority;
+            
+            addChargingRequest(vehicleNo, owner, capacity, current, time, priority);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case4_ev_charging/case4_ev_charging.csv";
-    auto data = load_csv(csv);
+    EVChargingStation station(10, 8.0);
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
-    }
+    cout << "========== EV Charging Station System ==========\n";
+    cout << "Loading data from case4.csv...\n";
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
-    
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    station.loadFromCSV("case4.csv");
+    station.processChargingQueue();
+    station.displayStatistics();
     
     return 0;
 }
