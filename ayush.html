@@ -1,13 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ayush Kumar Ojha | City Design Team</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* -------- Base / Reference-like page styling (keeps look matching reference) -------- */
+        :root{
+            --bg-1: #0f1724;
+            --bg-2: #0b1220;
+            --card-bg: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.95));
+            --muted: #94a3b8;
+            --text: #e5e7eb;
+            --accent1: #facc15;
+            --accent2: #f97316;
+            --glass-border: rgba(148,163,184,0.3);
+        }
+
+        html,body{
+            height:100%;
+            margin:0;
+            background: linear-gradient(180deg,#071024 0%, #071528 100%);
+            color:var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+        }
+
+        nav{ padding:18px 28px; background: rgba(6,10,18,0.6); border-bottom:1px solid rgba(255,255,255,0.02); position:sticky; top:0; z-index:50;}
+        .nav-inner{ max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px;}
+        .nav-logo{ font-weight:800; letter-spacing:1px; color:var(--text); }
+        .nav-logo span{ color:var(--accent1); margin-left:6px; font-weight:700;}
+        nav ul{ list-style:none; display:flex; gap:18px; margin:0; padding:0; align-items:center;}
+        nav a{ color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px; font-weight:600; font-size:0.95rem;}
+        nav a.active{ background: rgba(250,204,21,0.08); color:var(--text); border:1px solid rgba(250,204,21,0.08); }
+
+        main.container{ max-width:1100px; margin:28px auto; padding:28px; box-sizing:border-box; }
+
+        /* Header */
+        .page-header h1{ font-size:2rem; margin:8px 0 8px 0; color:var(--text); }
+        .page-header p{ color:var(--muted); margin:0 0 18px 0; }
+        .portfolio-info-box{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass-border); padding:18px; border-radius:12px; color:var(--text); }
+        .info-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-top:12px;}
+        .info-item strong{ color: #e6eef8; margin-right:6px; font-weight:700; }
+
+        .project-title{ margin:28px 0; }
+        .city-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:18px; }
+
+        /* ================= CASE CARDS (main area) ================= */
+        #ayush-case-studies-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .case-card{
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.28s cubic-bezier(.2,.9,.2,1);
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+            min-height: 120px;
+        }
+
+        .case-card::before{
+            content: '';
+            position:absolute;
+            top:0;
+            left:0;
+            width:4px;
+            height:100%;
+            background: linear-gradient(180deg, var(--accent1), var(--accent2));
+            transform: scaleY(0);
+            transform-origin: top center;
+            transition: transform .28s ease;
+        }
+
+        .case-card:hover{
+            transform: translateX(8px);
+            border-color: var(--accent1);
+            box-shadow: 0 8px 28px rgba(250,204,21,0.12);
+            background: linear-gradient(135deg, rgba(30,41,59,1), rgba(30,64,175,0.06));
+        }
+        .case-card:hover::before{ transform: scaleY(1); }
+
+        .case-icon{ font-size:2rem; flex-shrink:0; transition: transform .3s ease; }
+        .case-card:hover .case-icon{ transform: scale(1.08) rotate(5deg); }
+
+        .case-content{ flex:1; min-width:0; }
+        .case-content h3{ font-size:1.05rem; margin:0 0 6px 0; color:var(--text); font-weight:700; }
+        .case-content p{ margin:0; color:var(--muted); font-size:0.95rem; }
+
+        .case-arrow{ font-size:1.45rem; color:var(--accent1); flex-shrink:0; transition: transform .25s ease; }
+        .case-card:hover .case-arrow{ transform: translateX(6px); }
+
+        /* ---------- Hover overlay that reveals Techniques + Principles ---------- */
+        .case-hover{
+            position:absolute;
+            inset:0;
+            background: linear-gradient(180deg, rgba(4,6,10,0.9), rgba(8,10,20,0.92));
+            padding:20px 22px;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            align-items:flex-start;
+            justify-content:center;
+            transform: translateY(100%);
+            opacity:0;
+            transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .2s ease;
+            pointer-events:none;
+        }
+        .case-card:hover .case-hover{
+            transform: translateY(0%);
+            opacity:1;
+            pointer-events:auto;
+        }
+
+        .case-hover h4{ margin:0; font-size:1rem; font-weight:700; color:var(--text); }
+        .case-hover .muted{ color:var(--muted); font-size:0.92rem; margin-bottom:6px; }
+
+        .case-meta{
+            display:flex;
+            gap:14px;
+            flex-wrap:wrap;
+            width:100%;
+        }
+
+        .meta-box{
+            background: rgba(255,255,255,0.02);
+            border:1px solid rgba(255,255,255,0.03);
+            padding:10px 12px;
+            border-radius:10px;
+            min-width: 48%;
+            max-width: calc(100% - 12px);
+            box-sizing:border-box;
+            color:var(--muted);
+            font-size:0.9rem;
+            line-height:1.35;
+            overflow:auto;
+            max-height:160px;
+        }
+
+        .meta-box ul{ margin:6px 0 0 18px; padding:0; color:var(--muted); }
+        .meta-box ul li{ margin-bottom:6px; }
+
+        /* small-screens adjustments */
+        @media (max-width: 780px){
+            .case-card{ min-height: 140px; padding:16px; gap:12px; }
+            .case-hover{ padding:16px; }
+            .meta-box{ min-width:100%; }
+            nav ul{ display:none; } /* keep navbar simpler on small screens */
+        }
+
+        /* footer */
+        footer{ margin-top:30px; color:var(--muted); text-align:center; font-size:0.9rem; }
+        .source-note{ font-size:0.82rem; color:var(--muted); text-align:center; margin-top:8px; }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-inner">
             <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
@@ -23,7 +183,6 @@
     </nav>
 
     <main class="container">
-
         <!-- Portfolio Header -->
         <header class="page-header">
             <h1>Hello, I am Ayush Kumar Ojha</h1>
@@ -42,283 +201,432 @@
                     <strong>My Contribution:</strong>
                     <p style="margin-top: 4px;">
                         I analyzed major urban business structures, mapped each to SDG 11 targets, 
-                        and explained how they contribute to sustainable city planning through structured public services, 
-                        economic development, and environmental management.
+                        and explained how they contribute to sustainable city planning using algorithmic approaches and design principles.
                     </p>
                 </div>
             </div>
         </header>
 
-        <!-- Section Title -->
-        <section>
-            <div class="project-title">
-                <h1>Urban Business Structures & SDG 11</h1>
-                <p>Understanding how commercial and public institutions support sustainable city development.</p>
-            </div>
-
-            <!-- Card Grid -->
-            <section class="city-grid">
-
-                <!-- IT Sector -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">💻 Information Technology (IT Sector)</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG Target 11.3</span>
-                                <span class="sdg-target-desc">Sustainable Urban Planning</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Develops smart-city systems such as GIS, traffic control, and waste tracking.</li>
-                            <li>Creates skilled job opportunities and boosts the digital economy.</li>
-                            <li>Supports sustainable infrastructure through simulations and digital twins.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Graph + Search</div>
-                    </div>
-                </article>
-
-                <!-- Hotel Management -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">🏨 Hotel Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG Target 11.3</span>
-                                <span class="sdg-target-desc">Urban Development Support</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Provides structured accommodation supporting city tourism & business.</li>
-                            <li>Reduces congestion by being located in well-planned zones.</li>
-                            <li>Promotes sustainability through eco-friendly operations.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Hash Map + Sorting</div>
-                    </div>
-                </article>
-
-                <!-- Bar Management -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">🍹 Bar Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG Target 11.7</span>
-                                <span class="sdg-target-desc">Safe Public Spaces</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Creates safe regulated spaces for nightlife activities.</li>
-                            <li>Reduces illegal or unsafe drinking zones.</li>
-                            <li>Implements waste management & noise control systems.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Queue + Validation</div>
-                    </div>
-                </article>
-
-                <!-- Post Office -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">📮 Post Office Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG Target 11.1</span>
-                                <span class="sdg-target-desc">Basic Urban Services</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Provides essential courier, communication, and financial services.</li>
-                            <li>Supports digital literacy for economically weaker sections.</li>
-                            <li>Strengthens organized logistics within the city.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Priority Queue</div>
-                    </div>
-                </article>
-
-                <!-- Petrol Pump -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">⛽ Petrol Pump Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG 11.6</span>
-                                <span class="sdg-target-desc">Environmental Impact Reduction</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Provides safe regulated refueling services.</li>
-                            <li>Supports EV charging and green mobility.</li>
-                            <li>Reduces emissions using pollution-control systems.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Binary Search</div>
-                    </div>
-                </article>
-
-                <!-- Supermarket -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">🛒 Supermarket Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG Target 11.1</span>
-                                <span class="sdg-target-desc">Essential Urban Services</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Provides affordable essentials in hygienic, organized spaces.</li>
-                            <li>Reduces street congestion by formalizing retail.</li>
-                            <li>Uses recyclable materials and waste management systems.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Segment Tree</div>
-                    </div>
-                </article>
-
-                <!-- Vehicle Showroom -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">🚗 Vehicle Showroom Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG 11.2</span>
-                                <span class="sdg-target-desc">Sustainable Transport</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Promotes electric and low-emission vehicles.</li>
-                            <li>Prevents pollution from informal workshops.</li>
-                            <li>Supports EV infrastructure and awareness.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Tree Traversal</div>
-                    </div>
-                </article>
-
-                <!-- Hospital -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">🏥 Hospital Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG 11.3</span>
-                                <span class="sdg-target-desc">Accessible Services</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Ensures essential medical services for citizens.</li>
-                            <li>Strengthens emergency preparedness.</li>
-                            <li>Implements safe biomedical waste management.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: BFS + Scheduling</div>
-                    </div>
-                </article>
-
-                <!-- School -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">🏫 School Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG 11.7</span>
-                                <span class="sdg-target-desc">Inclusive Public Spaces</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Provides accessible education within neighborhoods.</li>
-                            <li>Ensures safe learning spaces.</li>
-                            <li>Maintains playgrounds for community use.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Linked List + Tracking</div>
-                    </div>
-                </article>
-
-                <!-- Market Bazaar -->
-                <article class="structure-card">
-                    <div class="card-header">
-                        <h3 class="structure-name">🛍️ Market (Bazaar) Management</h3>
-                        <div class="sdg-badge">
-                            <div class="sdg-text">
-                                <span class="sdg-target-num">SDG 11.6</span>
-                                <span class="sdg-target-desc">Environmental Cleanliness</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="contribution-list">
-                            <li>Organizes commercial activity into clean, structured zones.</li>
-                            <li>Supports local vendors with hygienic retail areas.</li>
-                            <li>Improves sanitation and drainage.</li>
-                        </ul>
-                        <div class="algo-badge">Algorithm: Priority Queue</div>
-                    </div>
-                </article>
-
-            </section>
-        </section>
-
-        <!-- CASE STUDIES SECTION -->
-        <section style="margin-top: 70px;">
-            <div style="text-align: center; margin-bottom: 40px;">
+        <!-- ===================== CASE STUDIES SECTION ===================== -->
+        <section style="margin-top: 28px;">
+            <div style="text-align: center; margin-bottom: 18px;">
                 <h2 style="font-size: 2.2rem; color: #e5e7eb; margin-bottom: 12px;">
                     📚 My Algorithm Case Studies
                 </h2>
                 <p style="color: #94a3b8; font-size: 1rem;">
-                    Explore detailed implementations and analysis for each system.
+                    Hover any card to see the Design Techniques & Principles used (sourced from uploaded notes).
                 </p>
             </div>
 
-            <div id="kushv-case-studies-grid">
+            <div id="ayush-case-studies-grid">
 
-                <a href="#" class="kushv-case-card">
-                    <div class="kushv-case-icon">📁</div>
-                    <div class="kushv-case-content">
-                        <h3>Case Study A</h3>
-                        <p>Urban IT Systems & Graph Algorithms</p>
+                <!-- Case Study 1 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/Case%201" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 1 — IT Sector</h3>
+                        <p>Algorithm: Graph + Search</p>
                     </div>
-                    <div class="kushv-case-arrow">→</div>
+                    <div class="case-arrow">→</div>
+
+                    <!-- Hover reveal -->
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Graph + Search — Details</h4>
+                        <div class="muted">Tap / Click the card to open GitHub folder.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Divide and Conquer</li>
+                                    <li>Greedy Technique</li>
+                                    <li>Space and Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Partitioning / Partition Principle</li>
+                                    <li>Comparison Principle</li>
+                                    <li>Decomposition</li>
+                                    <li>Recursion</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation and Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </a>
 
-                <a href="#" class="kushv-case-card">
-                    <div class="kushv-case-icon">📁</div>
-                    <div class="kushv-case-content">
-                        <h3>Case Study B</h3>
-                        <p>Commercial Structures Optimization</p>
+                <!-- Case Study 2 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case%202" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 2 — Hotel Management</h3>
+                        <p>Algorithm: Hash Map + Sorting</p>
                     </div>
-                    <div class="kushv-case-arrow">→</div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Hash Map + Sorting — Details</h4>
+                        <div class="muted">Design Techniques & Principles used for this case.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Divide and Conquer</li>
+                                    <li>Greedy Technique</li>
+                                    <li>Space and Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Partitioning / Partition Principle</li>
+                                    <li>Comparison Principle</li>
+                                    <li>Decomposition</li>
+                                    <li>Recursion</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation and Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </a>
 
-                <a href="#" class="kushv-case-card">
-                    <div class="kushv-case-icon">📁</div>
-                    <div class="kushv-case-content">
-                        <h3>Case Study C</h3>
-                        <p>SDG-Linked Resource Allocation</p>
+                <!-- Case Study 3 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case%203" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 3 — Bar Management</h3>
+                        <p>Algorithm: Queue + Validation</p>
                     </div>
-                    <div class="kushv-case-arrow">→</div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Queue + Validation — Details</h4>
+                        <div class="muted">Techniques & Principles used (from notes).</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Divide and Conquer</li>
+                                    <li>Greedy Technique</li>
+                                    <li>Space and Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Partitioning / Partition Principle</li>
+                                    <li>Comparison Principle</li>
+                                    <li>Decomposition</li>
+                                    <li>Recursion</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation and Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Case Study 4 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/Case%204" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 4 — Post Office Management</h3>
+                        <p>Algorithm: Priority Queue</p>
+                    </div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Priority Queue — Details</h4>
+                        <div class="muted">Used design techniques and principles.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Divide and Conquer</li>
+                                    <li>Greedy Technique</li>
+                                    <li>Space and Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Partitioning / Partition Principle</li>
+                                    <li>Comparison Principle</li>
+                                    <li>Decomposition</li>
+                                    <li>Recursion</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation and Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Case Study 5 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case%205" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 5 — Petrol Pump Management</h3>
+                        <p>Algorithm: Binary Search</p>
+                    </div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Binary Search — Details</h4>
+                        <div class="muted">Techniques & Principles as in notes.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Greedy</li>
+                                    <li>Divide and Conquer</li>
+                                    <li>Space–Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Partitioning</li>
+                                    <li>Comparison Principle</li>
+                                    <li>Decomposition</li>
+                                    <li>Recursion</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation & Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Case Study 6 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case%206" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 6 — Hospital Management</h3>
+                        <p>Algorithm: BFS + Scheduling</p>
+                    </div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>BFS + Scheduling — Details</h4>
+                        <div class="muted">Design techniques & principles used for hospital case.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Greedy</li>
+                                    <li>Divide & Conquer</li>
+                                    <li>Space–Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Partitioning</li>
+                                    <li>Comparison Principle</li>
+                                    <li>Decomposition</li>
+                                    <li>Recursion</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation & Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Case Study 7 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case%207" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 7 — School Management</h3>
+                        <p>Algorithm: Linked List + Tracking</p>
+                    </div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Linked List + Tracking — Details</h4>
+                        <div class="muted">Design techniques & principles from notes.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Greedy</li>
+                                    <li>Divide & Conquer</li>
+                                    <li>Space–Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Partitioning</li>
+                                    <li>Comparison Principle</li>
+                                    <li>Decomposition</li>
+                                    <li>Recursion</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation & Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Case Study 8 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case%208" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 8 — Supermarket Management</h3>
+                        <p>Algorithm: Segment Tree</p>
+                    </div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Segment Tree — Details</h4>
+                        <div class="muted">Design techniques & principles summarized.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Greedy</li>
+                                    <li>Space–Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Decomposition</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation and Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Case Study 9 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case%209" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 9 — Vehicle Showroom</h3>
+                        <p>Algorithm: Tree Traversal</p>
+                    </div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Tree Traversal — Details</h4>
+                        <div class="muted">Design techniques & principles used (notes).</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Greedy</li>
+                                    <li>Space–Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Decomposition</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation and Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Case Study 10 -->
+                <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/Case%2010" target="_blank" class="case-card">
+                    <div class="case-icon">📁</div>
+                    <div class="case-content">
+                        <h3>Case Study 10 — Market (Bazaar)</h3>
+                        <p>Algorithm: Priority Queue</p>
+                    </div>
+                    <div class="case-arrow">→</div>
+
+                    <div class="case-hover" aria-hidden="true">
+                        <h4>Priority Queue — Details</h4>
+                        <div class="muted">Design techniques & principles used for bazaar case.</div>
+                        <div class="case-meta">
+                            <div class="meta-box">
+                                <strong>Design Techniques Used</strong>
+                                <ul>
+                                    <li>Brute Force</li>
+                                    <li>Greedy</li>
+                                    <li>Space–Time Trade-off</li>
+                                </ul>
+                            </div>
+                            <div class="meta-box">
+                                <strong>Principles</strong>
+                                <ul>
+                                    <li>Pre-Computing</li>
+                                    <li>Decomposition</li>
+                                    <li>Search Space Exploration</li>
+                                    <li>Relaxation and Convergence</li>
+                                    <li>Pattern Recognition</li>
+                                    <li>Abstraction</li>
+                                    <li>Trade-off Principle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </a>
 
             </div>
         </section>
+        <!-- ===================== END CASE STUDIES SECTION ===================== -->
 
         <footer>
             SDG 11: Sustainable Cities & Communities • Ayush Kumar Ojha
+            <div class="source-note">Techniques & Principles sourced from your uploaded document. :contentReference[oaicite:1]{index=1}</div>
         </footer>
     </main>
 </body>
 </html>
-
