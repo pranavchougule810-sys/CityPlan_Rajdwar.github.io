@@ -1,117 +1,167 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <iomanip>
 using namespace std;
 
-/*
- * Pharmacy
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
-    }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
+struct Medicine {
+    string medicineID;
+    string name;
+    double price;
+    int quantity;
+    string expiryDate;
+    string category;
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
+class Pharmacy {
+private:
+    unordered_map<string, Medicine> medicineMap; // ID -> Medicine
+    vector<Medicine> sortedMedicines; // For binary search
+    double totalRevenue;
+    int totalSales;
+    
+public:
+    Pharmacy() : totalRevenue(0.0), totalSales(0) {}
+    
+    void addMedicine(string id, string name, double price, 
+                     int quantity, string expiry, string category) {
+        Medicine med;
+        med.medicineID = id;
+        med.name = name;
+        med.price = price;
+        med.quantity = quantity;
+        med.expiryDate = expiry;
+        med.category = category;
+        
+        medicineMap[id] = med;
+        sortedMedicines.push_back(med);
     }
     
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
+    void sortMedicinesByPrice() {
+        sort(sortedMedicines.begin(), sortedMedicines.end(), 
+             [](const Medicine& a, const Medicine& b) {
+                 return a.price < b.price;
+             });
+        cout << "Medicines sorted by price!" << endl;
+    }
     
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
+    Medicine* binarySearchByPrice(double targetPrice) {
+        int left = 0, right = sortedMedicines.size() - 1;
+        Medicine* closest = nullptr;
+        double minDiff = 1e9;
         
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            double diff = abs(sortedMedicines[mid].price - targetPrice);
+            
+            if(diff < minDiff) {
+                minDiff = diff;
+                closest = &sortedMedicines[mid];
+            }
+            
+            if(sortedMedicines[mid].price < targetPrice) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        return closest;
+    }
+    
+    bool dispenseMedicine(string id, int quantity) {
+        if(medicineMap.find(id) != medicineMap.end()) {
+            Medicine& med = medicineMap[id];
+            if(med.quantity >= quantity) {
+                med.quantity -= quantity;
+                double bill = med.price * quantity;
+                totalRevenue += bill;
+                totalSales++;
+                
+                cout << "Dispensed: " << med.name << " x" << quantity 
+                     << " | Bill: Rs." << fixed << setprecision(2) << bill << endl;
+                
+                if(med.quantity < 10) {
+                    cout << "*** LOW STOCK ALERT: " << med.name << " ***" << endl;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    void displayLowStock() {
+        cout << "\n========== Low Stock Medicines ==========\n";
+        for(auto& pair : medicineMap) {
+            if(pair.second.quantity < 10) {
+                cout << pair.second.name << ": " << pair.second.quantity 
+                     << " units left" << endl;
+            }
         }
     }
-    return res;
-}
+    
+    void displayStatistics() {
+        cout << "\n========== Pharmacy Statistics ==========\n";
+        cout << "Total Medicines: " << medicineMap.size() << endl;
+        cout << "Total Sales: " << totalSales << endl;
+        cout << "Total Revenue: Rs." << fixed << setprecision(2) << totalRevenue << endl;
+    }
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string id, name, expiry, category;
+            double price;
+            int quantity;
+            
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            ss >> price;
+            ss.ignore();
+            ss >> quantity;
+            ss.ignore();
+            getline(ss, expiry, ',');
+            getline(ss, category, ',');
+            
+            addMedicine(id, name, price, quantity, expiry, category);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case6_pharmacy/case6_pharmacy.csv";
-    auto data = load_csv(csv);
+    Pharmacy pharmacy;
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
+    cout << "========== 24/7 Pharmacy System ==========\n";
+    cout << "Loading data from case6.csv...\n";
+    
+    pharmacy.loadFromCSV("case6.csv");
+    pharmacy.displayStatistics();
+    pharmacy.sortMedicinesByPrice();
+    
+    // Binary search example
+    cout << "\nSearching for medicine around Rs.50:" << endl;
+    Medicine* found = pharmacy.binarySearchByPrice(50.0);
+    if(found) {
+        cout << "Found: " << found->name << " at Rs." << found->price << endl;
     }
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
-    
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    pharmacy.displayLowStock();
     
     return 0;
 }
