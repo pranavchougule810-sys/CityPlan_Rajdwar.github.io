@@ -1,117 +1,146 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <queue>
+#include <vector>
+#include <string>
+#include <iomanip>
 using namespace std;
 
-/*
- * Guest House
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
+struct Booking {
+    string bookingID;
+    string guestName;
+    string roomType;
+    string checkIn;
+    string checkOut;
+    int nights;
+    double totalCost;
+    int priority; // 1=VIP, 2=Regular, 3=Budget
+    
+    bool operator<(const Booking& other) const {
+        // Greedy: VIP first, then by cost (higher paying first)
+        if(priority != other.priority) return priority > other.priority;
+        return totalCost < other.totalCost;
     }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
-    }
+class EcoGuestHouse {
+private:
+    priority_queue<Booking> bookingQueue;
+    vector<Booking> confirmedBookings;
+    int totalRooms;
+    int availableRooms;
+    double solarEnergyUsage; // percentage
+    double totalRevenue;
     
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
+public:
+    EcoGuestHouse(int rooms) : totalRooms(rooms), availableRooms(rooms), 
+                                solarEnergyUsage(75.0), totalRevenue(0.0) {}
     
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
+    double calculateCost(string roomType, int nights) {
+        double basePrice = 1000.0;
+        if(roomType == "Deluxe") basePrice = 1500.0;
+        else if(roomType == "Suite") basePrice = 2000.0;
         
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
-        }
+        double total = basePrice * nights;
+        return total * 0.9; // 10% eco discount
     }
-    return res;
-}
+    
+    void addBooking(string id, string guest, string type, string checkIn, 
+                    string checkOut, int nights, int priority) {
+        Booking booking;
+        booking.bookingID = id;
+        booking.guestName = guest;
+        booking.roomType = type;
+        booking.checkIn = checkIn;
+        booking.checkOut = checkOut;
+        booking.nights = nights;
+        booking.totalCost = calculateCost(type, nights);
+        booking.priority = priority;
+        
+        bookingQueue.push(booking);
+    }
+    
+    void processBookings() {
+        cout << "\n========== Processing Bookings (Greedy - VIP First) ==========\n";
+        int processed = 0;
+        
+        while(!bookingQueue.empty() && availableRooms > 0 && processed < 20) {
+            Booking b = bookingQueue.top();
+            bookingQueue.pop();
+            
+            confirmedBookings.push_back(b);
+            availableRooms--;
+            totalRevenue += b.totalCost;
+            
+            cout << "Confirmed: " << b.bookingID << " | Guest: " << b.guestName
+                 << " | Room: " << b.roomType << " | Nights: " << b.nights
+                 << " | Cost: Rs." << fixed << setprecision(2) << b.totalCost
+                 << " | Priority: " << b.priority << endl;
+            processed++;
+        }
+        
+        availableRooms = totalRooms; // Reset
+    }
+    
+    void displayEcoMetrics() {
+        cout << "\n========== Eco-Friendly Metrics ==========\n";
+        cout << "Solar Energy Usage: " << solarEnergyUsage << "%" << endl;
+        cout << "Carbon Footprint Reduction: " << (solarEnergyUsage * 0.5) << " kg CO2/day" << endl;
+        cout << "Water Conservation: " << (confirmedBookings.size() * 50) << " liters saved" << endl;
+    }
+    
+    void displayStatistics() {
+        cout << "\n========== Guest House Statistics ==========\n";
+        cout << "Total Rooms: " << totalRooms << endl;
+        cout << "Confirmed Bookings: " << confirmedBookings.size() << endl;
+        cout << "Pending Requests: " << bookingQueue.size() << endl;
+        cout << "Total Revenue: Rs." << fixed << setprecision(2) << totalRevenue << endl;
+        cout << "Occupancy Rate: " << (confirmedBookings.size() * 100.0 / totalRooms) << "%" << endl;
+    }
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string id, guest, type, checkIn, checkOut;
+            int nights, priority;
+            
+            getline(ss, id, ',');
+            getline(ss, guest, ',');
+            getline(ss, type, ',');
+            getline(ss, checkIn, ',');
+            getline(ss, checkOut, ',');
+            ss >> nights;
+            ss.ignore();
+            ss >> priority;
+            
+            addBooking(id, guest, type, checkIn, checkOut, nights, priority);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case7_guest_house/case7_guest_house.csv";
-    auto data = load_csv(csv);
+    EcoGuestHouse guestHouse(50);
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
-    }
+    cout << "========== Eco-Friendly Guest House System ==========\n";
+    cout << "Loading data from case7.csv...\n";
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
-    
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    guestHouse.loadFromCSV("case7.csv");
+    guestHouse.displayStatistics();
+    guestHouse.processBookings();
+    guestHouse.displayEcoMetrics();
     
     return 0;
 }
