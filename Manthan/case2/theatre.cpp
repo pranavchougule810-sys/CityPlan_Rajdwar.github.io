@@ -178,11 +178,7 @@ static TheatreMaint theatreMaint[THEATRE_MAX_MAINT_LOGS];
 static int theatreMaintCount = 0;
 
 // auditorium graph for Dijkstra (matrix)
-static int theatreGraphN = 0;
-static int theatreCost[THEATRE_MAX_AUDITORIUMS][THEATRE_MAX_AUDITORIUMS];
-static int theatre_dijkstra_dist[THEATRE_MAX_AUDITORIUMS];
-static int theatre_dijkstra_path[THEATRE_MAX_AUDITORIUMS];
-static int theatre_dijkstra_visited[THEATRE_MAX_AUDITORIUMS];
+
 
 // -------------------- SMALL HELPERS --------------------
 static string theatre_now_datetime()
@@ -561,87 +557,6 @@ TheatreSnackOrder theatre_dequeue_snack()
     return res;
 }
 
-// -------------------- DIJKSTRA (matrix style exactly like yours) --------------------
-void theatre_build_graph()
-{
-    theatreGraphN = theatreAudCount;
-    for (int i = 0; i < theatreGraphN; ++i)
-        for (int j = 0; j < theatreGraphN; ++j)
-            theatreCost[i][j] = THEATRE_INF;
-    for (int i = 0; i < theatreGraphN; ++i)
-        theatreCost[i][i] = 0;
-}
-void theatre_add_edge_undirected(int a, int b, int w)
-{
-    if (a < 0 || b < 0 || a >= theatreGraphN || b >= theatreGraphN)
-        return;
-    theatreCost[a][b] = w;
-    theatreCost[b][a] = w;
-}
-void theatre_dijkstra(int n, int src)
-{
-    for (int i = 0; i < n; ++i)
-    {
-        theatre_dijkstra_dist[i] = theatreCost[src][i];
-        theatre_dijkstra_path[i] = src;
-        theatre_dijkstra_visited[i] = 0;
-    }
-    theatre_dijkstra_visited[src] = 1;
-    for (int iter = 0; iter < n - 1; ++iter)
-    {
-        int u = -1;
-        int minv = THEATRE_INF + 1;
-        for (int i = 0; i < n; ++i)
-        {
-            if (!theatre_dijkstra_visited[i] && theatre_dijkstra_dist[i] < minv)
-            {
-                minv = theatre_dijkstra_dist[i];
-                u = i;
-            }
-        }
-        if (u == -1)
-            return;
-        theatre_dijkstra_visited[u] = 1;
-        for (int v = 0; v < n; ++v)
-        {
-            if (!theatre_dijkstra_visited[v] && theatreCost[u][v] < THEATRE_INF)
-            {
-                if (theatre_dijkstra_dist[u] + theatreCost[u][v] < theatre_dijkstra_dist[v])
-                {
-                    theatre_dijkstra_dist[v] = theatre_dijkstra_dist[u] + theatreCost[u][v];
-                    theatre_dijkstra_path[v] = u;
-                }
-            }
-        }
-    }
-}
-void theatre_print_dijkstra_path(int dest)
-{
-    int pathArr[THEATRE_MAX_AUDITORIUMS];
-    int cnt = 0;
-    int cur = dest;
-    // guard: if path array uninitialized, avoid infinite loop
-    if (theatre_dijkstra_path[cur] < 0 || theatre_dijkstra_path[cur] >= theatreGraphN) {
-        cout << "(no path)\n";
-        return;
-    }
-    while (cur != theatre_dijkstra_path[cur])
-    {
-        pathArr[cnt++] = cur;
-        cur = theatre_dijkstra_path[cur];
-        if (cnt >= THEATRE_MAX_AUDITORIUMS - 1) break;
-    }
-    pathArr[cnt++] = cur;
-    cout << "Path: ";
-    for (int i = cnt - 1; i >= 0; --i)
-    {
-        cout << auditoriums[pathArr[i]].name;
-        if (i)
-            cout << " -> ";
-    }
-    cout << "\n";
-}
-
 // -------------------- CSV LOADERS & GENERATORS --------------------
 // movies.csv: movie_id,title,genre,duration_minutes,rating,language,release_date
 void theatreLoadMoviesCSV(const string &fn)
@@ -724,7 +639,7 @@ void theatreLoadAuditoriumsCSV(const string &fn)
         theatreAudCount++;
         loaded++;
     }
-    theatre_build_graph(); // adjust graph
+    
     cout << "Loaded " << loaded << " auditoriums from " << fn << "\n";
 }
 
@@ -988,7 +903,6 @@ void theatreAddAuditorium()
             auditoriums[theatreAudCount].seat_type[i][j] = "standard";
         }
     theatreAudCount++;
-    theatre_build_graph();
     cout << "Added auditorium id " << id << "\n";
 }
 
@@ -1419,37 +1333,7 @@ void theatreShowRevenue()
 }
 
 // Evacuation route (Dijkstra)
-void theatreEvacuation()
-{
-    if (theatreAudCount == 0)
-    {
-        cout << "No auditoriums.\n";
-        return;
-    }
-    cout << "Enter source auditorium id: ";
-    int id;
-    cin >> id;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    int src = -1;
-    for (int i = 0; i < theatreAudCount; ++i)
-        if (auditoriums[i].aud_id == id)
-        {
-            src = i;
-            break;
-        }
-    if (src == -1)
-    {
-        cout << "Not found.\n";
-        return;
-    }
-    theatre_dijkstra(theatreGraphN, src);
-    cout << "Distances from " << auditoriums[src].name << ":\n";
-    for (int i = 0; i < theatreGraphN; ++i)
-    {
-        cout << auditoriums[i].name << ": " << theatre_dijkstra_dist[i] << "\n";
-        theatre_print_dijkstra_path(i);
-    }
-}
+
 
 // -------------------- MODULE MENU --------------------
 void theatreShowMenu()
@@ -1482,11 +1366,10 @@ void theatreShowMenu()
     cout << "23. Add maintenance log\n";
     cout << "24. Show maintenance logs\n";
     cout << "25. Show revenue for show\n";
-    cout << "26. Evacuation route (Dijkstra)\n";
-    cout << "27. Load movies from CSV (movies.csv)\n";
-    cout << "28. Load bookings from CSV (bookings.csv)\n";
-    cout << "29. List auditorium\n";
-    cout << "30.Load All Data\n";
+    cout << "26. Load movies from CSV (movies.csv)\n";
+    cout << "27. Load bookings from CSV (bookings.csv)\n";
+    cout << "28. List auditorium\n";
+    cout << "29.Load All Data\n";
     cout << " 0. Return to MAIN MENU\n";
     cout << "====================================\n";
     cout << "Enter choice: ";
@@ -1497,7 +1380,7 @@ void theatreInitModule()
     srand((unsigned int)time(NULL));
     theatre_init_booking_hash();
     theatre_init_snack_queue();
-    theatre_build_graph();
+    
 }
 
 // find bookings by phone substring using BM
@@ -1663,18 +1546,15 @@ void theatreSystem()
             theatreShowRevenue();
             break;
         case 26:
-            theatreEvacuation();
-            break;
-        case 27:
             theatreLoadMoviesCSV("movies.csv");
             break;
-        case 28:
+        case 27:
             theatreLoadBookingsCSV("bookings.csv");
             break;
-        case 29:
+        case 28:
             theatreListAuditoriums();
             break;
-        case 30:
+        case 29:
              theatreLoadAllData();
              break;
         case 0:
