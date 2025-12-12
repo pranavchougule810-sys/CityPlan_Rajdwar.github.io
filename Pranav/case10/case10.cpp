@@ -1,117 +1,171 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <unordered_map>
+#include <queue>
+#include <vector>
+#include <string>
+#include <iomanip>
 using namespace std;
 
-/*
- * Gaming Zone
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
+struct Player {
+    string playerID;
+    string name;
+    int score;
+    int tokensUsed;
+    string favoriteGame;
+    
+    bool operator<(const Player& other) const {
+        return score < other.score; // Max heap for leaderboard
     }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
+struct GameCard {
+    string cardID;
+    int tokens;
+    double amountPaid;
+};
+
+class GamingZone {
+private:
+    unordered_map<string, GameCard> cards;
+    unordered_map<string, int> gameTokenCost;
+    priority_queue<Player> leaderboard; // Max heap
+    vector<Player> allPlayers;
+    double totalRevenue;
+    
+public:
+    GamingZone() : totalRevenue(0.0) {
+        initializeGames();
     }
     
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
+    void initializeGames() {
+        gameTokenCost["VR_Racing"] = 15;
+        gameTokenCost["Arcade_Shooter"] = 5;
+        gameTokenCost["Bowling"] = 10;
+        gameTokenCost["Air_Hockey"] = 8;
+        gameTokenCost["VR_Adventure"] = 20;
+    }
     
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
+    string buyTokens(string cardID, int tokens) {
+        GameCard card;
+        card.cardID = cardID;
+        card.tokens = tokens;
+        card.amountPaid = tokens * 10.0;
         
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
+        if(tokens > 50) card.amountPaid *= 0.9; // 10% discount
+        if(tokens > 100) card.amountPaid *= 0.85; // 15% discount
+        
+        cards[cardID] = card;
+        totalRevenue += card.amountPaid;
+        
+        return cardID;
+    }
+    
+    bool playGame(string cardID, string game, string playerID, string playerName) {
+        if(cards.find(cardID) != cards.end() && gameTokenCost.find(game) != gameTokenCost.end()) {
+            GameCard& card = cards[cardID];
+            int cost = gameTokenCost[game];
+            
+            if(card.tokens >= cost) {
+                card.tokens -= cost;
+                
+                // Update player stats
+                bool found = false;
+                for(auto& player : allPlayers) {
+                    if(player.playerID == playerID) {
+                        player.score += (cost * 10); // Score based on game
+                        player.tokensUsed += cost;
+                        found = true;
+                        break;
+                    }
+                }
+                
+                if(!found) {
+                    Player newPlayer;
+                    newPlayer.playerID = playerID;
+                    newPlayer.name = playerName;
+                    newPlayer.score = cost * 10;
+                    newPlayer.tokensUsed = cost;
+                    newPlayer.favoriteGame = game;
+                    allPlayers.push_back(newPlayer);
+                }
+                
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    void buildLeaderboard() {
+        leaderboard = priority_queue<Player>(); // Clear
+        for(auto& player : allPlayers) {
+            leaderboard.push(player);
         }
     }
-    return res;
-}
+    
+    void displayLeaderboard(int top) {
+        cout << "\n========== Top " << top << " Players Leaderboard ==========\n";
+        priority_queue<Player> temp = leaderboard;
+        int rank = 1;
+        
+        while(!temp.empty() && rank <= top) {
+            Player p = temp.top();
+            temp.pop();
+            cout << rank << ". " << p.name << " | Score: " << p.score
+                 << " | Tokens: " << p.tokensUsed << endl;
+            rank++;
+        }
+    }
+    
+    void displayStatistics() {
+        cout << "\n========== Gaming Zone Statistics ==========\n";
+        cout << "Total Cards Issued: " << cards.size() << endl;
+        cout << "Total Players: " << allPlayers.size() << endl;
+        cout << "Total Revenue: Rs." << fixed << setprecision(2) << totalRevenue << endl;
+    }
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string cardID, playerID, playerName, game;
+            int tokens;
+            
+            getline(ss, cardID, ',');
+            getline(ss, playerID, ',');
+            getline(ss, playerName, ',');
+            ss >> tokens;
+            ss.ignore();
+            getline(ss, game, ',');
+            
+            buyTokens(cardID, tokens);
+            playGame(cardID, game, playerID, playerName);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case10_gaming_zone/case10_gaming_zone.csv";
-    auto data = load_csv(csv);
+    GamingZone zone;
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
-    }
+    cout << "========== Entertainment & Gaming Zone System ==========\n";
+    cout << "Loading data from case10.csv...\n";
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
-    
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    zone.loadFromCSV("case10.csv");
+    zone.displayStatistics();
+    zone.buildLeaderboard();
+    zone.displayLeaderboard(15);
     
     return 0;
 }
