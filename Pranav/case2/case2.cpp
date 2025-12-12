@@ -1,117 +1,163 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <queue>
+#include <string>
 using namespace std;
 
-/*
- * Health & Wellness Center
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
-    }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
+// Node for Linked List
+struct Member {
+    string memberID;
+    string name;
+    string membershipType;
+    string enrollmentDate;
+    int sessionsAttended;
+    Member* next;
+    
+    Member(string id, string n, string type, string date) 
+        : memberID(id), name(n), membershipType(type), 
+          enrollmentDate(date), sessionsAttended(0), next(nullptr) {}
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
+// Class booking structure for queue
+struct ClassBooking {
+    string memberID;
+    string className;
+    string timeSlot;
+    string date;
+};
+
+class WellnessCenter {
+private:
+    Member* head; // Linked list head
+    queue<ClassBooking> waitingQueue;
+    int totalMembers;
+    
+public:
+    WellnessCenter() : head(nullptr), totalMembers(0) {}
+    
+    // Add member to linked list
+    void addMember(string id, string name, string type, string date) {
+        Member* newMember = new Member(id, name, type, date);
+        
+        if(head == nullptr) {
+            head = newMember;
+        } else {
+            Member* temp = head;
+            while(temp->next != nullptr) {
+                temp = temp->next;
+            }
+            temp->next = newMember;
+        }
+        totalMembers++;
     }
     
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
+    // Add class booking to queue
+    void addToWaitingQueue(string memberID, string className, 
+                           string timeSlot, string date) {
+        ClassBooking booking = {memberID, className, timeSlot, date};
+        waitingQueue.push(booking);
+    }
     
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
+    // Process waiting queue
+    void processWaitingQueue(int count) {
+        cout << "\n========== Processing Waiting Queue ==========\n";
+        int processed = 0;
         
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
+        while(!waitingQueue.empty() && processed < count) {
+            ClassBooking booking = waitingQueue.front();
+            waitingQueue.pop();
+            
+            cout << "Processed: Member " << booking.memberID 
+                 << " | Class: " << booking.className
+                 << " | Time: " << booking.timeSlot << endl;
+            processed++;
+        }
+        cout << "Total processed: " << processed << endl;
+    }
+    
+    // Search member in linked list
+    void searchMember(string id) {
+        Member* temp = head;
+        while(temp != nullptr) {
+            if(temp->memberID == id) {
+                cout << "\n========== Member Found ==========\n";
+                cout << "Member ID: " << temp->memberID << endl;
+                cout << "Name: " << temp->name << endl;
+                cout << "Type: " << temp->membershipType << endl;
+                cout << "Enrolled: " << temp->enrollmentDate << endl;
+                cout << "Sessions: " << temp->sessionsAttended << endl;
+                return;
+            }
+            temp = temp->next;
+        }
+        cout << "Member not found!" << endl;
+    }
+    
+    // Display all members
+    void displayAllMembers() {
+        cout << "\n========== All Members ==========\n";
+        Member* temp = head;
+        int count = 0;
+        
+        while(temp != nullptr && count < 20) {
+            cout << temp->memberID << " | " << temp->name 
+                 << " | " << temp->membershipType << endl;
+            temp = temp->next;
+            count++;
         }
     }
-    return res;
-}
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string id, name, type, date, className, timeSlot;
+            
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, type, ',');
+            getline(ss, date, ',');
+            getline(ss, className, ',');
+            getline(ss, timeSlot, ',');
+            
+            addMember(id, name, type, date);
+            addToWaitingQueue(id, className, timeSlot, date);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+    
+    void displayStatistics() {
+        cout << "\n========== Center Statistics ==========\n";
+        cout << "Total Members: " << totalMembers << endl;
+        cout << "Waiting Queue Size: " << waitingQueue.size() << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case2_health_center/case2_health_center.csv";
-    auto data = load_csv(csv);
+    WellnessCenter center;
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
-    }
+    cout << "========== Health & Wellness Center System ==========\n";
+    cout << "Loading data from case2.csv...\n";
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
+    center.loadFromCSV("case2.csv");
+    center.displayStatistics();
+    center.displayAllMembers();
+    center.processWaitingQueue(15);
     
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    // Search example
+    cout << "\nSearching for member M001:" << endl;
+    center.searchMember("M001");
     
     return 0;
 }
