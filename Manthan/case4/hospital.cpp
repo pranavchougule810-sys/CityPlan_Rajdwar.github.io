@@ -655,6 +655,44 @@ void hospitalListAppointments()
         cout << "\n";
     }
 }
+void hospitalShowAllPatients()
+{
+    if (hospitalPatientCount == 0)
+    {
+        cout << "No patients found.\n";
+        return;
+    }
+
+    cout << "\n=========== ALL PATIENTS ==========\n";
+    for (int i = 0; i < hospitalPatientCount; i++)
+    {
+        HospitalPatient &p = hospitalPatients[i];
+        cout << "ID: " << p.patient_id
+             << " | Name: " << p.name
+             << " | Age: " << p.age
+             << " | Gender: " << p.gender
+             << " | Contact: " << p.contact
+             << " | Status: " << p.status
+             << "\nAddress: " << p.address
+             << "\nNotes: " << p.notes
+             << "\n------------------------------------\n";
+    }
+}
+
+// Load all hospital data from CSVs at once
+void hospitalLoadAllData()
+{
+    cout << "\n=== LOADING ALL HOSPITAL DATA ===\n";
+
+    hospitalLoadPatientsCSV("patients.csv");
+    hospitalLoadStaffCSV("hospital_staff.csv");
+    hospitalLoadRoomsCSV("hospital_rooms.csv");
+    hospitalLoadAppointmentsCSV("appointments.csv");
+    hospitalLoadLabsCSV("labs.csv"); // updates lab results
+
+    cout << "=== ALL DATA LOADED SUCCESSFULLY ===\n";
+}
+
 
 // ---------- Module menu ----------
 void hospitalShowMenu()
@@ -676,6 +714,8 @@ void hospitalShowMenu()
     cout << "12. List Appointments\n";
     cout << "13. Load appointments CSV (appointments.csv)\n";
     cout << "14. Load labs CSV (labs.csv)  (updates lab results only)\n";
+    cout << "15. Load All CSV\n";
+    cout << "16. Show All Patients\n";
     cout << " 0. Return to MAIN MENU\n";
     cout << "====================================\n";
     cout << "Enter choice: ";
@@ -719,6 +759,9 @@ void hospitalSystem()
         case 12: hospitalListAppointments(); break;
         case 13: hospitalLoadAppointmentsCSV("appointments.csv"); break;
         case 14: hospitalLoadLabsCSV("labs.csv"); break;
+        case 15: hospitalLoadAllData();break;
+        case 16: hospitalShowAllPatients();break;
+
         case 0: cout << "Returning to main menu...\n"; return;
         default: cout << "Invalid choice.\n";
         }
