@@ -658,7 +658,7 @@ void showMenu() {
     cout << "Enter choice: ";
 }
 
-int main() {
+void mallSystem() {
     srand(time(NULL));
     int choice;
 
@@ -728,12 +728,16 @@ int main() {
 
         case 0:
             cout << "Exiting Mall Simulator...\n";
-            return 0;
+            return;
 
         default:
             cout << "Invalid choice! Try again.\n";
         }
     }
 
-    return 0;
+    
+}
+int main()
+{
+    mallSystem();
 }
