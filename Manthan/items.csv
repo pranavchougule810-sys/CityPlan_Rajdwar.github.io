@@ -1,0 +1,251 @@
+shopid,itemname,price,stock
+101,Football,921,68
+101,Burger,1850,125
+101,Gift Box,1648,45
+101,Sneakers,671,24
+101,Frying Pan,1550,60
+102,Water Bottle,1980,121
+102,Organic Honey,882,133
+102,Notebook,293,150
+102,T-Shirt,502,54
+102,Jeans,709,150
+103,Perfume,1920,40
+103,Action Figure,170,142
+103,Wall Clock,163,144
+103,Lens Cleaner,749,182
+103,Comics,873,17
+104,Wall Clock,1191,21
+104,Power Bank,228,127
+104,Jacket,1066,32
+104,Cookies,1066,88
+104,Grocery Pack,181,168
+105,Notebook,1301,108
+105,Sunglasses,1722,122
+105,Watch,1364,78
+105,LED Lamp,343,151
+105,Jeans,264,83
+106,Action Figure,451,82
+106,Cookies,1868,78
+106,Sandwich,1820,121
+106,Pasta,714,172
+106,Pizza,1185,165
+107,Football,1996,176
+107,Juice,158,169
+107,Gift Box,1406,144
+107,Watch,1890,52
+107,Juice,600,34
+108,Hair Dryer,1880,125
+108,Makeup Kit,89,174
+108,Chocolate,299,133
+108,Wall Clock,672,162
+108,Necklace,410,149
+109,Backpack,1968,125
+109,Juice,1130,93
+109,Juice,1278,160
+109,Burger,1830,137
+109,Lens Cleaner,70,102
+110,Pasta,1749,168
+110,Gift Box,562,34
+110,Camera,130,103
+110,Plush Toy,523,118
+110,Charger,1893,76
+111,Camera,1897,150
+111,Cookies,228,48
+111,Camera,105,195
+111,Power Bank,225,11
+111,Tea,1145,181
+112,Sunglasses,1143,42
+112,Smartphone,1749,137
+112,Action Figure,1831,178
+112,Sandwich,1862,16
+112,Frying Pan,1974,193
+113,Action Figure,82,184
+113,Chocolate,1093,13
+113,Gift Box,524,185
+113,Tea,112,120
+113,Organic Honey,1659,162
+114,Gift Box,689,64
+114,Necklace,639,139
+114,Organic Honey,705,148
+114,Smartwatch,1904,114
+114,Organic Honey,1202,97
+115,Novel Book,92,162
+115,Football,84,125
+115,Perfume,1279,60
+115,Backpack,931,29
+115,Camera,1609,100
+116,Toy Car,836,125
+116,Pizza,1154,48
+116,Chocolate,335,132
+116,Watch,976,125
+116,Wall Clock,1081,67
+117,Football,1890,46
+117,Gaming Mouse,1785,86
+117,Chocolate,799,12
+117,Headphones,652,65
+117,T-Shirt,1949,125
+118,Phone Case,951,81
+118,Perfume,1402,164
+118,Sandwich,434,158
+118,Grocery Pack,170,107
+118,Camera,618,177
+119,Cricket Bat,1412,155
+119,Smartphone,294,64
+119,Pasta,1499,200
+119,Toy Car,1336,187
+119,Jacket,1497,146
+120,Gaming Mouse,1796,85
+120,Novel Book,701,128
+120,Camera,1686,142
+120,Jeans,935,22
+120,Notebook,1030,127
+121,Juice,1555,85
+121,Football,495,130
+121,Comics,1616,27
+121,Pizza,776,173
+121,Gaming Mouse,1647,170
+122,T-Shirt,1962,92
+122,Water Bottle,739,151
+122,Makeup Kit,1079,18
+122,Necklace,684,127
+122,Pasta,1237,87
+123,Novel Book,1250,30
+123,Smartphone,1750,64
+123,Frying Pan,143,24
+123,Pizza,2000,190
+123,Juice,913,35
+124,Coffee,561,131
+124,Gift Box,1668,190
+124,Cricket Bat,732,50
+124,Jacket,73,139
+124,Keyboard,368,200
+125,Smartphone,268,32
+125,Juice,431,36
+125,Perfume,919,19
+125,Football,1321,173
+125,Juice,1579,28
+126,Jacket,1392,168
+126,Cookies,1069,57
+126,Pasta,1090,197
+126,Sunglasses,1159,172
+126,Frying Pan,140,12
+127,Water Bottle,129,187
+127,Laptop,568,170
+127,Laptop,619,169
+127,Smartwatch,1539,137
+127,Pizza,1055,180
+128,Plush Toy,1220,65
+128,Toy Car,1179,148
+128,T-Shirt,652,163
+128,Smartwatch,549,34
+128,Makeup Kit,1764,62
+129,Smartphone,589,107
+129,Frying Pan,1885,148
+129,Hair Dryer,369,104
+129,Coffee,1813,152
+129,Pasta,125,127
+130,Football,1878,66
+130,T-Shirt,1593,169
+130,Watch,1489,104
+130,Keyboard,1784,176
+130,Grocery Pack,966,24
+131,Comics,863,172
+131,Sneakers,1113,15
+131,Cookies,68,143
+131,Organic Honey,296,40
+131,Plush Toy,1125,141
+132,Sunglasses,616,176
+132,Comics,208,191
+132,Perfume,241,157
+132,Backpack,147,189
+132,Jeans,1690,103
+133,Coffee,484,27
+133,Jacket,1750,131
+133,Keyboard,1636,100
+133,Grocery Pack,256,186
+133,Chocolate,673,93
+134,Smartwatch,1435,183
+134,Charger,101,199
+134,Notebook,596,161
+134,Grocery Pack,259,92
+134,T-Shirt,1636,120
+135,Cookies,523,157
+135,Sneakers,539,45
+135,Power Bank,899,51
+135,Chocolate,1095,112
+135,Action Figure,360,43
+136,Keyboard,1902,200
+136,Perfume,795,133
+136,Power Bank,1311,112
+136,T-Shirt,497,180
+136,Sandwich,378,87
+137,Organic Honey,168,180
+137,Gaming Mouse,626,80
+137,Comics,1769,36
+137,Novel Book,1181,29
+137,Football,136,68
+138,Headphones,522,92
+138,Coffee,1636,152
+138,Power Bank,774,155
+138,Lens Cleaner,1047,122
+138,Toy Car,819,189
+139,Smartwatch,1205,139
+139,Necklace,592,152
+139,Football,1166,62
+139,Perfume,1876,149
+139,T-Shirt,1913,25
+140,Hair Dryer,631,167
+140,Novel Book,229,184
+140,Headphones,785,181
+140,Smartwatch,782,173
+140,Football,1374,96
+141,Water Bottle,1439,138
+141,Lens Cleaner,1728,114
+141,Lens Cleaner,730,46
+141,Perfume,1517,189
+141,Sunglasses,1800,107
+142,Toy Car,525,62
+142,Sandwich,279,32
+142,Grocery Pack,185,161
+142,Action Figure,136,109
+142,Headphones,481,15
+143,Action Figure,1362,40
+143,Juice,894,150
+143,Sneakers,1120,156
+143,Hair Dryer,1850,51
+143,Jacket,1536,69
+144,Coffee,1918,173
+144,Gaming Mouse,1737,127
+144,Water Bottle,1124,126
+144,Makeup Kit,219,59
+144,Action Figure,1226,118
+145,Power Bank,1867,94
+145,Camera,387,181
+145,Frying Pan,1804,88
+145,Tea,1390,42
+145,Novel Book,550,76
+146,Backpack,1711,48
+146,Gift Box,773,142
+146,USB Cable,1500,76
+146,Action Figure,415,79
+146,Comics,1123,82
+147,Plush Toy,1878,22
+147,Camera,736,143
+147,Coffee,642,149
+147,Watch,728,191
+147,Sneakers,380,109
+148,Backpack,824,126
+148,Power Bank,1979,152
+148,Headphones,878,133
+148,Keyboard,1921,146
+148,Smartphone,225,140
+149,Water Bottle,1302,37
+149,Gaming Mouse,1773,122
+149,T-Shirt,1805,131
+149,Smartwatch,211,140
+149,Water Bottle,146,46
+150,USB Cable,1037,87
+150,Gift Box,787,121
+150,Perfume,137,85
+150,Sunglasses,1326,146
+150,Lens Cleaner,2000,45
