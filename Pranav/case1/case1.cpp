@@ -1,116 +1,149 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <unordered_map>
+#include <queue>
+#include <vector>
+#include <string>
+#include <iomanip>
 using namespace std;
 
-/*
- * Co-working Hub
- * Expanded C++ implementation (~100+ lines)
- * - Robust CSV parsing helpers
- * - Data structures & algorithm logic (simulated/sample)
- * - Stats output for demo / grading
- * Note: update CSV path variable below to point to your dataset.
-*/
-
-static inline string trim(const string &s) {
-    size_t a = s.find_first_not_of(" \t\r\n");
-    if (a == string::npos) return "";
-    size_t b = s.find_last_not_of(" \t\r\n");
-    return s.substr(a, b - a + 1);
-}
-
-static vector<string> split_csv_line(const string &line) {
-    vector<string> out;
-    string cur;
-    bool inq = false;
-    for (char c : line) {
-        if (c == '"') inq = !inq;
-        else if (c == ',' && !inq) {
-            out.push_back(trim(cur));
-            cur.clear();
-        }
-        else cur.push_back(c);
+// Structure for workspace booking
+struct Booking {
+    string bookingID;
+    string userName;
+    string userType;
+    string date;
+    int duration;
+    double price;
+    int priority; // 1=urgent, 2=normal, 3=flexible
+    
+    bool operator<(const Booking& other) const {
+        return priority > other.priority; // Min heap based on priority
     }
-    out.push_back(trim(cur));
-    return out;
-}
-
-struct Record {
-    int id;
-    string a, b;
-    double v;
 };
 
-// Load CSV - expects CSV filename in same folder as this .cpp when running
-vector<Record> load_csv(const string &path) {
-    vector<Record> res;
-    ifstream f(path);
-    if (!f) {
-        cerr << "Cannot open " << path << "\n";
-        return res;
-    }
-    string line;
-    // Skip header line
-    if (!getline(f, line)) return res;
+class CoWorkingHub {
+private:
+    unordered_map<string, Booking> bookingMap; // bookingID -> Booking
+    priority_queue<Booking> bookingQueue;
+    int totalSpaces;
+    int availableSpaces;
     
-    while (getline(f, line)) {
-        if (trim(line).empty()) continue;
-        auto cols = split_csv_line(line);
-        if (cols.size() < 4) continue;
+public:
+    CoWorkingHub(int spaces) : totalSpaces(spaces), availableSpaces(spaces) {}
+    
+    double calculatePrice(string userType, int duration) {
+        double basePrice = 100.0; // per hour
+        if(userType == "student") return basePrice * duration * 0.5;
+        else if(userType == "freelancer") return basePrice * duration * 0.7;
+        else if(userType == "startup") return basePrice * duration * 0.8;
+        return basePrice * duration;
+    }
+    
+    bool addBooking(string id, string name, string type, string date, 
+                    int duration, int priority) {
+        if(availableSpaces > 0) {
+            Booking b;
+            b.bookingID = id;
+            b.userName = name;
+            b.userType = type;
+            b.date = date;
+            b.duration = duration;
+            b.price = calculatePrice(type, duration);
+            b.priority = priority;
+            
+            bookingMap[id] = b;
+            bookingQueue.push(b);
+            availableSpaces--;
+            return true;
+        }
+        return false;
+    }
+    
+    void processHighPriorityBookings() {
+        cout << "\n========== High Priority Bookings ==========\n";
+        int count = 0;
+        priority_queue<Booking> tempQueue = bookingQueue;
         
-        Record r;
-        try {
-            r.id = stoi(cols[0]);
-            r.a = cols[1];
-            r.b = cols[2];
-            r.v = stod(cols[3]);
-            res.push_back(r);
-        } catch (const std::exception& e) {
-            // Simple error handling for bad data line
-            cerr << "Skipping bad record: " << line << " (" << e.what() << ")\n";
+        while(!tempQueue.empty() && count < 10) {
+            Booking b = tempQueue.top();
+            tempQueue.pop();
+            cout << "ID: " << b.bookingID << " | User: " << b.userName 
+                 << " | Type: " << b.userType << " | Priority: " << b.priority
+                 << " | Price: Rs." << fixed << setprecision(2) << b.price << endl;
+            count++;
         }
     }
-    return res;
-}
+    
+    void searchBooking(string id) {
+        if(bookingMap.find(id) != bookingMap.end()) {
+            Booking b = bookingMap[id];
+            cout << "\n========== Booking Found ==========\n";
+            cout << "Booking ID: " << b.bookingID << endl;
+            cout << "User Name: " << b.userName << endl;
+            cout << "User Type: " << b.userType << endl;
+            cout << "Date: " << b.date << endl;
+            cout << "Duration: " << b.duration << " hours" << endl;
+            cout << "Price: Rs." << fixed << setprecision(2) << b.price << endl;
+            cout << "Priority: " << b.priority << endl;
+        } else {
+            cout << "Booking not found!" << endl;
+        }
+    }
+    
+    void displayStatistics() {
+        cout << "\n========== Hub Statistics ==========\n";
+        cout << "Total Spaces: " << totalSpaces << endl;
+        cout << "Available Spaces: " << availableSpaces << endl;
+        cout << "Booked Spaces: " << (totalSpaces - availableSpaces) << endl;
+        cout << "Total Bookings: " << bookingMap.size() << endl;
+    }
+    
+    void loadFromCSV(string filename) {
+        ifstream file(filename);
+        if(!file.is_open()) {
+            cout << "Error: Could not open " << filename << endl;
+            return;
+        }
+        
+        string line;
+        getline(file, line); // Skip header
+        
+        while(getline(file, line)) {
+            stringstream ss(line);
+            string id, name, type, date;
+            int duration, priority;
+            
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, type, ',');
+            getline(ss, date, ',');
+            ss >> duration;
+            ss.ignore();
+            ss >> priority;
+            
+            addBooking(id, name, type, date, duration, priority);
+        }
+        
+        file.close();
+        cout << "Data loaded successfully from " << filename << endl;
+    }
+};
 
 int main() {
-    // default CSV path - change if needed
-    string csv = "pranav/case1_coworking/case1_coworking.csv";
-    auto data = load_csv(csv);
+    CoWorkingHub hub(500);
     
-    if (data.empty()) {
-        cout << "[WARN] No data loaded from " << csv << "\n";
-        return 0;
-    }
+    cout << "========== Co-Working Hub Management System ==========\n";
+    cout << "Loading data from case1.csv...\n";
     
-    // sample processing: sort, filter, aggregate
-    sort(data.begin(), data.end(), [](const Record &x, const Record &y){
-        return x.v > y.v;
-    });
+    hub.loadFromCSV("case1.csv");
+    hub.displayStatistics();
+    hub.processHighPriorityBookings();
     
-    cout << "Loaded records: " << data.size() << "\n";
-    
-    double sum = 0;
-    for (auto &r : data) sum += r.v;
-    cout << "Sum(v) = " << sum << ", Avg = " << (sum / data.size()) << "\n";
-    
-    cout << "Top 10 records:\n";
-    for (size_t i = 0; i < min((size_t)10, data.size()); ++i) {
-        auto &r = data[i];
-        cout << r.id << " | " << r.a << " | " << r.b << " | " << r.v << "\n";
-    }
-    
-    // additional simulated workload to increase code size
-    unordered_map<string, int> cnt;
-    for (auto &r : data) cnt[r.a]++;
-    
-    vector<pair<int, string>> freq;
-    for (auto &p : cnt) freq.push_back({p.second, p.first});
-    
-    sort(freq.begin(), freq.end(), greater<>());
-    
-    cout << "\nTop groups by field a:\n";
-    for (size_t i = 0; i < min((size_t)5, freq.size()); ++i) {
-        cout << freq[i].second << " -> " << freq[i].first << "\n";
-    }
+    // Search example
+    cout << "\nSearching for booking B001:" << endl;
+    hub.searchBooking("B001");
     
     return 0;
 }
