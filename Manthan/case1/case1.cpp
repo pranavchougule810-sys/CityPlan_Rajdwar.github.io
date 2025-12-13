@@ -8,9 +8,23 @@
 #include <algorithm>
 #include <cmath>
 #include <functional>
+#include <limits>
 using namespace std;
 
-// Utility
+// =====================================================
+// MALL LIMITS
+// =====================================================
+
+#define MALL_MAX_SHOPS 2000
+#define MALL_MAX_ITEMS 5000
+#define MALL_MAX_STAFF 2000
+#define MALL_MAX_CLEAN 3000
+#define MALL_PARKING_SIZE 200
+
+// =====================================================
+// UTILITY
+// =====================================================
+
 int randint(int a, int b) { return a + rand() % (b - a + 1); }
 
 int timeToMin(string t) {
@@ -28,7 +42,7 @@ string minToTime(int m) {
 }
 
 // =====================================================
-// SHOP STRUCTURES (arrays only)
+// SHOP STRUCTURES
 // =====================================================
 
 struct ItemNode {
@@ -49,7 +63,7 @@ struct Shop {
     ItemNode *root;
 };
 
-Shop mallShops[50];
+Shop mallShops[MALL_MAX_SHOPS];
 int shopCount = 0;
 
 // =====================================================
@@ -63,7 +77,7 @@ struct Staff {
     int salary;
 };
 
-Staff staffList[50];
+Staff staffList[MALL_MAX_STAFF];
 int staffCount = 0;
 
 // =====================================================
@@ -75,14 +89,14 @@ struct CleanEvent {
     string note;
 };
 
-CleanEvent cleanLog[100];
+CleanEvent cleanLog[MALL_MAX_CLEAN];
 int cleanCount = 0;
 
 // =====================================================
 // PARKING GRID (BFS)
 // =====================================================
 
-int parkingGrid[10][10];
+int parkingGrid[MALL_PARKING_SIZE][MALL_PARKING_SIZE];
 
 // =====================================================
 // BST SYSTEM
@@ -116,7 +130,9 @@ public:
     void inorder(ItemNode* root) {
         if (!root) return;
         inorder(root->left);
-        cout << "   " << root->name << " | Price: " << root->price << " | Stock: " << root->stock << "\n";
+        cout << "   " << root->name
+             << " | Price: " << root->price
+             << " | Stock: " << root->stock << "\n";
         inorder(root->right);
     }
 };
@@ -153,11 +169,12 @@ void quickSortShops(int arr[], int l, int r) {
 // BFS PARKING
 // =====================================================
 
-int BFS_nearestParking(int grid[10][10], int sr, int sc) {
-    int qr[200], qc[200];
-    int front = 0, rear = 0;
+int BFS_nearestParking(int grid[MALL_PARKING_SIZE][MALL_PARKING_SIZE], int sr, int sc) {
+    int qr[MALL_PARKING_SIZE * MALL_PARKING_SIZE];
+    int qc[MALL_PARKING_SIZE * MALL_PARKING_SIZE];
+    int visited[MALL_PARKING_SIZE][MALL_PARKING_SIZE] = {0};
 
-    int visited[10][10] = {0};
+    int front = 0, rear = 0;
     qr[0] = sr; qc[0] = sc;
     visited[sr][sc] = 1;
 
@@ -166,18 +183,17 @@ int BFS_nearestParking(int grid[10][10], int sr, int sc) {
 
     while (front <= rear) {
         int r = qr[front];
-        int c = qc[front];
-        front++;
-
+        int c = qc[front++];
         if (grid[r][c] == 0)
-            return r*10 + c;
+            return r * MALL_PARKING_SIZE + c;
 
         for (int i = 0; i < 4; i++) {
             int nr = r + dr[i], nc = c + dc[i];
-            if (nr>=0 && nr<10 && nc>=0 && nc<10 && !visited[nr][nc] && grid[nr][nc] != 2) {
+            if (nr >= 0 && nr < MALL_PARKING_SIZE &&
+                nc >= 0 && nc < MALL_PARKING_SIZE &&
+                !visited[nr][nc] && grid[nr][nc] != 2) {
                 visited[nr][nc] = 1;
-                rear++;
-                qr[rear] = nr;
+                qr[++rear] = nr;
                 qc[rear] = nc;
             }
         }
@@ -195,15 +211,18 @@ int createShopID() {
 }
 
 void addShop() {
+    if (shopCount >= MALL_MAX_SHOPS) {
+        cout << "Shop limit reached.\n";
+        return;
+    }
+
     cin.ignore();
     string nm, op, cl;
 
     cout << "Enter shop name: ";
     getline(cin, nm);
-
     cout << "Open time (HH:MM): ";
     cin >> op;
-
     cout << "Close time (HH:MM): ";
     cin >> cl;
 
@@ -240,23 +259,22 @@ void addItemToShop() {
     cout << "Stock: ";
     cin >> stock;
 
-    mallShops[idx].root = itemManager.insertNode(mallShops[idx].root, name, price, stock);
+    mallShops[idx].root = itemManager.insertNode(
+        mallShops[idx].root, name, price, stock
+    );
 
     cout << "Item added!\n";
 }
 
 void showAllShops() {
-    if (shopCount == 0) {
-        cout << "No shops.\n";
-        return;
-    }
+    if (shopCount == 0) { cout << "No shops.\n"; return; }
+
     for (int i = 0; i < shopCount; i++) {
         cout << "\n----------- SHOP " << mallShops[i].id << " -----------\n";
         cout << "Name: " << mallShops[i].name << "\n";
         cout << "Time: " << minToTime(mallShops[i].open_time)
              << " - " << minToTime(mallShops[i].close_time) << "\n";
         cout << "Revenue: " << mallShops[i].revenue << "\n";
-
         cout << "Items:\n";
         if (!mallShops[i].root) cout << "  (empty)\n";
         else itemManager.inorder(mallShops[i].root);
@@ -272,9 +290,10 @@ void simulateCustomer() {
     for (int i = 0; i < shopCount; i++)
         if (mallShops[i].id == id) idx = i;
 
-    if (idx == -1) { cout << "Shop not found.\n"; return; }
-
-    if (!mallShops[idx].root) { cout << "No items.\n"; return; }
+    if (idx == -1 || !mallShops[idx].root) {
+        cout << "Invalid shop or no items.\n";
+        return;
+    }
 
     ItemNode *cur = mallShops[idx].root;
     while (cur->left) cur = cur->left;
@@ -293,14 +312,15 @@ void simulateCustomer() {
 void sortShopsByRevenue() {
     if (shopCount == 0) { cout << "No shops.\n"; return; }
 
-    int arr[50];
+    int arr[MALL_MAX_SHOPS];
     for (int i = 0; i < shopCount; i++) arr[i] = i;
 
-    quickSortShops(arr, 0, shopCount-1);
+    quickSortShops(arr, 0, shopCount - 1);
 
     cout << "\n--- Shops sorted (high → low revenue) ---\n";
     for (int i = 0; i < shopCount; i++) {
-        cout << mallShops[arr[i]].name << " | Rs " << mallShops[arr[i]].revenue << "\n";
+        cout << mallShops[arr[i]].name
+             << " | Rs " << mallShops[arr[i]].revenue << "\n";
     }
 }
 
@@ -309,17 +329,21 @@ void sortShopsByRevenue() {
 // =====================================================
 
 void addStaff() {
+    if (staffCount >= MALL_MAX_STAFF) {
+        cout << "Staff limit reached.\n";
+        return;
+    }
+
     cin.ignore();
     cout << "Staff name: ";
-    string nm; getline(cin, nm);
+    getline(cin, staffList[staffCount].name);
     cout << "Role: ";
-    string role; getline(cin, role);
+    getline(cin, staffList[staffCount].role);
     cout << "Salary: ";
-    int sal; cin >> sal;
+    cin >> staffList[staffCount].salary;
 
-    staffList[staffCount] = { staffCount+1, nm, role, sal };
+    staffList[staffCount].id = staffCount + 1;
     staffCount++;
-
     cout << "Staff added.\n";
 }
 
@@ -332,12 +356,33 @@ void showStaff() {
     }
 }
 
+void deleteStaff() {
+    cout << "Enter staff ID to delete: ";
+    int id; cin >> id;
+
+    int idx = -1;
+    for (int i = 0; i < staffCount; i++)
+        if (staffList[i].id == id) idx = i;
+
+    if (idx == -1) { cout << "Staff not found.\n"; return; }
+
+    for (int i = idx; i < staffCount - 1; i++)
+        staffList[i] = staffList[i + 1];
+
+    staffCount--;
+    cout << "Staff removed.\n";
+}
+
 void scheduleCleaner() {
+    if (cleanCount >= MALL_MAX_CLEAN) {
+        cout << "Cleaner log full.\n";
+        return;
+    }
+
     cin.ignore();
     string t, note;
     cout << "Time (HH:MM): ";
     cin >> t;
-
     cin.ignore();
     cout << "Note: ";
     getline(cin, note);
@@ -345,15 +390,12 @@ void scheduleCleaner() {
     cleanLog[cleanCount].time = timeToMin(t);
     cleanLog[cleanCount].note = note;
     cleanCount++;
-
-    cout << "Cleaner scheduled.\n";
 }
 
 void showCleanLog() {
-    for (int i = 0; i < cleanCount; i++) {
+    for (int i = 0; i < cleanCount; i++)
         cout << minToTime(cleanLog[i].time)
              << " - " << cleanLog[i].note << "\n";
-    }
 }
 
 // =====================================================
@@ -366,11 +408,11 @@ int toInt(const string &s) {
 }
 
 int splitCSV(const string &line, string out[], int maxCols) {
-    int col = 0; string cur = "";
+    int col = 0; string cur;
     for (char c : line) {
         if (c == ',' && col < maxCols - 1) {
             out[col++] = cur;
-            cur = "";
+            cur.clear();
         } else cur.push_back(c);
     }
     out[col++] = cur;
@@ -381,15 +423,13 @@ int loadShopsCSV(const string &f) {
     ifstream in(f);
     if (!in.is_open()) { cout << "ERROR loading " << f << "\n"; return 0; }
 
-    string line;
-    getline(in, line); // header
+    string line; getline(in, line);
     int loaded = 0;
 
     while (getline(in, line)) {
-        if (line.size() < 3) continue;
+        if (shopCount >= MALL_MAX_SHOPS) break;
         string c[5];
-        int n = splitCSV(line, c, 5);
-        if (n < 4) continue;
+        if (splitCSV(line, c, 5) < 4) continue;
 
         mallShops[shopCount].id = createShopID();
         mallShops[shopCount].name = c[0];
@@ -398,10 +438,8 @@ int loadShopsCSV(const string &f) {
         mallShops[shopCount].revenue = toInt(c[3]);
         mallShops[shopCount].root = NULL;
 
-        shopCount++;
-        loaded++;
+        shopCount++; loaded++;
     }
-
     cout << "Loaded " << loaded << " shops.\n";
     return loaded;
 }
@@ -410,33 +448,23 @@ int loadItemsCSV(const string &f) {
     ifstream in(f);
     if (!in.is_open()) { cout << "ERROR loading " << f << "\n"; return 0; }
 
-    string line;
-    getline(in, line);
+    string line; getline(in, line);
     int loaded = 0;
 
     while (getline(in, line)) {
         string c[5];
-        int n = splitCSV(line, c, 5);
-        if (n < 4) continue;
-
+        if (splitCSV(line, c, 5) < 4) continue;
         int id = toInt(c[0]);
 
-        int idx = -1;
         for (int i = 0; i < shopCount; i++)
             if (mallShops[i].id == id)
-                idx = i;
-
-        if (idx == -1) continue;
-
-        mallShops[idx].root =
-            itemManager.insertNode(
-                mallShops[idx].root,
-                c[1], toInt(c[2]), toInt(c[3])
-            );
-
+                mallShops[i].root =
+                    itemManager.insertNode(
+                        mallShops[i].root,
+                        c[1], toInt(c[2]), toInt(c[3])
+                    );
         loaded++;
     }
-
     cout << "Loaded " << loaded << " items.\n";
     return loaded;
 }
@@ -445,42 +473,60 @@ int loadStaffCSV(const string &f) {
     ifstream in(f);
     if (!in.is_open()) { cout << "ERROR loading " << f << "\n"; return 0; }
 
-    string line;
-    getline(in, line);
+    string line; getline(in, line);
     int loaded = 0;
 
     while (getline(in, line)) {
+        if (staffCount >= MALL_MAX_STAFF) break;
         string c[5];
-        int n = splitCSV(line, c, 5);
-        if (n < 3) continue;
+        if (splitCSV(line, c, 5) < 3) continue;
 
-        staffList[staffCount] = {
-            staffCount+1,
-            c[0],
-            c[1],
-            toInt(c[2])
+        staffList[staffCount++] = {
+            staffCount + 1, c[0], c[1], toInt(c[2])
         };
-        staffCount++;
         loaded++;
     }
-
     cout << "Loaded " << loaded << " staff.\n";
     return loaded;
 }
 
 // =====================================================
-// KMP SEARCH
+// PARKING MENU
+// =====================================================
+
+void parkingMenu() {
+    int r, c;
+    cout << "Enter starting row (0-" << MALL_PARKING_SIZE-1 << "): ";
+    cin >> r;
+    cout << "Enter starting col (0-" << MALL_PARKING_SIZE-1 << "): ";
+    cin >> c;
+
+    if (r < 0 || r >= MALL_PARKING_SIZE ||
+        c < 0 || c >= MALL_PARKING_SIZE) {
+        cout << "Invalid position.\n";
+        return;
+    }
+
+    int res = BFS_nearestParking(parkingGrid, r, c);
+    if (res == -1) cout << "No parking slot available.\n";
+    else cout << "Nearest empty slot at ("
+              << res / MALL_PARKING_SIZE
+              << ", " << res % MALL_PARKING_SIZE << ")\n";
+}
+// =====================================================
+// KMP SEARCH (SEARCH ONLY — NO ROUTING)
 // =====================================================
 
 vector<int> kmpPrefix(const string &pat) {
     int m = pat.size();
-    vector<int> lps(m);
-    lps[0] = 0;
-
+    vector<int> lps(m, 0);
     int j = 0;
+
     for (int i = 1; i < m; i++) {
-        while (j > 0 && pat[i] != pat[j]) j = lps[j-1];
-        if (pat[i] == pat[j]) j++;
+        while (j > 0 && pat[i] != pat[j])
+            j = lps[j - 1];
+        if (pat[i] == pat[j])
+            j++;
         lps[i] = j;
     }
     return lps;
@@ -490,15 +536,20 @@ bool kmpSearch(const string &txt, const string &pat) {
     if (pat.empty()) return true;
     if (txt.size() < pat.size()) return false;
 
-    auto lps = kmpPrefix(pat);
-    int i=0,j=0;
+    vector<int> lps = kmpPrefix(pat);
+    int i = 0, j = 0;
 
     while (i < (int)txt.size()) {
-        if (txt[i] == pat[j]) { i++; j++; }
-        else if (j > 0) j = lps[j-1];
-        else i++;
+        if (txt[i] == pat[j]) {
+            i++; j++;
+        } else if (j > 0) {
+            j = lps[j - 1];
+        } else {
+            i++;
+        }
 
-        if (j == (int)pat.size()) return true;
+        if (j == (int)pat.size())
+            return true;
     }
     return false;
 }
@@ -512,104 +563,44 @@ struct SearchResult {
 };
 
 vector<SearchResult> searchItemInMall(const string &pattern) {
-    vector<SearchResult> res;
+    vector<SearchResult> results;
 
     string patt = pattern;
     transform(patt.begin(), patt.end(), patt.begin(), ::tolower);
 
     for (int s = 0; s < shopCount; s++) {
-        vector<ItemNode*> items;
+        function<void(ItemNode*)> dfs = [&](ItemNode *node) {
+            if (!node) return;
 
-        function<void(ItemNode*)> collect = [&](ItemNode *r){
-            if (!r) return;
-            collect(r->left);
-            items.push_back(r);
-            collect(r->right);
-        };
+            dfs(node->left);
 
-        collect(mallShops[s].root);
+            string item = node->name;
+            transform(item.begin(), item.end(), item.begin(), ::tolower);
 
-        for (auto *n : items) {
-            string temp = n->name;
-            transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
-
-            if (kmpSearch(temp, patt)) {
-                res.push_back({
+            if (kmpSearch(item, patt)) {
+                results.push_back({
                     mallShops[s].id,
                     mallShops[s].name,
-                    n->name,
-                    n->price,
-                    n->stock
+                    node->name,
+                    node->price,
+                    node->stock
                 });
             }
-        }
+
+            dfs(node->right);
+        };
+
+        dfs(mallShops[s].root);
     }
 
-    return res;
-}
-void parkingMenu() {
-    int r, c;
-    cout << "Enter starting row (0-9): ";
-    cin >> r;
-    cout << "Enter starting col (0-9): ";
-    cin >> c;
-
-    if (r < 0 || r >= 10 || c < 0 || c >= 10) {
-        cout << "Invalid starting position!\n";
-        return;
-    }
-
-    int result = BFS_nearestParking(parkingGrid, r, c);
-
-    if (result == -1) {
-        cout << "No parking slot available.\n";
-    } else {
-        int rr = result / 10;
-        int cc = result % 10;
-        cout << "Nearest empty slot is at: (" << rr << ", " << cc << ")\n";
-    }
-}
-void deleteStaff() {
-    cout << "Enter staff ID to delete: ";
-    int id;
-    cin >> id;
-
-    if (!cin) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Invalid ID.\n";
-        return;
-    }
-
-    int index = -1;
-    for (int i = 0; i < staffCount; i++) {
-        if (staffList[i].id == id) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index == -1) {
-        cout << "Staff not found.\n";
-        return;
-    }
-
-    // Shift the array left by 1
-    for (int i = index; i < staffCount - 1; i++) {
-        staffList[i] = staffList[i + 1];
-    }
-
-    staffCount--;
-
-    cout << "Staff with ID " << id << " removed successfully.\n";
+    return results;
 }
 
-
-// NEW — SEARCH ONLY (no Dijkstra)
 void searchItemsOnly() {
-    string pat;
-    cout << "Enter item name to search: ";
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    string pat;
+
+    cout << "Enter item name to search: ";
     getline(cin, pat);
 
     if (pat.empty()) {
@@ -624,7 +615,7 @@ void searchItemsOnly() {
         return;
     }
 
-    cout << "\n=== Search Results ===\n";
+    cout << "\n=== Item Availability ===\n";
     for (int i = 0; i < results.size(); i++) {
         cout << i+1 << ") Shop: " << results[i].shopName
              << " (ID " << results[i].shopID << ")"
@@ -632,8 +623,14 @@ void searchItemsOnly() {
              << " | Price: " << results[i].price
              << " | Stock: " << results[i].stock << "\n";
     }
-    cout << "======================\n";
 }
+
+
+
+// =====================================================
+// MENU + SYSTEM
+// =====================================================
+
 void showMenu() {
     cout << "\n====================================\n";
     cout << "            MALL MENU\n";
@@ -652,7 +649,7 @@ void showMenu() {
     cout << "12. Load shops from CSV (shops.csv)\n";
     cout << "13. Load items from CSV (items.csv)\n";
     cout << "14. Load staff from CSV (staff.csv)\n";
-    cout << "15. SEARCH + route to shop (KMP + Dijkstra)\n";
+    cout << "15. SEARCH + route to shop (KMP)\n";
     cout << " 0. Exit\n";
     cout << "====================================\n";
     cout << "Enter choice: ";
@@ -661,83 +658,36 @@ void showMenu() {
 void mallSystem() {
     srand(time(NULL));
     int choice;
-
     while (true) {
         showMenu();
         cin >> choice;
 
         switch (choice) {
-
-        case 1:
-            showAllShops();
-            break;
-
-        case 2:
-            addShop();
-            break;
-
-        case 3:
-            addItemToShop();
-            break;
-
-        case 4:
-            simulateCustomer();
-            break;
-
-        case 5:
-            sortShopsByRevenue();
-            break;
-
-        case 6:
-            parkingMenu();
-            break;
-
-        case 7:
-            deleteStaff();
-            break;
-
-        case 8:
-            addStaff();
-            break;
-
-        case 9:
-            showStaff();
-            break;
-
-        case 10:
-            scheduleCleaner();
-            break;
-
-        case 11:
-            showCleanLog();
-            break;
-
-        case 12:
-            loadShopsCSV("shops.csv");
-            break;
-
-        case 13:
-            loadItemsCSV("items.csv");
-            break;
-
-        case 14:
-            loadStaffCSV("staff.csv");
-            break;
-
-        case 15: searchItemsOnly(); break;
-
-        case 0:
-            cout << "Exiting Mall Simulator...\n";
-            return;
-
-        default:
-            cout << "Invalid choice! Try again.\n";
+            case 1: showAllShops(); break;
+            case 2: addShop(); break;
+            case 3: addItemToShop(); break;
+            case 4: simulateCustomer(); break;
+            case 5: sortShopsByRevenue(); break;
+            case 6: parkingMenu(); break;
+            case 7: deleteStaff(); break;
+            case 8: addStaff(); break;
+            case 9: showStaff(); break;
+            case 10: scheduleCleaner(); break;
+            case 11: showCleanLog(); break;
+            case 12: loadShopsCSV("shops.csv"); break;
+            case 13: loadItemsCSV("items.csv"); break;
+            case 14: loadStaffCSV("staff.csv"); break;
+            case 15: searchItemsOnly(); break;
+            case 0:
+                cout << "Exiting Mall Simulator...\n";
+                return;
+            default:
+                cout << "Invalid choice!\n";
         }
     }
-
-    
 }
-int main()
-{
+
+int main() {
     mallSystem();
+    return 0;
 }
