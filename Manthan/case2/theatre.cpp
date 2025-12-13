@@ -29,11 +29,11 @@ using namespace std;
 #define THEATRE_INF 999999
 
 // -------------------- SIMPLE CSV & UTIL HELPERS --------------------
-int toInt(const string &s) {
+int theatreToInt(const string &s) {
     try { return stoi(s); } catch(...) { return 0; }
 }
 
-int splitCSV(const string &line, string out[], int maxCols) {
+int theatreSplitCSV(const string &line, string out[], int maxCols) {
     int col = 0;
     string cur = "";
     bool inQuotes = false;
@@ -575,7 +575,7 @@ void theatreLoadMoviesCSV(const string &fn)
         if (line.size() < 2)
             continue;
         string cols[8];
-        int n = splitCSV(line, cols, 8);
+        int n = theatreSplitCSV(line, cols, 8);
         if (n < 6)
             continue;
         if (theatreMoviesAtCapacity())
@@ -583,10 +583,10 @@ void theatreLoadMoviesCSV(const string &fn)
             cout << "Overflow: movies capacity reached!\n";
             break;
         }
-        int id = toInt(cols[0]);
+        int id = theatreToInt(cols[0]);
         string title = cols[1];
         string genre = cols[2];
-        int dur = toInt(cols[3]);
+        int dur = theatreToInt(cols[3]);
         double rating = atof(cols[4].c_str());
         string lang = cols[5];
         string date = (n >= 7 ? cols[6] : "1970-01-01");
@@ -614,7 +614,7 @@ void theatreLoadAuditoriumsCSV(const string &fn)
         if (line.size() < 2)
             continue;
         string cols[8];
-        int n = splitCSV(line, cols, 8);
+        int n = theatreSplitCSV(line, cols, 8);
         if (n < 4)
             continue;
         if (theatreAudCount >= THEATRE_MAX_AUDITORIUMS)
@@ -622,11 +622,11 @@ void theatreLoadAuditoriumsCSV(const string &fn)
             cout << "Overflow: auditoriums max reached!\n";
             break;
         }
-        int id = toInt(cols[0]);
+        int id = theatreToInt(cols[0]);
         auditoriums[theatreAudCount].aud_id = id;
         auditoriums[theatreAudCount].name = cols[1];
-        int r = min(toInt(cols[2]), THEATRE_MAX_SEAT_ROWS);
-        int c = min(toInt(cols[3]), THEATRE_MAX_SEAT_COLS);
+        int r = min(theatreToInt(cols[2]), THEATRE_MAX_SEAT_ROWS);
+        int c = min(theatreToInt(cols[3]), THEATRE_MAX_SEAT_COLS);
         auditoriums[theatreAudCount].rows = r;
         auditoriums[theatreAudCount].cols = c;
         auditoriums[theatreAudCount].total_seats = r * c;
@@ -660,7 +660,7 @@ void theatreLoadShowsCSV(const string &fn)
         if (line.size() < 2)
             continue;
         string cols[8];
-        int n = splitCSV(line, cols, 8);
+        int n = theatreSplitCSV(line, cols, 8);
         if (n < 6)
             continue;
         if (theatreShowCount >= THEATRE_MAX_SHOWS)
@@ -668,12 +668,12 @@ void theatreLoadShowsCSV(const string &fn)
             cout << "Overflow: shows max reached!\n";
             break;
         }
-        shows[theatreShowCount].show_id = toInt(cols[0]);
-        shows[theatreShowCount].movie_id = toInt(cols[1]);
-        shows[theatreShowCount].aud_id = toInt(cols[2]);
+        shows[theatreShowCount].show_id = theatreToInt(cols[0]);
+        shows[theatreShowCount].movie_id = theatreToInt(cols[1]);
+        shows[theatreShowCount].aud_id = theatreToInt(cols[2]);
         shows[theatreShowCount].start_datetime = cols[3];
         shows[theatreShowCount].end_datetime = cols[4];
-        shows[theatreShowCount].base_price = toInt(cols[5]);
+        shows[theatreShowCount].base_price = theatreToInt(cols[5]);
         shows[theatreShowCount].tickets_sold = 0;
         shows[theatreShowCount].revenue = 0;
         theatreShowCount++;
@@ -699,20 +699,20 @@ void theatreLoadBookingsCSV(const string &fn)
         if (line.size() < 2)
             continue;
         string cols[12];
-        int n = splitCSV(line, cols, 12);
+        int n = theatreSplitCSV(line, cols, 12);
         if (n < 7)
             continue;
         TheatreBooking b;
-        b.booking_id = toInt(cols[0]);
-        b.show_id = toInt(cols[1]);
+        b.booking_id = theatreToInt(cols[0]);
+        b.show_id = theatreToInt(cols[1]);
         strncpy(b.seat_label, cols[2].c_str(), sizeof(b.seat_label) - 1);
         b.seat_label[sizeof(b.seat_label) - 1] = 0;
         strncpy(b.customer_name, cols[3].c_str(), sizeof(b.customer_name) - 1);
         b.customer_name[sizeof(b.customer_name) - 1] = 0;
         strncpy(b.customer_phone, cols[4].c_str(), sizeof(b.customer_phone) - 1);
         b.customer_phone[sizeof(b.customer_phone) - 1] = 0;
-        b.price_paid = toInt(cols[5]);
-        b.status = toInt(cols[6]);
+        b.price_paid = theatreToInt(cols[5]);
+        b.status = theatreToInt(cols[6]);
         if (n >= 8)
             strncpy(b.booking_datetime, cols[7].c_str(), sizeof(b.booking_datetime) - 1);
         else
@@ -763,7 +763,7 @@ void theatreLoadStaffCSV(const string &fn)
         if (line.size() < 2)
             continue;
         string cols[6];
-        int n = splitCSV(line, cols, 6);
+        int n = theatreSplitCSV(line, cols, 6);
         if (n < 4)
             continue;
         if (theatreStaffCount >= THEATRE_MAX_STAFF)
@@ -771,10 +771,10 @@ void theatreLoadStaffCSV(const string &fn)
             cout << "Overflow: theatre staff max reached!\n";
             break;
         }
-        theatreStaff[theatreStaffCount].id = toInt(cols[0]);
+        theatreStaff[theatreStaffCount].id = theatreToInt(cols[0]);
         theatreStaff[theatreStaffCount].name = cols[1];
         theatreStaff[theatreStaffCount].role = cols[2];
-        theatreStaff[theatreStaffCount].salary = toInt(cols[3]);
+        theatreStaff[theatreStaffCount].salary = theatreToInt(cols[3]);
         theatreStaffCount++;
         loaded++;
     }
@@ -814,7 +814,7 @@ void theatreAddMovie()
     getline(cin, lang);
     cout << "Enter release date (YYYY-MM-DD): ";
     getline(cin, date);
-    TheatreMovie *m = theatreCreateMovieNode(id, title, genre, toInt(durS), atof(ratingS.c_str()), lang, date);
+    TheatreMovie *m = theatreCreateMovieNode(id, title, genre, theatreToInt(durS), atof(ratingS.c_str()), lang, date);
     theatreMovieRoot = theatreInsertMovieNode(theatreMovieRoot, m);
     cout << "Added movie id " << id << "\n";
 }
@@ -889,8 +889,8 @@ void theatreAddAuditorium()
     getline(cin, rS);
     cout << "Enter cols: ";
     getline(cin, cS);
-    int r = min(toInt(rS), THEATRE_MAX_SEAT_ROWS);
-    int c = min(toInt(cS), THEATRE_MAX_SEAT_COLS);
+    int r = min(theatreToInt(rS), THEATRE_MAX_SEAT_ROWS);
+    int c = min(theatreToInt(cS), THEATRE_MAX_SEAT_COLS);
     auditoriums[theatreAudCount].aud_id = id;
     auditoriums[theatreAudCount].name = name;
     auditoriums[theatreAudCount].rows = r;
@@ -1127,9 +1127,9 @@ void theatreAddShow()
     cout << "Enter base price: ";
     string pS;
     getline(cin, pS);
-    sh.movie_id = toInt(mS);
-    sh.aud_id = toInt(aS);
-    sh.base_price = toInt(pS);
+    sh.movie_id = theatreToInt(mS);
+    sh.aud_id = theatreToInt(aS);
+    sh.base_price = theatreToInt(pS);
     sh.tickets_sold = 0;
     sh.revenue = 0;
     // conflict check
@@ -1169,11 +1169,11 @@ void theatreAddSnack()
     cout << "Enter price: ";
     string p;
     getline(cin, p);
-    s.price = toInt(p);
+    s.price = theatreToInt(p);
     cout << "Enter prep time (minutes): ";
     string t;
     getline(cin, t);
-    s.prep_time = toInt(t);
+    s.prep_time = theatreToInt(t);
     theatreSnackCount++;
     cout << "Snack added id " << s.snack_id << "\n";
 }
@@ -1267,7 +1267,7 @@ void theatreAddStaff()
     cout << "Enter salary: ";
     string tmp;
     getline(cin, tmp);
-    s.salary = toInt(tmp);
+    s.salary = theatreToInt(tmp);
     theatreStaffCount++;
     cout << "Staff added id " << s.id << "\n";
 }
@@ -1293,14 +1293,14 @@ void theatreAddMaint()
     cout << "Enter auditorium id: ";
     string t;
     getline(cin, t);
-    m.aud_id = toInt(t);
+    m.aud_id = theatreToInt(t);
     cout << "Enter date (YYYY-MM-DD): ";
     getline(cin, m.date);
     cout << "Enter task: ";
     getline(cin, m.task);
     cout << "Enter staff id: ";
     getline(cin, t);
-    m.staff_id = toInt(t);
+    m.staff_id = theatreToInt(t);
     m.status = 0;
     theatreMaintCount++;
     cout << "Maintenance logged id " << m.id << "\n";
