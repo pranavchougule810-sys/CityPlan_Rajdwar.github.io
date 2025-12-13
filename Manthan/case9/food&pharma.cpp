@@ -1,8 +1,3 @@
-// =========================================================
-// FOOD + PHARMACY DELIVERY MODULE (FINAL)
-// Vendors, Items, Orders + DIJKSTRA + ORDER COMPLETION
-// =========================================================
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -61,7 +56,7 @@ int graph[FP_MAX_NODES][FP_MAX_NODES];
 int dist[FP_MAX_NODES], visited[FP_MAX_NODES];
 
 // ---------------- CSV HELPER ----------------
-int splitCSV(const string &line, string out[], int max) {
+int foodPharmaSplitCSV(const string &line, string out[], int max) {
     stringstream ss(line); string cell; int i = 0;
     while (getline(ss, cell, ',') && i < max) out[i++] = cell;
     return i;
@@ -80,7 +75,7 @@ bool foodPharmaLoadGraph(const string &file) {
     string line, c[4];
     getline(fin, line);
     while (getline(fin, line)) {
-        splitCSV(line, c, 4);
+        foodPharmaSplitCSV(line, c, 4);
         int u = stoi(c[0]), v = stoi(c[1]), w = stoi(c[2]);
         graph[u][v] = graph[v][u] = w;
     }
@@ -95,7 +90,7 @@ bool foodPharmaLoadOrders(const string &file) {
     getline(fin, line);
 
     while (getline(fin, line)) {
-        splitCSV(line, c, 6);
+        foodPharmaSplitCSV(line, c, 6);
         orders[orderCount].id = stoi(c[0]);
         strncpy(orders[orderCount].customer, c[1].c_str(), 49);
         strncpy(orders[orderCount].address, c[2].c_str(), 99);
@@ -116,7 +111,7 @@ bool foodPharmaLoadOrderItems(const string &file) {
     getline(fin, line);
 
     while (getline(fin, line)) {
-        splitCSV(line, c, 4);
+        foodPharmaSplitCSV(line, c, 4);
         orderItems[orderItemCount].orderId = stoi(c[0]);
         orderItems[orderItemCount].itemId = stoi(c[1]);
         orderItems[orderItemCount].qty = stoi(c[2]);
@@ -160,7 +155,7 @@ bool foodPharmaLoadVendors(const string &file) {
     getline(fin, line);
 
     while (getline(fin, line)) {
-        splitCSV(line, c, 5);
+        foodPharmaSplitCSV(line, c, 5);
         vendors[vendorCount].id = stoi(c[0]);
         strncpy(vendors[vendorCount].name, c[1].c_str(), 49);
         strncpy(vendors[vendorCount].type, c[2].c_str(), 9);
@@ -179,7 +174,7 @@ bool foodPharmaLoadItems(const string &file) {
     getline(fin, line);
 
     while (getline(fin, line)) {
-        splitCSV(line, c, 6);
+        foodPharmaSplitCSV(line, c, 6);
         items[itemCount].id = stoi(c[0]);
         items[itemCount].vendorId = stoi(c[1]);
         strncpy(items[itemCount].name, c[2].c_str(), 49);
@@ -235,7 +230,7 @@ void foodPharmaShowItems() {
     for (int i = 0; i < itemCount; i++)
         cout << items[i].id << " | Vendor " << items[i].vendorId
              << " | " << items[i].name
-             << " | ₹" << items[i].price << "\n";
+             << " | Rs" << items[i].price << "\n";
 }
 
 // ---------------- MANUAL ADD ----------------
