@@ -1,40 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manthan Raykar | City Design Team</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manthan Raykar | City Design Team</title>
 
+  <!-- SAME INLINE STYLE AS AYUSH (UNCHANGED) -->
+  <!-- DO NOT MODIFY FOR SAFETY -->
+  <style>
+    /* ===================== GLOBAL THEME  ===================== */
+    :root{
+      --bg-top:#0f1730;--bg-mid:#2b1b73;--bg-bottom:#a24be0;
+      --card-dark-1:rgba(20,28,38,.96);--card-dark-2:rgba(17,24,34,.94);
+      --muted:#94a3b8;--text:#eaf0fb;
+      --accent-yellow:#facc15;--accent-orange:#f97316;
+      --sdg-yellow-bg:rgba(250,204,21,.06);
+      --sdg-yellow-border:rgba(250,204,21,.95);
+      --pill-blue:#7cc6ff;--card-radius:16px;
+      --container-width:1150px;
+      font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;
+    }
+    html,body{margin:0;height:100%;color:var(--text);
+      background:
+      radial-gradient(1200px 300px at 10% 10%, rgba(162,75,224,.12), transparent 8%),
+      linear-gradient(180deg,var(--bg-top) 0%,#21123d 22%,var(--bg-mid) 50%,var(--bg-bottom) 100%);
+    }
+    .wrap{max-width:var(--container-width);margin:32px auto;padding:0 20px}
+    nav{position:sticky;top:0;z-index:60;background:rgba(8,12,18,.65);backdrop-filter:blur(6px)}
+    .nav-inner{max-width:var(--container-width);margin:auto;padding:12px 20px;display:flex;justify-content:space-between}
+    .nav-logo{font-weight:900}.nav-logo span{color:var(--accent-orange)}
+    nav ul{list-style:none;display:flex;gap:18px;padding:0;margin:0}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:20px;font-weight:700}
+    nav a.active{color:var(--text);background:rgba(255,255,255,.04)}
+    header.page-header{margin:28px 0}
+    .portfolio-info{background:rgba(255,255,255,.02);border-radius:18px;padding:22px}
+    .info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .section-title{text-align:center;margin:48px 0}
+    .structure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    @media(max-width:1100px){.structure-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){.structure-grid{grid-template-columns:1fr}}
+    .pr-card{background:linear-gradient(180deg,var(--card-dark-1),var(--card-dark-2));
+      border-radius:var(--card-radius);padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+    .pr-card-head{display:flex;gap:14px}
+    .pr-emoji{font-size:1.4rem}
+    .pr-title{margin:0;font-size:1.05rem;font-weight:800}
+    .pr-sdg{margin-top:8px;background:var(--sdg-yellow-bg);
+      border:1px solid var(--sdg-yellow-border);padding:8px 12px;border-radius:10px}
+    .pr-body ul{padding-left:18px;margin:0;display:flex;flex-direction:column;gap:8px}
+    .algo-pill{display:inline-block;margin-top:6px;
+      background:rgba(124,198,255,.12);padding:8px 12px;border-radius:10px;font-weight:700}
+    .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:40px 0}
+    @media(max-width:1100px){.case-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:720px){.case-grid{grid-template-columns:1fr}}
+    .case-card{display:flex;gap:16px;align-items:center;
+      padding:20px;background:rgba(12,18,28,.96);
+      border-radius:14px;text-decoration:none;color:var(--text)}
+    footer{text-align:center;color:var(--muted);margin:40px 0}
+  </style>
+</head>
+
+<body>
 <nav>
-    <div class="nav-inner">
-        <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="project.html">Project</a></li>
-            <li><a href="kushvendra.html">Kushvendra</a></li>
-            <li><a href="manthan.html" class="active">Manthan</a></li>
-            <li><a href="pranav.html">Pranav</a></li>
-            <li><a href="ayush.html">Ayush</a></li>
-        </ul>
-    </div>
+  <div class="nav-inner">
+    <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="project.html">Project</a></li>
+      <li><a href="kushvendra.html">Kushvendra</a></li>
+      <li><a href="manthan.html" class="active">Manthan</a></li>
+      <li><a href="pranav.html">Pranav</a></li>
+      <li><a href="ayush.html">Ayush</a></li>
+    </ul>
+  </div>
 </nav>
 
-<main class="container">
+<div class="wrap">
 
 <header class="page-header">
-    <h1>Hello, I am Manthan Raykar</h1>
-    <p>
-        This page presents my contribution to the DAA project, analyzing urban
-        infrastructure and its alignment with Sustainable Development Goals.
-    </p>
+  <h1>Hello, I am Manthan Raykar</h1>
+  <p>DAA-based sustainable city planning — West City Zone</p>
 
-    <div class="portfolio-info-box">
-        <h2>Portfolio Information</h2>
-        <div class="info-grid">
-            <div class="info-item"><strong>Name</strong> Manthan Raykar</div>
+  <div class="portfolio-info">
+    <div class="info-grid">
+      <div><strong>Name:</strong> Manthan Raykar</div>
+      <div><strong>Course:</strong> DAA</div>
+      <div><strong>Course Code:</strong> 24ECSC205</div>
+      <div><strong>University:</strong> KLE Technological University</div>
+    </div>
+    <p style="margin-top:16px">
+      <strong>My Contribution:</strong>  
+      Designed and implemented algorithm-driven systems for western city infrastructure,
+      mapping business logic to SDGs with efficient data structures.
+    </p>
+  </div>
+</header>
+
+<section class="section-title">
+  <h2>Urban Business Systems — West Zone</h2>
+  <p>Algorithm-backed infrastructure supporting SDG-aligned city growth</p>
+</section>
+
+<section class="structure-grid">
+  <!-- 1 to 10 business cards (same pattern as Ayush) -->
+  <!-- MALL -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🏬</div>
+      <div><h3 class="pr-title">Mall Management</h3>
+      <div class="pr-sdg">SDGs 11, 8</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Centralized commercial hub</li>
+      <li>Formal employment & retail flow</li>
+      <li>Traffic & waste optimization</li>
+    </ul></div>
+    <span class="algo-pill">BST • QuickSort • BFS • KMP</span>
+  </article>
+
+  <!-- THEATRE -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🎬</div>
+      <div><h3 class="pr-title">Movie Theatre</h3>
+      <div class="pr-sdg">SDGs 11, 8, 4</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Organized entertainment</li>
+      <li>Employment generation</li>
+      <li>Cultural inclusion</li>
+    </ul></div>
+    <span class="algo-pill">Queue • Scheduling</span>
+  </article>
+
+  <!-- HOTEL -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🏨</div>
+      <div><h3 class="pr-title">Hotel Management</h3>
+      <div class="pr-sdg">SDGs 11, 8, 4</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Tourism support</li>
+      <li>Planned accommodation</li>
+      <li>Service sector jobs</li>
+    </ul></div>
+    <span class="algo-pill">Hash Map • Sorting</span>
+  </article>
+
+  <!-- HOSPITAL -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🏥</div>
+      <div><h3 class="pr-title">Hospital System</h3>
+      <div class="pr-sdg">SDGs 11, 3, 8</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Healthcare access</li>
+      <li>Emergency readiness</li>
+      <li>Medical employment</li>
+    </ul></div>
+    <span class="algo-pill">BFS • Scheduling</span>
+  </article>
+
+  <!-- COMMUNITY -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🏛️</div>
+      <div><h3 class="pr-title">Community Centre</h3>
+      <div class="pr-sdg">SDGs 11, 4, 8, 3</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Skill development</li>
+      <li>Social cohesion</li>
+      <li>Local empowerment</li>
+    </ul></div>
+    <span class="algo-pill">Graph • Allocation</span>
+  </article>
+
+  <!-- ATM -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🏧</div>
+      <div><h3 class="pr-title">ATM Network</h3>
+      <div class="pr-sdg">SDGs 9, 11</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Decentralized banking</li>
+      <li>Reduced congestion</li>
+      <li>Economic access</li>
+    </ul></div>
+    <span class="algo-pill">Binary Search</span>
+  </article>
+
+  <!-- GROCERY -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🛒</div>
+      <div><h3 class="pr-title">Grocery Store</h3>
+      <div class="pr-sdg">SDGs 2, 11</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Food security</li>
+      <li>Local commerce</li>
+      <li>Daily essentials</li>
+    </ul></div>
+    <span class="algo-pill">Inventory Tracking</span>
+  </article>
+
+  <!-- PHARMACY -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">💊</div>
+      <div><h3 class="pr-title">Pharmacy</h3>
+      <div class="pr-sdg">SDGs 3, 11</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Medicine access</li>
+      <li>Emergency support</li>
+      <li>Health resilience</li>
+    </ul></div>
+    <span class="algo-pill">Search • Validation</span>
+  </article>
+
+  <!-- FOOD & PHARMA DELIVERY -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">🚚</div>
+      <div><h3 class="pr-title">Food & Pharma Delivery</h3>
+      <div class="pr-sdg">SDGs 8, 9, 11</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Last-mile access</li>
+      <li>Reduced crowding</li>
+      <li>Logistics employment</li>
+    </ul></div>
+    <span class="algo-pill">Dijkstra • Routing</span>
+  </article>
+
+  <!-- SPA LAST -->
+  <article class="pr-card">
+    <div class="pr-card-head"><div class="pr-emoji">💆</div>
+      <div><h3 class="pr-title">Spa & Wellness Centre</h3>
+      <div class="pr-sdg">SDGs 3, 8, 11</div></div>
+    </div>
+    <div class="pr-body"><ul>
+      <li>Mental & physical wellness</li>
+      <li>Preventive healthcare</li>
+      <li>Wellness employment</li>
+    </ul></div>
+    <span class="algo-pill">Scheduling • Resource Allocation</span>
+  </article>
+</section>
+
+<!-- CASE STUDIES (GITHUB LINKS) -->
+<section class="case-grid">
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case1-mall">📁 Case 1 – Mall</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case2-theatre">📁 Case 2 – Theatre</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case3-hotel">📁 Case 3 – Hotel</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case4-hospital">📁 Case 4 – Hospital</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case5-community%20centre">📁 Case 5 – Community</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case6-atm">📁 Case 6 – ATM</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case7-grocerylink">📁 Case 7 – Grocery</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case8-pharmacylink">📁 Case 8 – Pharmacy</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case9-foodandpharma%20delivery%20link">📁 Case 9 – Delivery</a>
+  <a class="case-card" target="_blank" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Manthan/case10-spalink">📁 Case 10 – Spa</a>
+</section>
+
+<footer>
+  College Project Portfolio • SDG-11 • Manthan Raykar
+</footer>
+
+</div>
+</body>
+</html>            <div class="info-item"><strong>Name</strong> Manthan Raykar</div>
             <div class="info-item"><strong>Course</strong> DAA</div>
             <div class="info-item"><strong>Course Code</strong> 24ECSC205</div>
             <div class="info-item"><strong>University</strong> KLE Technological University</div>
