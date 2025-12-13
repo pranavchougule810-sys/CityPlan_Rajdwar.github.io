@@ -16,7 +16,7 @@ using namespace std;
 #define HOSPITAL_INF 999999
 
 // ---------- Helper utilities (simple) ----------
-int toInt(const string &s)
+int hospitalToInt(const string &s)
 {
     if (s.empty()) return 0;
     try { return stoi(s); } catch (...) { return 0; }
@@ -24,7 +24,7 @@ int toInt(const string &s)
 
 // Very simple CSV splitter
 // Handles quoted fields with commas (basic)
-int splitCSV(const string &line, string out[], int maxCols)
+int hospitalSplitCSV(const string &line, string out[], int maxCols)
 {
     int col = 0;
     string cur;
@@ -243,18 +243,18 @@ void hospitalLoadPatientsCSV(const string &fn)
     {
         if (line.size() < 2) continue;
         string cols[8];
-        int n = splitCSV(line, cols, 8);
+        int n =hospitalSplitCSV(line, cols, 8);
         if (n < 2) continue;
         if (hospitalPatientCount >= HOSPITAL_MAX_PATIENTS) break;
         HospitalPatient p;
-        p.patient_id = toInt(cols[0]);
+        p.patient_id = hospitalToInt(cols[0]);
         if (p.patient_id == 0) p.patient_id = ++hospitalNextPatientID;
         strncpy(p.name, cols[1].c_str(), sizeof(p.name) - 1); p.name[sizeof(p.name)-1]=0;
-        p.age = (n>=3?toInt(cols[2]):0);
+        p.age = (n>=3? hospitalToInt(cols[2]):0);
         strncpy(p.gender,(n>=4?cols[3].c_str():""),sizeof(p.gender)-1);
         strncpy(p.contact,(n>=5?cols[4].c_str():""),sizeof(p.contact)-1);
         strncpy(p.address,(n>=6?cols[5].c_str():""),sizeof(p.address)-1);
-        p.status = (n>=7?toInt(cols[6]):0);
+        p.status = (n>=7? hospitalToInt(cols[6]):0);
         strncpy(p.notes,(n>=8?cols[7].c_str():""),sizeof(p.notes)-1);
         hospitalPatients[hospitalPatientCount] = p;
         hospitalPatientCount++;
@@ -275,16 +275,16 @@ void hospitalLoadStaffCSV(const string &fn)
     {
         if (line.size() < 2) continue;
         string cols[8];
-        int n = splitCSV(line, cols, 8);
+        int n = hospitalSplitCSV(line, cols, 8);
         if (n < 2) continue;
         if (hospitalStaffCount >= HOSPITAL_MAX_STAFF) break;
         HospitalStaff s;
-        s.id = toInt(cols[0]); if (s.id == 0) s.id = ++hospitalNextStaffID;
+        s.id =  hospitalToInt(cols[0]); if (s.id == 0) s.id = ++hospitalNextStaffID;
         strncpy(s.name, cols[1].c_str(), sizeof(s.name)-1); s.name[sizeof(s.name)-1]=0;
         strncpy(s.role, (n>=3?cols[2].c_str():""), sizeof(s.role)-1);
         strncpy(s.department, (n>=4?cols[3].c_str():""), sizeof(s.department)-1);
-        s.shift = (n>=5?toInt(cols[4]):0);
-        s.salary = (n>=6?toInt(cols[5]):0);
+        s.shift = (n>=5? hospitalToInt(cols[4]):0);
+        s.salary = (n>=6? hospitalToInt(cols[5]):0);
         strncpy(s.contact, (n>=7?cols[6].c_str():""), sizeof(s.contact)-1);
         strncpy(s.specialty, (n>=8?cols[7].c_str():""), sizeof(s.specialty)-1);
         hospitalStaff[hospitalStaffCount++] = s;
@@ -304,13 +304,13 @@ void hospitalLoadRoomsCSV(const string &fn)
     {
         if (line.size() < 2) continue;
         string cols[6];
-        int n = splitCSV(line, cols, 6);
+        int n = hospitalSplitCSV(line, cols, 6);
         if (n < 3) continue;
         if (hospitalRoomCount >= HOSPITAL_MAX_ROOMS) break;
         HospitalRoom r;
-        r.roomID = toInt(cols[0]);
+        r.roomID =  hospitalToInt(cols[0]);
         strncpy(r.type, cols[1].c_str(), sizeof(r.type)-1); r.type[sizeof(r.type)-1]=0;
-        r.capacity = toInt(cols[2]);
+        r.capacity =  hospitalToInt(cols[2]);
         r.occupied = 0;
         r.bedStartIdx = hospitalBedCount;
         for (int b = 0; b < r.capacity && hospitalBedCount < HOSPITAL_MAX_BEDS; ++b)
@@ -341,22 +341,22 @@ void hospitalLoadAppointmentsCSV(const string &fn)
     {
         if (line.size() < 2) continue;
         string cols[20];
-        int n = splitCSV(line, cols, 20);
+        int n = hospitalSplitCSV(line, cols, 20);
         if (n < 6) continue;
         if (hospitalApptCount >= HOSPITAL_MAX_APPOINTS) break;
         HospitalAppointment a;
-        a.apptID = toInt(cols[0]); if (a.apptID == 0) a.apptID = ++hospitalNextApptID;
-        a.type = toInt(cols[1]);
-        a.patientID = toInt(cols[2]);
-        a.doctorID = toInt(cols[3]);
+        a.apptID = hospitalToInt(cols[0]); if (a.apptID == 0) a.apptID = ++hospitalNextApptID;
+        a.type =  hospitalToInt(cols[1]);
+        a.patientID =  hospitalToInt(cols[2]);
+        a.doctorID =  hospitalToInt(cols[3]);
         strncpy(a.date, cols[4].c_str(), sizeof(a.date)-1); a.date[sizeof(a.date)-1]=0;
         strncpy(a.time, cols[5].c_str(), sizeof(a.time)-1); a.time[sizeof(a.time)-1]=0;
-        a.duration = (n>=7?toInt(cols[6]):15);
-        a.status = (n>=8?toInt(cols[7]):0);
+        a.duration = (n>=7? hospitalToInt(cols[6]):15);
+        a.status = (n>=8? hospitalToInt(cols[7]):0);
         if (n >= 9) strncpy(a.remarks, cols[8].c_str(), sizeof(a.remarks)-1); else strncpy(a.remarks,"",sizeof(a.remarks)-1);
         // surgery fields
-        a.OTroomID = (n>=10?toInt(cols[9]):-1);
-        a.durationMins = (n>=11?toInt(cols[10]):0);
+        a.OTroomID = (n>=10? hospitalToInt(cols[9]):-1);
+        a.durationMins = (n>=11? hospitalToInt(cols[10]):0);
         if (n >= 12) strncpy(a.anesthesiaType, cols[11].c_str(), sizeof(a.anesthesiaType)-1); else strncpy(a.anesthesiaType,"",sizeof(a.anesthesiaType)-1);
         // lab fields
         if (n >= 13) strncpy(a.testType, cols[12].c_str(), sizeof(a.testType)-1); else strncpy(a.testType,"",sizeof(a.testType)-1);
@@ -381,10 +381,10 @@ void hospitalLoadLabsCSV(const string &fn)
     {
         if (line.size() < 2) continue;
         string cols[8];
-        int n = splitCSV(line, cols, 8);
+        int n = hospitalSplitCSV(line, cols, 8);
         if (n < 3) continue;
-        int apptID = toInt(cols[0]);
-        int pid = toInt(cols[1]);
+        int apptID =  hospitalToInt(cols[0]);
+        int pid =  hospitalToInt(cols[1]);
         string testType = (n>=3?cols[2]:"");
         string resDate = (n>=4?cols[3]:"");
         string resSummary = (n>=5?cols[4]:"");
@@ -443,7 +443,7 @@ void hospitalAddPatient()
     strncpy(p.name, tmp.c_str(), sizeof(p.name) - 1); p.name[sizeof(p.name)-1]=0;
     cout << "Enter age: ";
     getline(cin, tmp);
-    p.age = toInt(tmp);
+    p.age =  hospitalToInt(tmp);
     cout << "Enter gender: ";
     getline(cin, tmp);
     strncpy(p.gender, tmp.c_str(), sizeof(p.gender) - 1); p.gender[sizeof(p.gender)-1]=0;
@@ -538,8 +538,8 @@ void hospitalAddStaffInteractive()
     cout << "Enter department: "; getline(cin, tmp);
     strncpy(s.department, tmp.c_str(), sizeof(s.department)-1); s.department[sizeof(s.department)-1]=0;
     cout << "Enter shift (0 none,1 morning,2 evening,3 night): "; getline(cin, tmp);
-    s.shift = toInt(tmp);
-    cout << "Enter salary: "; getline(cin, tmp); s.salary = toInt(tmp);
+    s.shift =  hospitalToInt(tmp);
+    cout << "Enter salary: "; getline(cin, tmp); s.salary =  hospitalToInt(tmp);
     cout << "Enter contact: "; getline(cin, tmp); strncpy(s.contact, tmp.c_str(), sizeof(s.contact)-1);
     cout << "Enter specialty (if doctor): "; getline(cin, tmp); strncpy(s.specialty, tmp.c_str(), sizeof(s.specialty)-1);
     hospitalStaff[hospitalStaffCount++] = s;
@@ -599,21 +599,21 @@ void hospitalBookAppointmentInteractive()
     int t;
     string tmp;
     getline(cin, tmp);
-    t = toInt(tmp);
+    t =  hospitalToInt(tmp);
     if (t < 1 || t > 3) { cout << "Invalid type.\n"; return; }
     a.type = t;
-    cout << "Enter patient ID: "; getline(cin, tmp); a.patientID = toInt(tmp);
-    cout << "Enter doctor ID: "; getline(cin, tmp); a.doctorID = toInt(tmp);
+    cout << "Enter patient ID: "; getline(cin, tmp); a.patientID =  hospitalToInt(tmp);
+    cout << "Enter doctor ID: "; getline(cin, tmp); a.doctorID =  hospitalToInt(tmp);
     cout << "Enter date (YYYY-MM-DD): "; getline(cin, tmp); strncpy(a.date, tmp.c_str(), sizeof(a.date)-1); a.date[sizeof(a.date)-1]=0;
     cout << "Enter time (HH:MM): "; getline(cin, tmp); strncpy(a.time, tmp.c_str(), sizeof(a.time)-1); a.time[sizeof(a.time)-1]=0;
-    cout << "Enter duration minutes (typical): "; getline(cin, tmp); a.duration = toInt(tmp);
+    cout << "Enter duration minutes (typical): "; getline(cin, tmp); a.duration =  hospitalToInt(tmp);
     a.status = 0;
     strncpy(a.remarks, "", sizeof(a.remarks)-1);
     // If surgery, collect optional surgery details
     if (a.type == 2)
     {
-        cout << "Enter OT room ID (optional, -1 if none): "; getline(cin, tmp); a.OTroomID = toInt(tmp);
-        cout << "Enter expected surgery duration (minutes): "; getline(cin, tmp); a.durationMins = toInt(tmp);
+        cout << "Enter OT room ID (optional, -1 if none): "; getline(cin, tmp); a.OTroomID =  hospitalToInt(tmp);
+        cout << "Enter expected surgery duration (minutes): "; getline(cin, tmp); a.durationMins =  hospitalToInt(tmp);
         cout << "Enter anesthesia type: "; getline(cin, tmp); strncpy(a.anesthesiaType, tmp.c_str(), sizeof(a.anesthesiaType)-1); a.anesthesiaType[sizeof(a.anesthesiaType)-1]=0;
     }
     else
