@@ -7,9 +7,9 @@
 using namespace std;
 
 /* EXTERN HELPERS (must exist in mega-project) */
-extern int splitCSV(const string &line, string out[], int maxcols);
-extern int toInt(const string &s);
-extern double toDouble(const string &s);
+static int grocery_splitCSV(const string &line, string out[], int maxcols);
+static int grocery_toInt(const string &s);
+static double grocery_toDouble(const string &s);
 
 /* LIMITS */
 #define GROCERY_MAX_ITEMS 2000
@@ -18,7 +18,7 @@ extern double toDouble(const string &s);
 #define GROCERY_MAX_ATTENDANCE 2000
 #define GROCERY_MAX_QUEUE 2000
 #define GROCERY_HASH_SIZE 4096
-int splitCSV(const string &line, string out[], int maxcols)
+int grocery_splitCSV(const string &line, string out[], int maxcols)
 {
     int cnt = 0;
     string cur = "";
@@ -38,12 +38,12 @@ int splitCSV(const string &line, string out[], int maxcols)
     return cnt;
 }
 
-int toInt(const string &s)
+int grocery_toInt(const string &s)
 {
     return atoi(s.c_str());
 }
 
-double toDouble(const string &s)
+double grocery_toDouble(const string &s)
 {
     return atof(s.c_str());
 }
@@ -227,7 +227,7 @@ void groceryLoadItemsCSV(const string &fn)
         if (line.empty())
             continue;
         string cols[9];
-        int n = splitCSV(line, cols, 9);
+        int n = grocery_splitCSV(line, cols, 9);
         if (n < 2)
             continue;
         if (groceryItemCount >= GROCERY_MAX_ITEMS)
@@ -236,14 +236,14 @@ void groceryLoadItemsCSV(const string &fn)
             break;
         }
         groceryItem &it = groceryItems[groceryItemCount];
-        it.item_id = toInt(cols[0]);
+        it.item_id = grocery_toInt(cols[0]);
         it.name = cols[1];
         it.category = (n > 2) ? cols[2] : "";
-        it.price = (n > 3) ? toDouble(cols[3]) : 0.0;
-        it.stock_qty = (n > 4) ? toInt(cols[4]) : 0;
-        it.reorder_level = (n > 5) ? toInt(cols[5]) : 0;
+        it.price = (n > 3) ? grocery_toDouble(cols[3]) : 0.0;
+        it.stock_qty = (n > 4) ? grocery_toInt(cols[4]) : 0;
+        it.reorder_level = (n > 5) ? grocery_toInt(cols[5]) : 0;
         it.supplier_name = (n > 6) ? cols[6] : "";
-        it.perishable = (n > 7) ? toInt(cols[7]) : 0;
+        it.perishable = (n > 7) ? grocery_toInt(cols[7]) : 0;
         it.expiry_date = (n > 8) ? cols[8] : "";
         if (it.item_id == 0 || it.name.empty())
             continue; // skip invalid
@@ -272,7 +272,7 @@ void groceryLoadStaffCSV(const string &fn)
         if (line.empty())
             continue;
         string cols[3];
-        int n = splitCSV(line, cols, 3);
+        int n = grocery_splitCSV(line, cols, 3);
         if (n < 1)
             continue;
         if (groceryStaffCount >= GROCERY_MAX_STAFF)
@@ -284,7 +284,7 @@ void groceryLoadStaffCSV(const string &fn)
         s.staff_id = groceryStaffCount + 1;
         s.name = cols[0];
         s.role = (n > 1) ? cols[1] : "";
-        s.salary = (n > 2) ? toDouble(cols[2]) : 0.0;
+        s.salary = (n > 2) ? grocery_toDouble(cols[2]) : 0.0;
         s.is_active = 1;
         if (s.name.empty())
             continue;
@@ -314,7 +314,7 @@ void groceryLoadTransactionsCSV(const string &fn)
         if (line.empty())
             continue;
         string cols[7];
-        int n = splitCSV(line, cols, 7);
+        int n = grocery_splitCSV(line, cols, 7);
         if (n < 2)
             continue;
         if (groceryTransactionCount >= GROCERY_MAX_TRANSACTIONS)
@@ -323,12 +323,12 @@ void groceryLoadTransactionsCSV(const string &fn)
             break;
         }
         groceryTransaction &t = groceryTransactions[groceryTransactionCount];
-        t.txn_id = toInt(cols[0]);
+        t.txn_id = grocery_toInt(cols[0]);
         t.datetime = (n > 1) ? cols[1] : "";
-        t.item_id = (n > 2) ? toInt(cols[2]) : 0;
-        t.qty = (n > 3) ? toInt(cols[3]) : 0;
-        t.unit_price = (n > 4) ? toDouble(cols[4]) : 0.0;
-        t.line_total = (n > 5) ? toDouble(cols[5]) : (t.qty * t.unit_price);
+        t.item_id = (n > 2) ? grocery_toInt(cols[2]) : 0;
+        t.qty = (n > 3) ? grocery_toInt(cols[3]) : 0;
+        t.unit_price = (n > 4) ? grocery_toDouble(cols[4]) : 0.0;
+        t.line_total = (n > 5) ? grocery_toDouble(cols[5]) : (t.qty * t.unit_price);
         t.cashier_name = (n > 6) ? cols[6] : "";
         if (t.txn_id == 0)
             continue;
@@ -366,7 +366,7 @@ void groceryLoadAttendanceCSV(const string &fn)
         if (line.empty())
             continue;
         string cols[6];
-        int n = splitCSV(line, cols, 6);
+        int n = grocery_splitCSV(line, cols, 6);
         if (n < 2)
             continue;
         if (groceryAttendanceCount >= GROCERY_MAX_ATTENDANCE)
@@ -375,12 +375,12 @@ void groceryLoadAttendanceCSV(const string &fn)
             break;
         }
         groceryAttendance &a = groceryAttendances[groceryAttendanceCount];
-        a.attendance_id = toInt(cols[0]);
-        a.staff_id = (n > 1) ? toInt(cols[1]) : 0;
+        a.attendance_id = grocery_toInt(cols[0]);
+        a.staff_id = (n > 1) ? grocery_toInt(cols[1]) : 0;
         a.date = (n > 2) ? cols[2] : "";
         a.clock_in = (n > 3) ? cols[3] : "";
         a.clock_out = (n > 4) ? cols[4] : "";
-        a.hours_worked = (n > 5) ? toDouble(cols[5]) : 0.0;
+        a.hours_worked = (n > 5) ? grocery_toDouble(cols[5]) : 0.0;
         if (a.attendance_id == 0)
             continue;
         groceryAttendanceCount++;
@@ -437,7 +437,7 @@ void groceryRestockItem()
     cout << "Enter item id OR name: ";
     string key;
     getline(cin, key);
-    int idx = toInt(key) ? groceryHashFind(toInt(key)) : groceryFindItemByName(key);
+    int idx = grocery_toInt(key) ? groceryHashFind(grocery_toInt(key)) : groceryFindItemByName(key);
     if (idx == -1)
     {
         cout << "Not found.\n";
@@ -730,7 +730,7 @@ void groceryStartSale()
         cout << "Item " << (i + 1) << " id OR name: ";
         string ident;
         getline(cin, ident);
-        int idx = toInt(ident) ? groceryHashFind(toInt(ident)) : groceryFindItemByName(ident);
+        int idx = grocery_toInt(ident) ? groceryHashFind(grocery_toInt(ident)) : groceryFindItemByName(ident);
         if (idx == -1)
         {
             cout << "Not found. Skip.\n";
@@ -935,10 +935,7 @@ void grocerySystem()
             {
             case 1:
             {
-                string fn;
-                cout << "Filename: ";
-                getline(cin, fn);
-                groceryLoadItemsCSV(fn);
+                groceryLoadItemsCSV("groceryitems.csv");
                 break;
             }
             case 2:
@@ -983,10 +980,7 @@ void grocerySystem()
             {
             case 1:
             {
-                string fn;
-                cout << "Filename: ";
-                getline(cin, fn);
-                groceryLoadTransactionsCSV(fn);
+                groceryLoadTransactionsCSV("grocerytransactions.csv");
                 break;
             }
             case 2:
@@ -1023,10 +1017,7 @@ void grocerySystem()
             {
             case 1:
             {
-                string fn;
-                cout << "Filename: ";
-                getline(cin, fn);
-                groceryLoadStaffCSV(fn);
+                groceryLoadStaffCSV("grocerystaff.csv");
                 break;
             }
             case 2:
@@ -1060,10 +1051,7 @@ void grocerySystem()
             {
             case 1:
             {
-                string fn;
-                cout << "Filename: ";
-                getline(cin, fn);
-                groceryLoadAttendanceCSV(fn);
+                groceryLoadAttendanceCSV("groceryattendance.csv");
                 break;
             }
             case 2:
