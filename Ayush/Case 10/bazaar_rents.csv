@@ -1,3 +1,0 @@
-rent_id,stall_id,vendor_id,amount,due_date,status
-R01,S01,V01,3000,2025-12-01,Paid
-R02,S03,V02,5000,2025-12-05,Unpaid

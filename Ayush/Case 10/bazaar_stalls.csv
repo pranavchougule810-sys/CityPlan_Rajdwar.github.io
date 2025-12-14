@@ -1,6 +1,0 @@
-stall_id,vendor_id,category,rent,status
-S01,V01,Food,3000,Occupied
-S02,,Clothes,2500,Available
-S03,V02,Electronics,5000,Occupied
-S04,,General,2000,Available
-S05,V03,Food,3200,Occupied
