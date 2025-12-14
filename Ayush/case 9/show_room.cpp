@@ -70,6 +70,8 @@ string nowDate() {
 const string VS_VEH_FILE   = "showroom_vehicles.csv";
 const string VS_SALES_FILE = "showroom_sales.csv";
 const string VS_TESTDRV    = "showroom_testdrives.csv";
+// ---- Graph for Vehicle Similarity (Adjacency List) ----
+map<string, vector<string>> vs_vehicleGraph;
 
 /* -------------------------- UTILITIES -------------------------- */
 
@@ -97,13 +99,57 @@ void vs_addVehicle() {
 
 void vs_viewVehicles() {
     auto rows = readCSV(VS_VEH_FILE);
-    cout << "\n=== VEHICLE INVENTORY ===\n";
+    if (rows.size() <= 1) {
+        cout << "No vehicles in showroom.\n";
+        return;
+    }
+
+    // -------- BUILD GRAPH (vehicles with same make) --------
+    vs_vehicleGraph.clear();
+
     for (size_t i = 1; i < rows.size(); ++i) {
-        cout << col(rows[i],0) << " | " << col(rows[i],1) << " " << col(rows[i],2)
-             << " | Year:" << col(rows[i],3) << " | Price:" << col(rows[i],4)
-             << " | Stock:" << col(rows[i],5) << " | Color:" << col(rows[i],6) << "\n";
+        for (size_t j = 1; j < rows.size(); ++j) {
+            if (i != j && col(rows[i],1) == col(rows[j],1)) {
+                vs_vehicleGraph[col(rows[i],0)].push_back(col(rows[j],0));
+            }
+        }
+    }
+
+    // -------- BFS TRAVERSAL --------
+    queue<string> q;
+    set<string> visited;
+
+    string start = col(rows[1],0);   // first vehicle
+    q.push(start);
+    visited.insert(start);
+
+    cout << "\n=== VEHICLE INVENTORY (BFS ORDER) ===\n";
+
+    while (!q.empty()) {
+        string u = q.front(); q.pop();
+
+        // print vehicle details
+        for (size_t i = 1; i < rows.size(); ++i) {
+            if (col(rows[i],0) == u) {
+                cout << col(rows[i],0) << " | "
+                     << col(rows[i],1) << " " << col(rows[i],2)
+                     << " | Year:" << col(rows[i],3)
+                     << " | Price:" << col(rows[i],4)
+                     << " | Stock:" << col(rows[i],5)
+                     << " | Color:" << col(rows[i],6) << "\n";
+                break;
+            }
+        }
+
+        for (auto &v : vs_vehicleGraph[u]) {
+            if (!visited.count(v)) {
+                visited.insert(v);
+                q.push(v);
+            }
+        }
     }
 }
+
 
 void vs_updatePrice() {
     auto rows = readCSV(VS_VEH_FILE);
