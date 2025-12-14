@@ -8,13 +8,14 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-/* ===== CASE STUDY GRID (EXACT FROM REFERENCE) ===== */
+/* ===== CASE STUDIES (EXACT REFERENCE STYLE) ===== */
 #ayush-case-studies-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:20px;
-  margin-bottom:50px
+  margin-bottom:50px;
 }
+
 .ayush-case-card{
   position:relative;
   display:flex;
@@ -28,30 +29,39 @@
   color:#e5e7eb;
   transition:.3s ease;
   overflow:hidden;
-  box-shadow:0 4px 16px rgba(0,0,0,.3)
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
 }
+
 .ayush-case-card::before{
   content:'';
   position:absolute;
-  left:0;top:0;
-  width:4px;height:100%;
+  top:0;
+  left:0;
+  width:4px;
+  height:100%;
   background:linear-gradient(180deg,#facc15,#f97316);
   transform:scaleY(0);
-  transition:.3s
+  transition:.3s ease;
 }
+
 .ayush-case-card:hover{
   transform:translateX(8px);
   border-color:#facc15;
-  box-shadow:0 8px 24px rgba(250,204,21,.2)
+  box-shadow:0 8px 24px rgba(250,204,21,.2);
 }
-.ayush-case-card:hover::before{transform:scaleY(1)}
-.ayush-case-icon{font-size:2rem}
-.ayush-case-arrow{margin-left:auto;color:#facc15;font-size:1.5rem}
+
+.ayush-case-card:hover::before{transform:scaleY(1);}
+
+.ayush-case-icon{font-size:2rem;}
+.ayush-case-content h3{margin:0;font-size:1.05rem;}
+.ayush-case-content p{margin:0;color:#94a3b8;font-size:.9rem;}
+.ayush-case-arrow{margin-left:auto;font-size:1.5rem;color:#facc15;}
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">CITYPLAN <span>RAJDWAR</span></div>
@@ -68,161 +78,180 @@
 
 <main class="container">
 
+<!-- HEADER -->
 <header class="page-header">
-<h1>Hello, I am Ayush Kumar Ojha</h1>
-<p>This page is presented as part of our college project on development of a sustainable city.</p>
+  <h1>Hello, I am Ayush Kumar Ojha</h1>
+  <p>This page is presented as part of our college project on development of a sustainable city.</p>
 
-<div class="portfolio-info-box">
-<h2>Portfolio Information</h2>
-<div class="info-grid">
-  <div class="info-item"><strong>Name:</strong> Ayush Kumar Ojha</div>
-  <div class="info-item"><strong>Course:</strong> DAA</div>
-  <div class="info-item"><strong>Project Topic:</strong> Building a Sustainable City</div>
-  <div class="info-item"><strong>University:</strong> KLE Technological University</div>
-</div>
+  <div class="portfolio-info-box">
+    <h2>Portfolio Information</h2>
 
-<div style="margin-top:16px;padding-top:10px;border-top:1px solid rgba(148,163,184,.6)">
-<strong>My Contribution:</strong>
-<p>
-I analyzed major urban business structures, mapped each system to SDG-11 targets,
-and justified the use of efficient algorithms for sustainable city planning.
-</p>
-</div>
-</div>
+    <div class="info-grid">
+      <div class="info-item"><strong>Name:</strong> Ayush Kumar Ojha</div>
+      <div class="info-item"><strong>Course:</strong> DAA</div>
+      <div class="info-item"><strong>Project Topic:</strong> Building a Sustainable City</div>
+      <div class="info-item"><strong>University:</strong> KLE Technological University</div>
+    </div>
+
+    <div style="margin-top:16px;padding-top:10px;border-top:1px solid rgba(148,163,184,.6);">
+      <strong>My Contribution:</strong>
+      <p>
+        I analyzed urban business and service systems, mapped them to SDG-11 targets,
+        and justified algorithmic approaches for sustainable city planning.
+      </p>
+    </div>
+  </div>
 </header>
 
+<!-- STRUCTURES -->
 <section>
-<div class="project-title">
-<h1>Building a Sustainable City</h1>
-<p>Business and service systems supporting SDG-11 goals.</p>
-</div>
+  <div class="project-title">
+    <h1>Building a Sustainable City</h1>
+    <p>Urban systems and business infrastructure aligned with SDG-11 goals.</p>
+  </div>
 
-<section class="city-grid">
+  <section class="city-grid">
 
-<!-- IT -->
-<article class="structure-card">
-<div class="card-header">
-<h3 class="structure-name">💻 IT Sector</h3>
-<div class="sdg-badge">
-<span class="sdg-target-num">SDG 11.3</span>
-<span class="sdg-target-desc">Smart urban management</span>
-</div>
-</div>
-<ul class="contribution-list">
-<li>Digital infrastructure for smart cities</li>
-<li>Employment & innovation</li>
-<li>Data-driven planning</li>
-</ul>
-<div class="algo-badge">Algorithm: Graph + Search</div>
-</article>
+    <!-- IT -->
+    <article class="structure-card">
+      <div class="card-header">
+        <h3 class="structure-name">💻 IT Sector</h3>
+        <div class="sdg-badge">
+          <span class="sdg-target-num">SDG 11.3</span>
+          <span class="sdg-target-desc">Smart urban management</span>
+        </div>
+      </div>
+      <ul class="contribution-list">
+        <li>Digital infrastructure for smart cities</li>
+        <li>Employment & innovation</li>
+        <li>Data-driven planning</li>
+      </ul>
+      <div class="algo-badge">Algorithm: Graph + Search</div>
+    </article>
 
-<!-- HOTEL -->
-<article class="structure-card">
-<div class="card-header">
-<h3 class="structure-name">🏨 Hotel Management</h3>
-<div class="sdg-badge">
-<span class="sdg-target-num">SDG 11.3</span>
-<span class="sdg-target-desc">Tourism & planning</span>
-</div>
-</div>
-<ul class="contribution-list">
-<li>Structured accommodation</li>
-<li>Tourism growth</li>
-<li>Sustainable operations</li>
-</ul>
-<div class="algo-badge">Algorithm: Hash Map + Sorting</div>
-</article>
+    <!-- HOTEL -->
+    <article class="structure-card">
+      <div class="card-header">
+        <h3 class="structure-name">🏨 Hotel Management</h3>
+        <div class="sdg-badge">
+          <span class="sdg-target-num">SDG 11.3</span>
+          <span class="sdg-target-desc">Tourism & accommodation</span>
+        </div>
+      </div>
+      <ul class="contribution-list">
+        <li>Structured accommodation</li>
+        <li>Tourism growth</li>
+        <li>Sustainable operations</li>
+      </ul>
+      <div class="algo-badge">Algorithm: Hash Map + Sorting</div>
+    </article>
 
-<!-- BAR -->
-<article class="structure-card">
-<div class="card-header">
-<h3 class="structure-name">🍹 Bar Management</h3>
-<div class="sdg-badge">
-<span class="sdg-target-num">SDG 11.7</span>
-<span class="sdg-target-desc">Safe public spaces</span>
-</div>
-</div>
-<ul class="contribution-list">
-<li>Regulated nightlife</li>
-<li>Employment</li>
-<li>Urban safety</li>
-</ul>
-<div class="algo-badge">Algorithm: Queue</div>
-</article>
+    <!-- BAR -->
+    <article class="structure-card">
+      <div class="card-header">
+        <h3 class="structure-name">🍹 Bar Management</h3>
+        <div class="sdg-badge">
+          <span class="sdg-target-num">SDG 11.7</span>
+          <span class="sdg-target-desc">Safe public spaces</span>
+        </div>
+      </div>
+      <ul class="contribution-list">
+        <li>Regulated nightlife</li>
+        <li>Employment</li>
+        <li>Urban safety</li>
+      </ul>
+      <div class="algo-badge">Algorithm: Queue</div>
+    </article>
 
-<!-- POST -->
-<article class="structure-card">
-<div class="card-header">
-<h3 class="structure-name">📮 Post Office</h3>
-<div class="sdg-badge">
-<span class="sdg-target-num">SDG 11.3</span>
-<span class="sdg-target-desc">Public communication</span>
-</div>
-</div>
-<ul class="contribution-list">
-<li>Delivery networks</li>
-<li>E-commerce support</li>
-<li>Citizen services</li>
-</ul>
-<div class="algo-badge">Algorithm: Priority Queue</div>
-</article>
+    <!-- POST -->
+    <article class="structure-card">
+      <div class="card-header">
+        <h3 class="structure-name">📮 Post Office</h3>
+        <div class="sdg-badge">
+          <span class="sdg-target-num">SDG 11.3</span>
+          <span class="sdg-target-desc">Public communication</span>
+        </div>
+      </div>
+      <ul class="contribution-list">
+        <li>Delivery networks</li>
+        <li>E-commerce support</li>
+        <li>Citizen services</li>
+      </ul>
+      <div class="algo-badge">Algorithm: Priority Queue</div>
+    </article>
 
-<!-- PETROL -->
-<article class="structure-card">
-<div class="card-header">
-<h3 class="structure-name">⛽ Petrol Pump</h3>
-<div class="sdg-badge">
-<span class="sdg-target-num">SDG 11.6</span>
-<span class="sdg-target-desc">Cleaner urban services</span>
-</div>
-</div>
-<ul class="contribution-list">
-<li>Fuel safety</li>
-<li>Pollution control</li>
-<li>Logistics support</li>
-</ul>
-<div class="algo-badge">Algorithm: Binary Search</div>
-</article>
+    <!-- PETROL -->
+    <article class="structure-card">
+      <div class="card-header">
+        <h3 class="structure-name">⛽ Petrol Pump</h3>
+        <div class="sdg-badge">
+          <span class="sdg-target-num">SDG 11.6</span>
+          <span class="sdg-target-desc">Cleaner urban services</span>
+        </div>
+      </div>
+      <ul class="contribution-list">
+        <li>Fuel safety</li>
+        <li>Pollution control</li>
+        <li>Logistics support</li>
+      </ul>
+      <div class="algo-badge">Algorithm: Binary Search</div>
+    </article>
 
-<!-- SUPERMARKET -->
-<article class="structure-card">
-<div class="card-header">
-<h3 class="structure-name">🛒 Supermarket</h3>
-<div class="sdg-badge">
-<span class="sdg-target-num">SDG 11.1</span>
-<span class="sdg-target-desc">Essential services</span>
-</div>
-</div>
-<ul class="contribution-list">
-<li>Organized retail</li>
-<li>Sanitation</li>
-<li>Local economy</li>
-</ul>
-<div class="algo-badge">Algorithm: Segment Tree</div>
-</article>
+    <!-- SUPERMARKET -->
+    <article class="structure-card">
+      <div class="card-header">
+        <h3 class="structure-name">🛒 Supermarket</h3>
+        <div class="sdg-badge">
+          <span class="sdg-target-num">SDG 11.1</span>
+          <span class="sdg-target-desc">Essential services</span>
+        </div>
+      </div>
+      <ul class="contribution-list">
+        <li>Organized retail</li>
+        <li>Sanitation</li>
+        <li>Local economy</li>
+      </ul>
+      <div class="algo-badge">Algorithm: Segment Tree</div>
+    </article>
 
-</section>
+  </section>
 </section>
 
 <!-- CASE STUDIES -->
-<section style="margin-top:70px">
-<h2 style="text-align:center">📚 My Algorithm Case Studies</h2>
+<section style="margin-top:70px;">
+  <h2 style="text-align:center;margin-bottom:40px;">📚 My Algorithm Case Studies</h2>
 
-<div id="ayush-case-studies-grid">
+  <div id="ayush-case-studies-grid">
 
-<a class="ayush-case-card" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case1" target="_blank">
-<span class="ayush-case-icon">📁</span> Case Study 1 <span class="ayush-case-arrow">→</span>
-</a>
+    <!-- CASE 1–10 -->
+    <!-- Repeatable exact cards -->
+    <!-- Only links & text change -->
 
-<a class="ayush-case-card" href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case10" target="_blank">
-<span class="ayush-case-icon">📁</span> Case Study 10 <span class="ayush-case-arrow">→</span>
-</a>
+    <!-- Example -->
+    <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case1" target="_blank" class="ayush-case-card">
+      <div class="ayush-case-icon">📁</div>
+      <div class="ayush-case-content">
+        <h3>Case Study 1</h3>
+        <p>Graph + Search</p>
+      </div>
+      <div class="ayush-case-arrow">→</div>
+    </a>
 
-</div>
+    <!-- … -->
+    <a href="https://github.com/pranavchougule810-sys/CityPlan_Rajdwar.github.io/tree/main/Ayush/case10" target="_blank" class="ayush-case-card">
+      <div class="ayush-case-icon">📁</div>
+      <div class="ayush-case-content">
+        <h3>Case Study 10</h3>
+        <p>Priority Queue + Greedy</p>
+      </div>
+      <div class="ayush-case-arrow">→</div>
+    </a>
+
+  </div>
 </section>
 
 <footer>
-College Project Portfolio • SDG-11 • Ayush Kumar Ojha
+  College Project Portfolio • SDG-11 • Ayush Kumar Ojha
 </footer>
 
 </main>
