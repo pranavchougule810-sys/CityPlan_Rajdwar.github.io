@@ -378,6 +378,102 @@
             </div>
         </section>
 
+<style>
+/* ================= CASE STUDIES GRID (EXACT REFERENCE STYLE) ================= */
+
+#kushv-case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+.kushv-case-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 26px;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 18px;
+    text-decoration: none;
+    color: #e5e7eb;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.kushv-case-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #facc15, #f97316);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.kushv-case-card:hover {
+    transform: translateY(-6px);
+    border-color: #facc15;
+    box-shadow: 0 10px 28px rgba(250, 204, 21, 0.18);
+}
+
+.kushv-case-card:hover::before {
+    transform: scaleY(1);
+}
+
+.kushv-case-icon {
+    font-size: 2.4rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.kushv-case-card:hover .kushv-case-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.kushv-case-content {
+    flex: 1;
+}
+
+.kushv-case-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #e5e7eb;
+}
+
+.kushv-case-content p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.kushv-case-arrow {
+    font-size: 1.6rem;
+    color: #facc15;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.kushv-case-card:hover .kushv-case-arrow {
+    transform: translateX(6px);
+}
+
+@media (max-width: 768px) {
+    #kushv-case-studies-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+</style>
+
+        
 <section class="algo-analysis">
     <h2>Algorithm Efficiency Analysis</h2>
 
