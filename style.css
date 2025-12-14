@@ -626,4 +626,49 @@ footer {
     overflow: hidden;
 }
 
+.algo-analysis {
+  margin-top: 80px;
+}
+
+.algo-analysis h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.algo-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: linear-gradient(180deg, #0f172a, #020617);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.algo-table thead {
+  background: #1e293b;
+}
+
+.algo-table th {
+  padding: 14px;
+  text-align: left;
+  color: #facc15;
+  font-weight: 700;
+  border-bottom: 2px solid #334155;
+}
+
+.algo-table td {
+  padding: 14px;
+  color: #e5e7eb;
+  border-bottom: 1px solid #1e293b;
+}
+
+.algo-table tbody tr:nth-child(even) {
+  background-color: rgba(30, 41, 59, 0.5);
+}
+
+.algo-table tbody tr:hover {
+  background-color: rgba(250, 204, 21, 0.1);
+}
+
 
