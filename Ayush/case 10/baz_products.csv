@@ -1,0 +1,26 @@
+pid,name,category,buy,sell,qty,unit,notes
+P001,Tomatoes,Vegetable,20,30,50,kg,Fresh
+P002,Potatoes,Vegetable,18,25,80,kg,Organic
+P003,Onions,Vegetable,22,30,70,kg,Red onions
+P004,Apples,Fruit,120,150,40,kg,Kashmiri
+P005,Bananas,Fruit,25,35,60,kg,Yellow
+P006,Milk 1L,Dairy,45,55,100,pcs,Toned
+P007,Curd 500g,Dairy,25,35,80,pcs,Fresh
+P008,Rice 1kg,Grains,50,70,90,kg,Basmati
+P009,Wheat 1kg,Grains,35,50,110,kg,MP wheat
+P010,Sugar 1kg,Grocery,36,45,100,kg,Refined
+P011,Tea Powder 250g,Grocery,90,120,40,pcs,Premium
+P012,Sunflower Oil 1L,Grocery,90,110,55,pcs,Refined
+P013,Soap Bar,Daily Use,18,25,120,pcs,Herbal
+P014,Shampoo Sachet,Daily Use,2,5,200,pcs,Popular
+P015,Toothpaste 100g,Daily Use,35,50,90,pcs,Mint
+P016,Detergent 1kg,Cleaning,60,80,70,pcs,Bucket wash
+P017,Floor Cleaner 1L,Cleaning,70,90,40,pcs,Floral
+P018,Chocolates,Snacks,10,15,200,pcs,Mini bars
+P019,Biscuits,Snacks,15,25,160,pcs,Tea biscuits
+P020,Chips,Snacks,10,20,180,pcs,Salted
+P021,Cola 1L,Beverage,28,40,70,pcs,Soft drink
+P022,Juice 1L,Beverage,55,75,60,pcs,Mixed fruit
+P023,Eggs (dozen),Poultry,50,65,30,pcs,Farm fresh
+P024,Chicken 1kg,Poultry,160,200,25,kg,Grade A
+P025,Fish 1kg,Seafood,200,260,20,kg,Fresh catch
