@@ -37,6 +37,80 @@
 .algo-table tr:hover {
     background: rgba(250,204,21,0.05);
 }
+  /* ================= ALGORITHM TABLE (AYUSH STYLE) ================= */
+
+.algo-table-wrapper {
+    overflow-x: auto;
+    margin: 60px 0;
+}
+
+.algo-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: linear-gradient(135deg, #0f172a, #020617);
+    color: #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* Header */
+.algo-table thead th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 800;
+    color: #facc15;
+    background: linear-gradient(135deg, #020617, #020617);
+    border-bottom: 2px solid #facc15;
+}
+
+/* Body cells */
+.algo-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(148,163,184,0.15);
+}
+
+/* Zebra rows */
+.algo-table tbody tr:nth-child(even) {
+    background: rgba(148,163,184,0.05);
+}
+
+/* Hover */
+.algo-table tbody tr:hover {
+    background: rgba(250,204,21,0.06);
+}
+
+/* === Pills / highlights === */
+.badge-yes {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(34,197,94,0.15);
+    color: #22c55e;
+    font-weight: 700;
+}
+
+.badge-all {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(250,204,21,0.15);
+    color: #facc15;
+    font-weight: 700;
+}
+
+.badge-complexity {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(96,165,250,0.15);
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+.badge-dash {
+    color: #64748b;
+}
+
 </style>
 
 </head>
@@ -520,25 +594,23 @@
             }
         </style>
         <!-- =================== END CASE STUDIES SECTION =================== -->
-<section style="margin-top: 80px;">
-    <div style="text-align:center; margin-bottom:30px;">
-        <h2 style="font-size:2.2rem; color:#e5e7eb;">🧠 Algorithms & Data Structures Used</h2>
-        <p style="color:#94a3b8;">
-            Summary of algorithms and data structures applied across all business cases
-        </p>
-    </div>
+<section style="margin-top:80px;">
+  <div style="text-align:center; margin-bottom:30px;">
+    <h2 style="font-size:2.2rem; color:#e5e7eb;">🧠 Algorithms & Data Structures Used</h2>
+    <p style="color:#94a3b8;">Summary of algorithms and data structures applied across all business cases</p>
+  </div>
 
-    <div class="algo-table-wrapper">
-        <table class="algo-table">
-            <thead>
-                <tr>
-                    <th>Data Structure / Algorithm</th>
-                    <th>Used?</th>
-                    <th>Where Used</th>
-                    <th>Space Efficiency</th>
-                    <th>Time Efficiency</th>
-                </tr>
-            </thead>
+  <div class="algo-table-wrapper">
+    <table class="algo-table">
+      <thead>
+        <tr>
+          <th>Data Structure / Algorithm</th>
+          <th>Used?</th>
+          <th>Where Used</th>
+          <th>Space Efficiency</th>
+          <th>Time Efficiency</th>
+        </tr>
+      </thead>
 <tbody>
     <tr>
         <td>Arrays</td>
@@ -837,9 +909,11 @@
     </tr>
 </tbody>
 
-        </table>
-    </div>
+    </table>
+  </div>
 </section>
+
+
 
         <footer>
             College Project Portfolio • SDG-11: Sustainable Cities & Communities • Manthan Raykar
