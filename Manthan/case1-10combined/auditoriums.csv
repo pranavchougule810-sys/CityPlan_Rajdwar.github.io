@@ -1,0 +1,16 @@
+aud_id,name,rows,cols,type,total_seats
+600,Auditorium_1,19,19,standard,361
+601,Auditorium_2,13,14,standard,182
+602,Auditorium_3,13,15,standard,195
+603,Auditorium_4,16,20,standard,320
+604,Auditorium_5,11,15,standard,165
+605,Auditorium_6,10,13,standard,130
+606,Auditorium_7,19,17,standard,323
+607,Auditorium_8,18,19,standard,342
+608,Auditorium_9,14,16,standard,224
+609,Auditorium_10,17,17,standard,289
+610,Auditorium_11,10,20,standard,200
+611,Auditorium_12,10,12,standard,120
+612,Auditorium_13,13,12,standard,156
+613,Auditorium_14,15,14,standard,210
+614,Auditorium_15,11,17,standard,187

@@ -1,0 +1,51 @@
+equipment_id,name,quantity_total,quantity_available,condition,last_maintenance_date
+1,Equipment1,13,20,Needs Repair,2025-06-23
+2,Equipment2,22,19,Good,2023-07-22
+3,Equipment3,20,12,Good,2025-03-28
+4,Equipment4,24,20,Needs Repair,2023-01-12
+5,Equipment5,28,21,Needs Repair,2024-04-19
+6,Equipment6,5,23,Good,2024-11-24
+7,Equipment7,26,9,Average,2023-01-15
+8,Equipment8,25,7,Average,2023-02-13
+9,Equipment9,20,25,Average,2023-12-11
+10,Equipment10,27,4,Good,2024-07-29
+11,Equipment11,29,11,Good,2024-02-21
+12,Equipment12,1,21,Average,2025-07-10
+13,Equipment13,25,16,Good,2024-09-13
+14,Equipment14,27,4,Needs Repair,2025-01-02
+15,Equipment15,5,1,Good,2024-05-04
+16,Equipment16,4,11,Needs Repair,2023-08-11
+17,Equipment17,19,6,Average,2024-04-08
+18,Equipment18,14,5,Good,2025-09-03
+19,Equipment19,28,9,Needs Repair,2023-12-18
+20,Equipment20,7,21,Good,2023-09-05
+21,Equipment21,24,17,Average,2024-05-16
+22,Equipment22,6,3,Good,2024-06-27
+23,Equipment23,11,17,Average,2025-04-22
+24,Equipment24,10,4,Average,2025-03-14
+25,Equipment25,1,11,Good,2023-05-05
+26,Equipment26,22,25,Needs Repair,2024-06-06
+27,Equipment27,11,6,Good,2025-08-15
+28,Equipment28,2,28,Average,2024-08-25
+29,Equipment29,13,3,Average,2024-05-23
+30,Equipment30,28,10,Good,2025-12-28
+31,Equipment31,11,20,Needs Repair,2025-04-13
+32,Equipment32,9,29,Good,2025-03-02
+33,Equipment33,24,27,Good,2023-05-03
+34,Equipment34,17,3,Good,2023-04-02
+35,Equipment35,27,26,Needs Repair,2024-06-15
+36,Equipment36,7,27,Average,2024-02-25
+37,Equipment37,16,27,Needs Repair,2024-06-19
+38,Equipment38,15,30,Average,2024-01-02
+39,Equipment39,10,30,Good,2024-12-23
+40,Equipment40,4,30,Average,2023-05-05
+41,Equipment41,11,30,Average,2023-01-01
+42,Equipment42,27,14,Good,2024-04-07
+43,Equipment43,9,28,Good,2023-08-28
+44,Equipment44,18,8,Average,2023-03-01
+45,Equipment45,8,26,Average,2025-06-24
+46,Equipment46,11,30,Needs Repair,2024-10-11
+47,Equipment47,14,16,Good,2023-02-11
+48,Equipment48,2,6,Needs Repair,2024-11-16
+49,Equipment49,16,4,Average,2025-10-13
+50,Equipment50,9,16,Average,2024-11-23

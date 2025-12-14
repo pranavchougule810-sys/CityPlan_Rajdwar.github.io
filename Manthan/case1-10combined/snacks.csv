@@ -1,0 +1,11 @@
+snack_id,name,category,price,prep_time
+8001,Popcorn (Regular),Snack,120,2
+8002,Popcorn (Large),Snack,200,3
+8003,Nachos,Snack,180,4
+8004,Hotdog,Food,150,5
+8005,Cheese Fries,Snack,160,4
+8006,Cold Coffee,Beverage,140,2
+8007,Soft Drink (500ml),Beverage,80,1
+8008,Chocolate Brownie,Dessert,120,3
+8009,Sandwich,Food,170,6
+8010,Ice Cream Cup,Dessert,100,2

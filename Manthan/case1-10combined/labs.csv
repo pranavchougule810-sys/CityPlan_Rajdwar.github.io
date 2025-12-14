@@ -1,0 +1,21 @@
+apptID,patientID,testType,resultDate,resultSummary
+21026,9014,MRI,2025-12-07,Abnormal
+21025,9045,Urine Test,2025-12-03,Normal
+21026,9030,X-Ray,2025-12-05,Abnormal
+21038,9001,Blood Test,2025-12-06,Abnormal
+21048,9005,Urine Test,2025-12-02,Abnormal
+21037,9049,MRI,2025-12-02,Normal
+21043,9012,MRI,2025-12-03,Requires follow-up
+21033,9026,Blood Test,2025-12-07,Normal
+21046,9004,X-Ray,2025-12-02,Requires follow-up
+21036,9019,Blood Test,2025-12-09,Normal
+21009,9037,MRI,2025-12-06,Normal
+21030,9049,MRI,2025-12-06,Normal
+21024,9024,MRI,2025-12-08,Requires follow-up
+21048,9046,MRI,2025-12-08,Minor issue
+21018,9043,Urine Test,2025-12-03,Requires follow-up
+21042,9040,Urine Test,2025-12-07,Abnormal
+21029,9007,X-Ray,2025-12-10,Normal
+21004,9040,Blood Test,2025-12-08,Abnormal
+21039,9028,Blood Test,2025-12-03,Minor issue
+21018,9003,MRI,2025-12-09,Requires follow-up
